@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://assets/graphics/tiles/slot_eq.png" type="Texture" id=1]
+
+[node name="TestSet" type="Node"]
+
+[node name="grid" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+
+

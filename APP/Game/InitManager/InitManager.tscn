@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Game/InitManager/InitManager.gd" type="Script" id=1]
+
+[node name="InitManager" type="PanelContainer"]
+
+visibility/self_opacity = 0.5
+visibility/blend_mode = 2
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 238.0
+margin/bottom = 347.0
+script/script = ExtResource( 1 )
+
+[node name="box" type="VBoxContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 231.0
+margin/bottom = 340.0
+alignment = 0
+
+[node name="Label" type="Label" parent="box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 224.0
+margin/bottom = 14.0
+text = "Initiative"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Actors" type="PanelContainer" parent="box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 224.0
+margin/bottom = 333.0
+
+[node name="Active" type="ScrollContainer" parent="box/Actors"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 217.0
+margin/bottom = 308.0
+scroll/horizontal = false
+scroll/vertical = true
+
+[node name="List" type="VBoxContainer" parent="box/Actors/Active"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 210.0
+margin/bottom = 0.0
+alignment = 0
+
+

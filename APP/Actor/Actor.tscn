@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://Actor/Actor.gd" type="Script" id=1]
+[ext_resource path="res://assets/graphics/creature/draconian_green_m.png" type="Texture" id=2]
+[ext_resource path="res://Actor/AbilityScores.gd" type="Script" id=3]
+
+[node name="Actor" type="Node2D"]
+
+script/script = ExtResource( 1 )
+team = 0
+name = "Noname"
+demeanor = 1
+demeanor = 1
+base_movement = 6
+proficiency = 2
+max_hp = 8
+
+[node name="Icon" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+centered = false
+
+[node name="AbilityScores" type="Node" parent="."]
+
+script/script = ExtResource( 3 )
+strength = 8
+dexterity = 8
+constitution = 8
+intelligence = 8
+wisdom = 8
+charisma = 8
+
+
