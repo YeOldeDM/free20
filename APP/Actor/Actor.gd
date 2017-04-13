@@ -210,7 +210,8 @@ func _ActionSensor_action_received( action ):
 	elif action == "DONE":
 		clear_step_sprites()
 		Globals.InitManager.next_actor()
-	else:	printt(self.get_name(),action)
+	else:
+		Globals.ActionController.set_current_action(action)
 
 
 # PRIVATE SETGETTERS #
