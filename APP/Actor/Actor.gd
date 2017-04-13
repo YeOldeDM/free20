@@ -32,6 +32,7 @@ var movement_spent = 0 setget _set_movement_spent
 var initiative = 0 setget _set_initiative
 
 var move_history = []
+var step_sprites = []
 
 
 var hp = max_hp setget _set_hp
@@ -132,6 +133,21 @@ func new_turn():
 	self.max_movement = self.base_movement
 	self.movement_spent = 0
 	self.move_history = []
+	clear_step_sprites()
+
+
+func add_step_sprite(cell):
+	var sprite = Sprite.new()
+	sprite.set_texture(preload('res://assets/graphics/tiles/tile_red.png'))
+	sprite.set_centered(false)
+	get_parent().add_child(sprite)
+	sprite.set_pos(get_parent().map_to_world(cell))
+	step_sprites.append(sprite)
+
+func clear_step_sprites():
+	while step_sprites.size() > 0:
+		step_sprites[0].queue_free()
+		step_sprites.remove(0)
 
 # Step one tile in a direction
 # Check for valid tile and movement points
@@ -143,6 +159,7 @@ func step( direction ):
 	if can_occupy( target_cell ):
 		if self.movement_spent < self.max_movement:
 			self.move_history.append( self.get_map_pos() )
+			add_step_sprite(self.get_map_pos())
 			set_map_pos( target_cell )
 			
 			self.movement_spent += 1
@@ -153,7 +170,12 @@ func undo_step():
 	
 	var target_cell = self.move_history.back()
 	if self.movement_spent > 0:
-		self.move_history.remove( self.move_history.size()-1 )
+		self.move_history.erase( self.move_history.back() )
+		if self.step_sprites.size() <= 1:
+			clear_step_sprites()
+		else:
+			self.step_sprites[-1].queue_free()
+			step_sprites.erase(step_sprites.back())
 		set_map_pos( target_cell )
 		
 		self.movement_spent -= 1
