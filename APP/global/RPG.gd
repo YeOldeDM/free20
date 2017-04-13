@@ -59,11 +59,12 @@ func check(DC=9, mod=0, has_advantage=NULL_ADVANTAGE):
 		passed = false
 	# Return data dictionary
 	var data = {
-		'passed':	passed,	# bool roll passes the check?
-		'roll':		roll,	# raw d20 roll
-		'result':	result,	# Result (roll+mod)
-		'DC':		DC,		# DC given to this check
-		'crit':		crit	# Critical status (-1 miss, 1 hit, 0 normal)
+		'passed':		passed,	# bool roll passes the check?
+		'roll':			roll,	# raw d20 roll
+		'result':		result,	# Result (roll+mod)
+		'DC':			DC,		# DC given to this check
+		'crit':			crit,	# Critical status (-1 miss, 1 hit, 0 normal)
+		'advantage':	has_advantage,	# Advantage status
 		}
 	return data
 

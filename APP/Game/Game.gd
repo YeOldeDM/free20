@@ -3,17 +3,18 @@ extends Node2D
 # SIGNALS #
 signal active_actor_set(actor)
 
-signal check_rolled(who, check)
+signal announce_check(who, check, blurb)
 
 # MEMBERS #
 var active_actor = null setget _set_active_actor
 
 # Roll a d20 check from name. Announce the result as a signal
 # also return the result
-func check(from_name,DC=9, mod=0, has_advantage=RPG.NULL_ADVANTAGE):
+func check(announcement="rolls a check!",from_name="--",DC=9, mod=0,\
+			has_advantage=RPG.NULL_ADVANTAGE):
 	var data = RPG.check(DC,mod,has_advantage)
 	
-	emit_signal('check_rolled', from_name, data)
+	emit_signal('announce_check', from_name, data, announcement)
 	return data
 
 # PUBLIC METHODS #
