@@ -12,8 +12,10 @@ var active_actor = null setget _set_active_actor
 func set_active_actor(actor):
 	if 'active_actor' in Globals:
 		Globals.ActionSensor.deconnect()
+		Globals.active_actor.set_focus(false)
 	Globals.active_actor = actor
 	self.active_actor = actor
+
 	
 	
 # INIT #
@@ -32,5 +34,6 @@ func _ready():
 
 func _set_active_actor(what):
 	active_actor = what
+	active_actor.set_focus(true)
 	emit_signal('active_actor_set',active_actor)
 	

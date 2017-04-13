@@ -71,6 +71,11 @@ func set_icon(texture):
 func get_icon():
 	return get_node('Icon').get_texture()
 
+func set_focus(what):
+	get_node('Focus').set_hidden(!what)
+
+func get_focus():
+	return !get_node('Focus').is_hidden()
 
 # Get Stats
 func get_hp():
