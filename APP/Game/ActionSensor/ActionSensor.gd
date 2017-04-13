@@ -70,7 +70,6 @@ func _on_Game_active_actor_set( actor ):
 	# Connect Actor input to self
 	for i in actor_inputs:
 		actor.connect(i, self, '_on_Active_'+i)
-	
 	_redraw()
 
 
