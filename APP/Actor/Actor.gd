@@ -140,6 +140,7 @@ func add_step_sprite(cell):
 	var sprite = Sprite.new()
 	sprite.set_texture(preload('res://assets/graphics/tiles/tile_red.png'))
 	sprite.set_centered(false)
+	sprite.set_opacity(0.5)
 	get_parent().add_child(sprite)
 	sprite.set_pos(get_parent().map_to_world(cell))
 	step_sprites.append(sprite)
@@ -207,6 +208,7 @@ func _ActionSensor_action_received( action ):
 	elif action == "UNDO_STEP":
 		undo_step()
 	elif action == "DONE":
+		clear_step_sprites()
 		Globals.InitManager.next_actor()
 	else:	printt(self.get_name(),action)
 
