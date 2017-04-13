@@ -37,9 +37,9 @@ margin/bottom = 365.0
 
 [node name="ActionController" parent="CanvasLayer" instance=ExtResource( 5 )]
 
-[connection signal="active_actor_set" from="." to="CanvasLayer/ActionSensor" method="_on_Game_active_actor_set"]
-
 [connection signal="active_actor_set" from="." to="CanvasLayer/InitManager" method="_on_Game_active_actor_set"]
+
+[connection signal="active_actor_set" from="." to="CanvasLayer/ActionSensor" method="_on_Game_active_actor_set"]
 
 
 [editable path="CanvasLayer/ActionSensor"]

@@ -78,7 +78,7 @@ func _on_Game_active_actor_set( actor ):
 
 
 func _on_Active_name_changed():
-	var txt = Globals.active_actor.get_name()
+	var txt = Globals.active_actor.get_actor_name()
 	active_panel.get_node('box/Name').set_text(txt)
 
 
