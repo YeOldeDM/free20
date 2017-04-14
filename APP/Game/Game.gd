@@ -11,7 +11,7 @@ var active_actor = null setget _set_active_actor
 # Roll a d20 check from name. Announce the result as a signal
 # also return the result
 func check(announcement="rolls a check!",from_name="--",DC=9, mod=0,\
-			has_advantage=RPG.NULL_ADVANTAGE):
+			has_advantage=RPG.BOON.none):
 	var data = RPG.check(DC,mod,has_advantage)
 	
 	emit_signal('announce_check', from_name, data, announcement)

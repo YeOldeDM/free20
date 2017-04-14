@@ -4,19 +4,36 @@ const DISADVANTAGE = -1
 const NULL_ADVANTAGE = 0
 const ADVANTAGE = 1
 
+
+
+enum BOON {
+	advantage,
+	disadvantage,
+	none
+	}
+
+
 const CRITICAL_MISS = -1
 const NULL_CRITICAL = 0
 const CRITICAL_HIT = 1
 
-const DIRECTIONS = {'N':	Vector2(0,-1),
-					'NE':	Vector2(1,-1),
-					'E':	Vector2(1,0),
-					'SE':	Vector2(1,1),
-					'S':	Vector2(0,1),
-					'SW':	Vector2(-1,1),
-					'W':	Vector2(-1,0),
-					'NW':	Vector2(-1,-1)
-					}
+enum CRITICAL {
+	hit,
+	miss,
+	none
+	}
+
+
+const DIRECTIONS = {
+	'N':	Vector2(0,-1),
+	'NE':	Vector2(1,-1),
+	'E':	Vector2(1,0),
+	'SE':	Vector2(1,1),
+	'S':	Vector2(0,1),
+	'SW':	Vector2(-1,1),
+	'W':	Vector2(-1,0),
+	'NW':	Vector2(-1,-1)
+	}
 
 
 
@@ -39,23 +56,23 @@ func d20_disadvantage():
 	return int(min(d20(),d20()))
 
 # STANDARD D20 CHECK VS DC, considers ADVANTAGE/DISADVANTAGE
-func check(DC=9, mod=0, has_advantage=NULL_ADVANTAGE):
+func check(DC=9, mod=0, has_advantage=BOON.none):
 	# Get die roll(s)
 	var roll = d20()
-	if has_advantage == ADVANTAGE:
+	if has_advantage == BOON.advantage:
 		roll = d20_advantage()
-	elif has_advantage == DISADVANTAGE:
+	elif has_advantage == BOON.disadvantage:
 		roll = d20_disadvantage()
 	# Apply mod and compare DC
 	var result = roll + mod
 	var passed = result >= DC
 	# Get Critical hit/miss status
-	var crit = NULL_CRITICAL
+	var crit = CRITICAL.none
 	if roll == 20:
-		crit = CRITICAL_HIT
+		crit = CRITICAL.hit
 		passed = true
 	elif roll == 1:
-		crit = CRITICAL_MISS
+		crit = CRITICAL.miss
 		passed = false
 	# Return data dictionary
 	var data = {
