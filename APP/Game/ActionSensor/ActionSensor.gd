@@ -18,7 +18,7 @@ onready var movement_panel = get_node('Input/Movement/Points')
 
 func deconnect():
 	var actor = Globals.active_actor
-	disconnect("action", actor, "_ActionSensor_action_received")
+	#disconnect("action", actor, "_ActionSensor_action_received")
 	# DisConnect Actor input to self
 	for i in actor_inputs:
 		actor.disconnect(i, self, '_on_Active_'+i)
@@ -27,6 +27,7 @@ func deconnect():
 
 func _ready():
 	Globals.ActionSensor = self
+	
 	# Connect Movement buttons
 	step_pad.get_node('NW').connect("pressed", self, "emit_signal",["action","STEP_NW"])
 	step_pad.get_node('N').connect("pressed", self, "emit_signal",["action","STEP_N"])
@@ -44,6 +45,7 @@ func _ready():
 	std_actions.get_node('Disengage').connect("pressed", self, "emit_signal",["action","DISENGAGE"])
 	std_actions.get_node('Hide').connect("pressed", self, "emit_signal",["action","HIDE"])
 	std_actions.get_node('Aid').connect("pressed", self, "emit_signal",["action","AID"])
+	std_actions.get_node('Dodge').connect("pressed", self, "emit_signal",["action","DODGE"])
 	# Undo Movement
 	movement_panel.get_node('Undo').connect("pressed", self, "emit_signal",["action","UNDO_STEP"])
 	# Finish Turn
@@ -65,8 +67,8 @@ func _redraw():
 # Called when Game sets new active actor 
 # (update target of input/output)
 func _on_Game_active_actor_set( actor ):
-	# Connect Action output to actor
-	connect("action", actor, "_ActionSensor_action_received")
+#	# Connect Action output to actor
+#	#connect("action", actor, "_ActionSensor_action_received")
 	# Connect Actor input to self
 	for i in actor_inputs:
 		actor.connect(i, self, '_on_Active_'+i)

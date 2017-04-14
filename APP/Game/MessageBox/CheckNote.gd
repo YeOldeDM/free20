@@ -19,9 +19,9 @@ func draw(from_name, data, announcement=""):
 	dc_label.set_text(str(data.DC))
 	# Advantage status
 	var advtxt = ""
-	if data.advantage == RPG.ADVANTAGE:
+	if data.advantage == RPG.BOON.advantage:
 		advtxt = "HAS ADVANTAGE!"
-	elif data.advantage == RPG.DISADVANTAGE:
+	elif data.advantage == RPG.BOON.disadvantage:
 		advtxt = "HAS DISADVANTAGE!"
 	advantage_label.set_text(advtxt)
 	# Result

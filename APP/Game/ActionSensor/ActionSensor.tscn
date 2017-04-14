@@ -472,7 +472,6 @@ max_lines_visible = -1
 
 [node name="Standard" type="GridContainer" parent="Input"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
@@ -512,7 +511,6 @@ margin/left = 303.0
 margin/top = 0.0
 margin/right = 598.0
 margin/bottom = 29.0
-disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -530,7 +528,6 @@ margin/left = 0.0
 margin/top = 33.0
 margin/right = 299.0
 margin/bottom = 62.0
-disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -565,7 +562,6 @@ margin/left = 0.0
 margin/top = 66.0
 margin/right = 299.0
 margin/bottom = 95.0
-disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -583,7 +579,6 @@ margin/left = 303.0
 margin/top = 66.0
 margin/right = 598.0
 margin/bottom = 95.0
-disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -601,11 +596,27 @@ margin/left = 0.0
 margin/top = 99.0
 margin/right = 299.0
 margin/bottom = 128.0
-disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Aid"
+flat = false
+
+[node name="Dodge" type="Button" parent="Input/Standard"]
+
+rect/min_size = Vector2( 0, 16 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 303.0
+margin/top = 99.0
+margin/right = 598.0
+margin/bottom = 128.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Dodge"
 flat = false
 
 [node name="VSeparator" type="VSeparator" parent="Input"]

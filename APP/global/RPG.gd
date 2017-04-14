@@ -1,8 +1,5 @@
 extends Node
 
-const DISADVANTAGE = -1
-const NULL_ADVANTAGE = 0
-const ADVANTAGE = 1
 
 
 
@@ -12,10 +9,6 @@ enum BOON {
 	none
 	}
 
-
-const CRITICAL_MISS = -1
-const NULL_CRITICAL = 0
-const CRITICAL_HIT = 1
 
 enum CRITICAL {
 	hit,

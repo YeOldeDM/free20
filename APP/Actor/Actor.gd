@@ -11,6 +11,7 @@ signal movement_spent()
 signal hp_changed()
 signal max_hp_changed()
 
+signal ended_turn()
 
 # MEMBERS #
 export(int) var team = 0 setget _set_team
@@ -136,6 +137,12 @@ func new_turn():
 	clear_step_sprites()
 
 
+func end_turn():
+	clear_step_sprites()
+	emit_signal('ended_turn')
+	Globals.InitManager.next_actor()
+
+
 func add_step_sprite(cell):
 	var sprite = Sprite.new()
 	sprite.set_texture(preload('res://assets/graphics/tiles/tile_red.png'))
@@ -200,18 +207,18 @@ func _ready():
 
 
 # ACTION SIGNAL CALLBACK
-func _ActionSensor_action_received( action ):
-	if action.begins_with("STEP"):
-		var dirkey = action.replace("STEP_","")
-		var dir = 	RPG.DIRECTIONS[dirkey]
-		step(dir)
-	elif action == "UNDO_STEP":
-		undo_step()
-	elif action == "DONE":
-		clear_step_sprites()
-		Globals.InitManager.next_actor()
-	else:
-		Globals.ActionController.set_current_action(action)
+#func _ActionSensor_action_received( action ):
+#	if action.begins_with("STEP"):
+#		var dirkey = action.replace("STEP_","")
+#		var dir = 	RPG.DIRECTIONS[dirkey]
+#		step(dir)
+#	elif action == "UNDO_STEP":
+#		undo_step()
+#	elif action == "DONE":
+#		clear_step_sprites()
+#		Globals.InitManager.next_actor()
+#	else:
+#		Globals.ActionController.set_current_action(action)
 
 
 # PRIVATE SETGETTERS #
