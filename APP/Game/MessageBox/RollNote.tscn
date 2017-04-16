@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://Game/MessageBox/CheckNote.gd" type="Script" id=1]
+[ext_resource path="res://Game/MessageBox/RollNote.gd" type="Script" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -28,7 +28,7 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
-[node name="CheckNote" type="PanelContainer"]
+[node name="RollNote" type="PanelContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -37,7 +37,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 211.0
-margin/bottom = 114.0
+margin/bottom = 96.0
 custom_styles/panel = SubResource( 1 )
 script/script = ExtResource( 1 )
 
@@ -50,7 +50,7 @@ size_flags/vertical = 2
 margin/left = 6.0
 margin/top = 6.0
 margin/right = 205.0
-margin/bottom = 108.0
+margin/bottom = 90.0
 alignment = 0
 
 [node name="Title" type="PanelContainer" parent="box"]
@@ -99,7 +99,8 @@ margin/top = 30.0
 margin/right = 199.0
 margin/bottom = 48.0
 custom_colors/font_color = Color( 0.375, 0.375, 0.375, 1 )
-text = "Makes an Attack Roll against another thing!"
+text = "rolls bones!"
+align = 1
 autowrap = true
 clip_text = true
 percent_visible = 1.0
@@ -123,88 +124,18 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Roll" type="HBoxContainer" parent="box"]
+[node name="Roll" type="Label" parent="box"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 70.0
 margin/right = 199.0
 margin/bottom = 84.0
-alignment = 0
-
-[node name="d20" type="Label" parent="box/Roll"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 77.0
-margin/bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "1d20+5"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="vs" type="Label" parent="box/Roll"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 81.0
-margin/top = 0.0
-margin/right = 117.0
-margin/bottom = 14.0
-custom_colors/font_color = Color( 0.5, 0.5, 0.5, 1 )
-text = "vs DC"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="DC" type="Label" parent="box/Roll"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 0
-margin/left = 121.0
-margin/top = 0.0
-margin/right = 199.0
-margin/bottom = 14.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "10"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Advantage" type="Label" parent="box"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 88.0
-margin/right = 199.0
-margin/bottom = 102.0
-custom_colors/font_color = Color( 0, 1, 0.507813, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/shadow_offset_y = 1
-custom_constants/shadow_as_outline = 1
-text = "HAS ADVANTAGE!"
 align = 1
 valign = 1
 percent_visible = 1.0

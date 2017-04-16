@@ -10,6 +10,11 @@ func add_check_note(from_name, data,announce=""):
 	note.draw(from_name,data,announce)
 	return note
 
+func add_roll_note(from_name, data, announce=""):
+	var note = preload('res://Game/MessageBox/RollNote.tscn').instance()
+	list.add_child(note)
+	note.draw(from_name,data,announce)
+	return note
 
 
 func clear():
@@ -29,3 +34,8 @@ func _on_Game_announce_check( who, check, blurb ):
 
 
 
+
+
+func _on_Game_announce_roll( who, roll, blurb ):
+	var note = add_roll_note(who,roll,blurb)
+	scroll.call_deferred('set_value',scroll.get_max())

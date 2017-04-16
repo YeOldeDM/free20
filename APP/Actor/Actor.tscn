@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Actor/Actor.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/creature/draconian_green_m.png" type="Texture" id=2]
 [ext_resource path="res://assets/graphics/tiles/cursor.png" type="Texture" id=3]
 [ext_resource path="res://Actor/AbilityScores.gd" type="Script" id=4]
+[ext_resource path="res://Actor/Weapon.gd" type="Script" id=5]
 
 [node name="Actor" type="Node2D"]
 
@@ -36,5 +37,12 @@ constitution = 8
 intelligence = 8
 wisdom = 8
 charisma = 8
+
+[node name="Weapon" type="Node" parent="."]
+
+script/script = ExtResource( 5 )
+name = ""
+damage = "1d6"
+finesse = false
 
 

@@ -1,7 +1,17 @@
 extends Node
 
 
-
+const ALIGNMENT = {
+	'demeanor': [
+		'lawful',
+		'neutral',
+		'chaotic',
+		],
+	'nature': [
+		'good',
+		'neutral',
+		'evil']
+	}
 
 enum BOON {
 	advantage,

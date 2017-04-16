@@ -13,6 +13,8 @@ signal max_hp_changed()
 
 signal ended_turn()
 
+
+
 # MEMBERS #
 export(int) var team = 0 setget _set_team
 
@@ -20,11 +22,14 @@ export(String, MULTILINE) var name = "Noname" setget _set_name
 export(int, "lawful", "neutral", "chaotic") var demeanor = 1
 export(int, "good", "neutral", "evil") var nature = 1
 
+
 export(int) var base_movement = 6
 
 export(int) var proficiency = 2
 
 export(int) var max_hp = 8 setget _set_max_hp
+
+
 
 var incapacitated = false
 var max_movement = base_movement
@@ -41,12 +46,17 @@ var hp = max_hp setget _set_hp
 var action_taken = false
 var reaction_taken = false
 
+
+
 # COMPONENTS
 var abilities
+var weapon
 
 var creature
 var race
 var jobs
+
+
 
 
 # PUBLIC SETGETTERS
@@ -65,6 +75,10 @@ func get_actor_name():
 func set_actor_name(what):
 	self.name = what
 
+# Actor Alignment
+
+
+
 # Actor Icon
 func set_icon(texture):
 	get_node('Icon').set_texture(texture)
@@ -73,11 +87,22 @@ func set_icon(texture):
 func get_icon():
 	return get_node('Icon').get_texture()
 
+
+# Actor focus (shows when we are the active actor)
 func set_focus(what):
 	get_node('Focus').set_hidden(!what)
 
 func get_focus():
 	return !get_node('Focus').is_hidden()
+
+
+# Return alignment as string
+func get_alignment():
+	var dem = RPG.ALIGNMENT.demeanor(self.demeanor)
+	var nat = RPG.ALIGNMENT.nature(self.nature)
+	return dem.capitalize()+' '+nat.capitalize()
+
+
 
 # Get Stats
 func get_hp():
@@ -108,17 +133,35 @@ func get_initiative():
 func roll_init():
 	self.initiative = RPG.d20() + self.abilities.get_dex_mod()
 
+# Take damage
 func take_damage(amt):
 	self.hp -= amt
 
+# Heal damage
+func heal_damage(amt):
+	self.hp += amt
+
+# Actor dies (becomes incapacitated)
 func die():
 	self.incapacitated = true
 
-
+# Refill HP to max
 func fill_hp():
 	self.hp = self.get_max_hp()
 
+
 # PUBLIC METHODS
+func get_neighboring_actors():
+	var list = []
+	var cells = get_parent().get_cell_neighbors(get_map_pos())
+
+	for actor in get_tree().get_nodes_in_group('actors'):
+		if actor.get_map_pos() in cells:
+			list.append(actor)
+
+	return list
+
+
 func can_occupy(cell):
 	var flr = get_parent().is_floor(cell)
 	if flr:
@@ -129,6 +172,10 @@ func can_occupy(cell):
 		return true
 	return false
 
+
+func can_reach(other_actor):
+	return other_actor in get_neighboring_actors()
+
 # Start new turn for this actor
 func new_turn():
 	self.max_movement = self.base_movement
@@ -136,13 +183,14 @@ func new_turn():
 	self.move_history = []
 	clear_step_sprites()
 
-
+# End this actor's turn
 func end_turn():
 	clear_step_sprites()
 	emit_signal('ended_turn')
 	Globals.InitManager.next_actor()
 
 
+# Place movement markers in cells you move from
 func add_step_sprite(cell):
 	var sprite = Sprite.new()
 	sprite.set_texture(preload('res://assets/graphics/tiles/tile_red.png'))
@@ -152,10 +200,13 @@ func add_step_sprite(cell):
 	sprite.set_pos(get_parent().map_to_world(cell))
 	step_sprites.append(sprite)
 
+
+# Clear all movement markers
 func clear_step_sprites():
 	while step_sprites.size() > 0:
 		step_sprites[0].queue_free()
 		step_sprites.remove(0)
+
 
 # Step one tile in a direction
 # Check for valid tile and movement points
@@ -171,6 +222,7 @@ func step( direction ):
 			set_map_pos( target_cell )
 			
 			self.movement_spent += 1
+
 
 # Undo a step in movement history
 func undo_step():
@@ -206,19 +258,6 @@ func _ready():
 	fill_hp()
 
 
-# ACTION SIGNAL CALLBACK
-#func _ActionSensor_action_received( action ):
-#	if action.begins_with("STEP"):
-#		var dirkey = action.replace("STEP_","")
-#		var dir = 	RPG.DIRECTIONS[dirkey]
-#		step(dir)
-#	elif action == "UNDO_STEP":
-#		undo_step()
-#	elif action == "DONE":
-#		clear_step_sprites()
-#		Globals.InitManager.next_actor()
-#	else:
-#		Globals.ActionController.set_current_action(action)
 
 
 # PRIVATE SETGETTERS #

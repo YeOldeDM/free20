@@ -1,0 +1,858 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Actor/ActorSheet.gd" type="Script" id=1]
+
+[node name="WindowDialog" type="WindowDialog"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 162.0
+margin/top = 68.0
+margin/right = 666.0
+margin/bottom = 422.0
+popup/exclusive = false
+window/title = "CHARACTER SHEET for .."
+script/script = ExtResource( 1 )
+
+[node name="box" type="VBoxContainer" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 6.0
+margin/right = 0.0
+margin/bottom = 0.0
+alignment = 0
+
+[node name="Descriptor" type="Label" parent="box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 504.0
+margin/bottom = 14.0
+text = " Level 69 Chaotic Evil Male Half-Elf Warrior/Rogue/Priest"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HSeparator1" type="HSeparator" parent="box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 504.0
+margin/bottom = 21.0
+
+[node name="Info" type="HBoxContainer" parent="box"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 25.0
+margin/right = 504.0
+margin/bottom = 75.0
+alignment = 0
+
+[node name="1" type="HBoxContainer" parent="box/Info"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 250.0
+margin/bottom = 50.0
+alignment = 0
+
+[node name="Labels" type="VBoxContainer" parent="box/Info/1"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 77.0
+margin/bottom = 50.0
+alignment = 0
+
+[node name="Proficiency" type="Label" parent="box/Info/1/Labels"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 77.0
+margin/bottom = 14.0
+text = "Proficiency"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HP" type="Label" parent="box/Info/1/Labels"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 77.0
+margin/bottom = 32.0
+text = "Hitpoints"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AC" type="Label" parent="box/Info/1/Labels"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 36.0
+margin/right = 77.0
+margin/bottom = 50.0
+text = "Armor Class"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Values" type="VBoxContainer" parent="box/Info/1"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 81.0
+margin/top = 0.0
+margin/right = 104.0
+margin/bottom = 50.0
+alignment = 0
+
+[node name="Proficiency" type="Label" parent="box/Info/1/Values"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 23.0
+margin/bottom = 14.0
+text = "nan"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HP" type="Label" parent="box/Info/1/Values"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 23.0
+margin/bottom = 32.0
+text = "nan"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AC" type="Label" parent="box/Info/1/Values"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 36.0
+margin/right = 23.0
+margin/bottom = 50.0
+text = "nan"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="2" type="HBoxContainer" parent="box/Info"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 254.0
+margin/top = 0.0
+margin/right = 504.0
+margin/bottom = 50.0
+alignment = 0
+
+[node name="Labels" type="VBoxContainer" parent="box/Info/2"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 57.0
+margin/bottom = 50.0
+alignment = 0
+
+[node name="Initiative" type="Label" parent="box/Info/2/Labels"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 57.0
+margin/bottom = 14.0
+text = "Initiative"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Attack" type="Label" parent="box/Info/2/Labels"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 57.0
+margin/bottom = 32.0
+text = "Attack"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Damage" type="Label" parent="box/Info/2/Labels"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 36.0
+margin/right = 57.0
+margin/bottom = 50.0
+text = "Damage"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Values" type="VBoxContainer" parent="box/Info/2"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 61.0
+margin/top = 0.0
+margin/right = 84.0
+margin/bottom = 50.0
+alignment = 0
+
+[node name="Proficiency" type="Label" parent="box/Info/2/Values"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 23.0
+margin/bottom = 14.0
+text = "nan"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HP" type="Label" parent="box/Info/2/Values"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 23.0
+margin/bottom = 32.0
+text = "nan"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AC" type="Label" parent="box/Info/2/Values"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 36.0
+margin/right = 23.0
+margin/bottom = 50.0
+text = "nan"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HSeparator" type="HSeparator" parent="box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 79.0
+margin/right = 504.0
+margin/bottom = 82.0
+
+[node name="AbilityScores" type="VBoxContainer" parent="box"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 86.0
+margin/right = 504.0
+margin/bottom = 268.0
+alignment = 0
+
+[node name="Title" type="Label" parent="box/AbilityScores"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 504.0
+margin/bottom = 14.0
+text = "ABILITIES"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Grid" type="HBoxContainer" parent="box/AbilityScores"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 504.0
+margin/bottom = 182.0
+alignment = 1
+
+[node name="Checks" type="VBoxContainer" parent="box/AbilityScores/Grid"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 167.0
+margin/top = 0.0
+margin/right = 205.0
+margin/bottom = 164.0
+alignment = 0
+
+[node name="Str" type="Button" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 0, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 38.0
+margin/bottom = 24.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CHK"
+flat = false
+
+[node name="Dex" type="Button" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 0, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 28.0
+margin/right = 38.0
+margin/bottom = 52.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CHK"
+flat = false
+
+[node name="Con" type="Button" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 0, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 56.0
+margin/right = 38.0
+margin/bottom = 80.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CHK"
+flat = false
+
+[node name="Int" type="Button" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 0, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 84.0
+margin/right = 38.0
+margin/bottom = 108.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CHK"
+flat = false
+
+[node name="Wis" type="Button" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 0, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 112.0
+margin/right = 38.0
+margin/bottom = 136.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CHK"
+flat = false
+
+[node name="Cha" type="Button" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 0, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 140.0
+margin/right = 38.0
+margin/bottom = 164.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CHK"
+flat = false
+
+[node name="Labels" type="VBoxContainer" parent="box/AbilityScores/Grid"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 209.0
+margin/top = 0.0
+margin/right = 249.0
+margin/bottom = 164.0
+alignment = 0
+
+[node name="Str" type="Label" parent="box/AbilityScores/Grid/Labels"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 24.0
+text = "STR"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Dex" type="Label" parent="box/AbilityScores/Grid/Labels"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 28.0
+margin/right = 40.0
+margin/bottom = 52.0
+text = "DEX"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Con" type="Label" parent="box/AbilityScores/Grid/Labels"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 56.0
+margin/right = 40.0
+margin/bottom = 80.0
+text = "CON"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Int" type="Label" parent="box/AbilityScores/Grid/Labels"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 84.0
+margin/right = 40.0
+margin/bottom = 108.0
+text = "INT"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Wis" type="Label" parent="box/AbilityScores/Grid/Labels"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 112.0
+margin/right = 40.0
+margin/bottom = 136.0
+text = "WIS"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Cha" type="Label" parent="box/AbilityScores/Grid/Labels"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 140.0
+margin/right = 40.0
+margin/bottom = 164.0
+text = "CHA"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Values" type="VBoxContainer" parent="box/AbilityScores/Grid"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 253.0
+margin/top = 0.0
+margin/right = 293.0
+margin/bottom = 164.0
+alignment = 0
+
+[node name="Str" type="Label" parent="box/AbilityScores/Grid/Values"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 24.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Dex" type="Label" parent="box/AbilityScores/Grid/Values"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 28.0
+margin/right = 40.0
+margin/bottom = 52.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Con" type="Label" parent="box/AbilityScores/Grid/Values"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 56.0
+margin/right = 40.0
+margin/bottom = 80.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Int" type="Label" parent="box/AbilityScores/Grid/Values"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 84.0
+margin/right = 40.0
+margin/bottom = 108.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Wis" type="Label" parent="box/AbilityScores/Grid/Values"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 112.0
+margin/right = 40.0
+margin/bottom = 136.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Cha" type="Label" parent="box/AbilityScores/Grid/Values"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 140.0
+margin/right = 40.0
+margin/bottom = 164.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Mods" type="VBoxContainer" parent="box/AbilityScores/Grid"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 297.0
+margin/top = 0.0
+margin/right = 337.0
+margin/bottom = 164.0
+alignment = 0
+
+[node name="Str" type="Label" parent="box/AbilityScores/Grid/Mods"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 24.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Dex" type="Label" parent="box/AbilityScores/Grid/Mods"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 28.0
+margin/right = 40.0
+margin/bottom = 52.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Con" type="Label" parent="box/AbilityScores/Grid/Mods"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 56.0
+margin/right = 40.0
+margin/bottom = 80.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Int" type="Label" parent="box/AbilityScores/Grid/Mods"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 84.0
+margin/right = 40.0
+margin/bottom = 108.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Wis" type="Label" parent="box/AbilityScores/Grid/Mods"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 112.0
+margin/right = 40.0
+margin/bottom = 136.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Cha" type="Label" parent="box/AbilityScores/Grid/Mods"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 140.0
+margin/right = 40.0
+margin/bottom = 164.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

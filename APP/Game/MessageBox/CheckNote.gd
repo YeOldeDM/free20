@@ -26,3 +26,15 @@ func draw(from_name, data, announcement=""):
 	advantage_label.set_text(advtxt)
 	# Result
 	result_label.set_text(str(data.result))
+	
+	var size = get_size()
+	var l = announce_label.get_line_count() - 1
+	var h = announce_label.get_line_height()
+	size.y += l*h
+	set_custom_minimum_size(size)
+
+
+
+
+
+

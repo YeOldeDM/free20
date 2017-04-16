@@ -4,6 +4,7 @@ extends Node2D
 signal active_actor_set(actor)
 
 signal announce_check(who, check, blurb)
+signal announce_roll(who, roll, blurb)
 
 # MEMBERS #
 var active_actor = null setget _set_active_actor
@@ -17,6 +18,18 @@ func check(announcement="rolls a check!",from_name="--",DC=9, mod=0,\
 	emit_signal('announce_check', from_name, data, announcement)
 	return data
 
+func roll(announcement="rolls some dice!",from_name="--",roll=[1,6],mod=0):
+	var roll_result = RPG.roll(roll[0],roll[1])
+	var data = {
+		'roll':		roll,
+		'result':	roll_result,
+		'mod':		mod,
+		'total':	roll_result + mod,
+		}
+	emit_signal('announce_roll', from_name, data, announcement)
+	return data
+	
+	
 # PUBLIC METHODS #
 func set_active_actor(actor):
 	if 'active_actor' in Globals:

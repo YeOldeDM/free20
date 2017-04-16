@@ -18,7 +18,18 @@ func get_cell_neighbors( cell ):
 	var neighbors = []
 	for x in range( -1, 2 ):
 		for y in range( -1, 2 ):
-			if Vector2(x,y) != cell && self.is_floor( cell ):
-				neighbors.append(Vector2(x,y))
+			var neighbor = Vector2(x,y)+cell
+			if neighbor != cell && self.is_floor( cell ):
+				neighbors.append(neighbor)
 	return neighbors
 
+
+
+func _ready():
+	set_process_input(true)
+
+func _input(event):
+	if event.type == InputEvent.MOUSE_BUTTON:
+		var target = get_actor_in_cell(world_to_map(event.pos))
+		if target:
+			Globals.ActionController.set_target(target)

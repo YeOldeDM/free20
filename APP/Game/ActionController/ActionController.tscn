@@ -174,7 +174,6 @@ max_lines_visible = -1
 
 [node name="Target" type="PanelContainer" parent="box"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
@@ -303,5 +302,7 @@ enabled_focus_mode = 2
 shortcut = null
 text = "CONFIRM"
 flat = false
+
+[connection signal="pressed" from="box/Confirm" to="." method="_on_Confirm_pressed"]
 
 

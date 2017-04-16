@@ -44,6 +44,11 @@ intelligence = 15
 wisdom = 11
 charisma = 16
 
+[node name="Weapon" parent="Actor1"]
+
+name = "Shortsword"
+finesse = false
+
 [node name="Actor" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 448, 256 )
@@ -62,6 +67,11 @@ constitution = 14
 intelligence = 6
 wisdom = 7
 charisma = 4
+
+[node name="Weapon" parent="Actor"]
+
+name = "Claws"
+finesse = false
 
 
 [editable path="Actor1"]
