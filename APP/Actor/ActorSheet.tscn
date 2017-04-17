@@ -59,7 +59,6 @@ margin/bottom = 21.0
 
 [node name="Info" type="HBoxContainer" parent="box"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -142,7 +141,6 @@ max_lines_visible = -1
 
 [node name="Values" type="VBoxContainer" parent="box/Info/1"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -269,7 +267,6 @@ max_lines_visible = -1
 
 [node name="Values" type="VBoxContainer" parent="box/Info/2"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -280,7 +277,7 @@ margin/right = 84.0
 margin/bottom = 50.0
 alignment = 0
 
-[node name="Proficiency" type="Label" parent="box/Info/2/Values"]
+[node name="Initiative" type="Label" parent="box/Info/2/Values"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -295,7 +292,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HP" type="Label" parent="box/Info/2/Values"]
+[node name="Attack" type="Label" parent="box/Info/2/Values"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -310,7 +307,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="AC" type="Label" parent="box/Info/2/Values"]
+[node name="Damage" type="Label" parent="box/Info/2/Values"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true

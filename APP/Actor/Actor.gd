@@ -157,11 +157,13 @@ func get_armor_class():
 func get_initiative():
 	return self.initiative
 
+func get_initiative_mod():
+	return self.abilities.get_dex_mod()
 
 
 # Roll Inish!
 func roll_init():
-	self.initiative = RPG.d20() + self.abilities.get_dex_mod()
+	self.initiative = RPG.d20() + get_initiative_mod()
 
 # Take damage
 func take_damage(amt):
