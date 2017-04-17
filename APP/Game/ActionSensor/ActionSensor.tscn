@@ -33,7 +33,6 @@ alignment = 0
 
 [node name="Active" type="PanelContainer" parent="Input"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
@@ -214,7 +213,6 @@ margin/bottom = 131.0
 
 [node name="Movement" type="VBoxContainer" parent="Input"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -406,6 +404,7 @@ margin/bottom = 107.0
 
 [node name="Points" type="HBoxContainer" parent="Input/Movement"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -472,6 +471,7 @@ max_lines_visible = -1
 
 [node name="Standard" type="GridContainer" parent="Input"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
@@ -645,5 +645,7 @@ enabled_focus_mode = 2
 shortcut = null
 text = "DONE"
 flat = false
+
+[connection signal="pressed" from="Input/Active/box/InfoButton" to="." method="_on_InfoButton_pressed"]
 
 

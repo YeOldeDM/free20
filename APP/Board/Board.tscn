@@ -28,7 +28,12 @@ script/script = ExtResource( 2 )
 
 transform/pos = Vector2( 576, 224 )
 name = "Jeff"
+level = 1
+gender = "male"
+unaligned = false
 nature = 0
+Class = "Rogue"
+Race = "Halfling"
 max_hp = 12
 
 [node name="Icon" parent="Actor1"]
@@ -47,15 +52,19 @@ charisma = 16
 [node name="Weapon" parent="Actor1"]
 
 name = "Shortsword"
-finesse = false
 
 [node name="Actor" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 448, 256 )
 team = 1
 name = "Troggy"
+level = 1
+gender = "female"
+unaligned = true
 demeanor = 2
 nature = 2
+Class = "Stalker"
+Race = "Troglodyte"
 base_movement = 7
 max_hp = 4
 
@@ -71,7 +80,6 @@ charisma = 4
 [node name="Weapon" parent="Actor"]
 
 name = "Claws"
-finesse = false
 
 
 [editable path="Actor1"]

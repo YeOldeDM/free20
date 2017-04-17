@@ -338,7 +338,6 @@ margin/bottom = 82.0
 
 [node name="AbilityScores" type="VBoxContainer" parent="box"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -346,7 +345,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 86.0
 margin/right = 504.0
-margin/bottom = 268.0
+margin/bottom = 296.0
 alignment = 0
 
 [node name="Title" type="Label" parent="box/AbilityScores"]
@@ -374,138 +373,22 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 18.0
 margin/right = 504.0
-margin/bottom = 182.0
+margin/bottom = 210.0
 alignment = 1
 
-[node name="Checks" type="VBoxContainer" parent="box/AbilityScores/Grid"]
+[node name="Scores" type="VBoxContainer" parent="box/AbilityScores/Grid"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 167.0
+margin/left = 144.0
 margin/top = 0.0
-margin/right = 205.0
-margin/bottom = 164.0
+margin/right = 184.0
+margin/bottom = 192.0
 alignment = 0
 
-[node name="Str" type="Button" parent="box/AbilityScores/Grid/Checks"]
-
-rect/min_size = Vector2( 0, 24 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 38.0
-margin/bottom = 24.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "CHK"
-flat = false
-
-[node name="Dex" type="Button" parent="box/AbilityScores/Grid/Checks"]
-
-rect/min_size = Vector2( 0, 24 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 28.0
-margin/right = 38.0
-margin/bottom = 52.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "CHK"
-flat = false
-
-[node name="Con" type="Button" parent="box/AbilityScores/Grid/Checks"]
-
-rect/min_size = Vector2( 0, 24 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 56.0
-margin/right = 38.0
-margin/bottom = 80.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "CHK"
-flat = false
-
-[node name="Int" type="Button" parent="box/AbilityScores/Grid/Checks"]
-
-rect/min_size = Vector2( 0, 24 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 84.0
-margin/right = 38.0
-margin/bottom = 108.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "CHK"
-flat = false
-
-[node name="Wis" type="Button" parent="box/AbilityScores/Grid/Checks"]
-
-rect/min_size = Vector2( 0, 24 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 112.0
-margin/right = 38.0
-margin/bottom = 136.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "CHK"
-flat = false
-
-[node name="Cha" type="Button" parent="box/AbilityScores/Grid/Checks"]
-
-rect/min_size = Vector2( 0, 24 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 140.0
-margin/right = 38.0
-margin/bottom = 164.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "CHK"
-flat = false
-
-[node name="Labels" type="VBoxContainer" parent="box/AbilityScores/Grid"]
-
-editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 209.0
-margin/top = 0.0
-margin/right = 249.0
-margin/bottom = 164.0
-alignment = 0
-
-[node name="Str" type="Label" parent="box/AbilityScores/Grid/Labels"]
+[node name="Title" type="Label" parent="box/AbilityScores/Grid/Scores"]
 
 rect/min_size = Vector2( 40, 24 )
 focus/ignore_mouse = true
@@ -516,6 +399,164 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 24.0
+text = "score"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="STR" type="Label" parent="box/AbilityScores/Grid/Scores"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 28.0
+margin/right = 40.0
+margin/bottom = 52.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="DEX" type="Label" parent="box/AbilityScores/Grid/Scores"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 56.0
+margin/right = 40.0
+margin/bottom = 80.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CON" type="Label" parent="box/AbilityScores/Grid/Scores"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 84.0
+margin/right = 40.0
+margin/bottom = 108.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="INT" type="Label" parent="box/AbilityScores/Grid/Scores"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 112.0
+margin/right = 40.0
+margin/bottom = 136.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="WIS" type="Label" parent="box/AbilityScores/Grid/Scores"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 140.0
+margin/right = 40.0
+margin/bottom = 164.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CHA" type="Label" parent="box/AbilityScores/Grid/Scores"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 168.0
+margin/right = 40.0
+margin/bottom = 192.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Labels" type="VBoxContainer" parent="box/AbilityScores/Grid"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 188.0
+margin/top = 0.0
+margin/right = 228.0
+margin/bottom = 192.0
+alignment = 0
+
+[node name="Title" type="Label" parent="box/AbilityScores/Grid/Labels"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 24.0
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="STR" type="Label" parent="box/AbilityScores/Grid/Labels"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 28.0
+margin/right = 40.0
+margin/bottom = 52.0
+custom_colors/font_color = Color( 0.773438, 0.773438, 0.773438, 1 )
+custom_colors/font_color_shadow = Color( 0.0664063, 0.0664063, 0.0664063, 1 )
+custom_constants/shadow_as_outline = 1
 text = "STR"
 align = 1
 valign = 1
@@ -523,7 +564,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Dex" type="Label" parent="box/AbilityScores/Grid/Labels"]
+[node name="DEX" type="Label" parent="box/AbilityScores/Grid/Labels"]
 
 rect/min_size = Vector2( 40, 24 )
 focus/ignore_mouse = true
@@ -531,9 +572,12 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 28.0
+margin/top = 56.0
 margin/right = 40.0
-margin/bottom = 52.0
+margin/bottom = 80.0
+custom_colors/font_color = Color( 0.773438, 0.773438, 0.773438, 1 )
+custom_colors/font_color_shadow = Color( 0.0664063, 0.0664063, 0.0664063, 1 )
+custom_constants/shadow_as_outline = 1
 text = "DEX"
 align = 1
 valign = 1
@@ -541,7 +585,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Con" type="Label" parent="box/AbilityScores/Grid/Labels"]
+[node name="CON" type="Label" parent="box/AbilityScores/Grid/Labels"]
 
 rect/min_size = Vector2( 40, 24 )
 focus/ignore_mouse = true
@@ -549,9 +593,12 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 56.0
+margin/top = 84.0
 margin/right = 40.0
-margin/bottom = 80.0
+margin/bottom = 108.0
+custom_colors/font_color = Color( 0.773438, 0.773438, 0.773438, 1 )
+custom_colors/font_color_shadow = Color( 0.0664063, 0.0664063, 0.0664063, 1 )
+custom_constants/shadow_as_outline = 1
 text = "CON"
 align = 1
 valign = 1
@@ -559,7 +606,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Int" type="Label" parent="box/AbilityScores/Grid/Labels"]
+[node name="INT" type="Label" parent="box/AbilityScores/Grid/Labels"]
 
 rect/min_size = Vector2( 40, 24 )
 focus/ignore_mouse = true
@@ -567,9 +614,12 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 84.0
+margin/top = 112.0
 margin/right = 40.0
-margin/bottom = 108.0
+margin/bottom = 136.0
+custom_colors/font_color = Color( 0.773438, 0.773438, 0.773438, 1 )
+custom_colors/font_color_shadow = Color( 0.0664063, 0.0664063, 0.0664063, 1 )
+custom_constants/shadow_as_outline = 1
 text = "INT"
 align = 1
 valign = 1
@@ -577,7 +627,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Wis" type="Label" parent="box/AbilityScores/Grid/Labels"]
+[node name="WIS" type="Label" parent="box/AbilityScores/Grid/Labels"]
 
 rect/min_size = Vector2( 40, 24 )
 focus/ignore_mouse = true
@@ -585,9 +635,12 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 112.0
+margin/top = 140.0
 margin/right = 40.0
-margin/bottom = 136.0
+margin/bottom = 164.0
+custom_colors/font_color = Color( 0.773438, 0.773438, 0.773438, 1 )
+custom_colors/font_color_shadow = Color( 0.0664063, 0.0664063, 0.0664063, 1 )
+custom_constants/shadow_as_outline = 1
 text = "WIS"
 align = 1
 valign = 1
@@ -595,7 +648,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Cha" type="Label" parent="box/AbilityScores/Grid/Labels"]
+[node name="CHA" type="Label" parent="box/AbilityScores/Grid/Labels"]
 
 rect/min_size = Vector2( 40, 24 )
 focus/ignore_mouse = true
@@ -603,131 +656,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 140.0
+margin/top = 168.0
 margin/right = 40.0
-margin/bottom = 164.0
+margin/bottom = 192.0
+custom_colors/font_color = Color( 0.773438, 0.773438, 0.773438, 1 )
+custom_colors/font_color_shadow = Color( 0.0664063, 0.0664063, 0.0664063, 1 )
+custom_constants/shadow_as_outline = 1
 text = "CHA"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Values" type="VBoxContainer" parent="box/AbilityScores/Grid"]
-
-editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 253.0
-margin/top = 0.0
-margin/right = 293.0
-margin/bottom = 164.0
-alignment = 0
-
-[node name="Str" type="Label" parent="box/AbilityScores/Grid/Values"]
-
-rect/min_size = Vector2( 40, 24 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 24.0
-text = "nan"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Dex" type="Label" parent="box/AbilityScores/Grid/Values"]
-
-rect/min_size = Vector2( 40, 24 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 28.0
-margin/right = 40.0
-margin/bottom = 52.0
-text = "nan"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Con" type="Label" parent="box/AbilityScores/Grid/Values"]
-
-rect/min_size = Vector2( 40, 24 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 56.0
-margin/right = 40.0
-margin/bottom = 80.0
-text = "nan"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Int" type="Label" parent="box/AbilityScores/Grid/Values"]
-
-rect/min_size = Vector2( 40, 24 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 84.0
-margin/right = 40.0
-margin/bottom = 108.0
-text = "nan"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Wis" type="Label" parent="box/AbilityScores/Grid/Values"]
-
-rect/min_size = Vector2( 40, 24 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 112.0
-margin/right = 40.0
-margin/bottom = 136.0
-text = "nan"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Cha" type="Label" parent="box/AbilityScores/Grid/Values"]
-
-rect/min_size = Vector2( 40, 24 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 140.0
-margin/right = 40.0
-margin/bottom = 164.0
-text = "nan"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -736,18 +671,17 @@ max_lines_visible = -1
 
 [node name="Mods" type="VBoxContainer" parent="box/AbilityScores/Grid"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 297.0
+margin/left = 232.0
 margin/top = 0.0
-margin/right = 337.0
-margin/bottom = 164.0
+margin/right = 272.0
+margin/bottom = 192.0
 alignment = 0
 
-[node name="Str" type="Label" parent="box/AbilityScores/Grid/Mods"]
+[node name="Title" type="Label" parent="box/AbilityScores/Grid/Mods"]
 
 rect/min_size = Vector2( 40, 24 )
 focus/ignore_mouse = true
@@ -758,14 +692,14 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 24.0
-text = "nan"
+text = "mod."
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Dex" type="Label" parent="box/AbilityScores/Grid/Mods"]
+[node name="STR" type="Label" parent="box/AbilityScores/Grid/Mods"]
 
 rect/min_size = Vector2( 40, 24 )
 focus/ignore_mouse = true
@@ -783,7 +717,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Con" type="Label" parent="box/AbilityScores/Grid/Mods"]
+[node name="DEX" type="Label" parent="box/AbilityScores/Grid/Mods"]
 
 rect/min_size = Vector2( 40, 24 )
 focus/ignore_mouse = true
@@ -801,7 +735,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Int" type="Label" parent="box/AbilityScores/Grid/Mods"]
+[node name="CON" type="Label" parent="box/AbilityScores/Grid/Mods"]
 
 rect/min_size = Vector2( 40, 24 )
 focus/ignore_mouse = true
@@ -819,7 +753,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Wis" type="Label" parent="box/AbilityScores/Grid/Mods"]
+[node name="INT" type="Label" parent="box/AbilityScores/Grid/Mods"]
 
 rect/min_size = Vector2( 40, 24 )
 focus/ignore_mouse = true
@@ -837,7 +771,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Cha" type="Label" parent="box/AbilityScores/Grid/Mods"]
+[node name="WIS" type="Label" parent="box/AbilityScores/Grid/Mods"]
 
 rect/min_size = Vector2( 40, 24 )
 focus/ignore_mouse = true
@@ -849,6 +783,294 @@ margin/top = 140.0
 margin/right = 40.0
 margin/bottom = 164.0
 text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CHA" type="Label" parent="box/AbilityScores/Grid/Mods"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 168.0
+margin/right = 40.0
+margin/bottom = 192.0
+text = "nan"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Checks" type="VBoxContainer" parent="box/AbilityScores/Grid"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 276.0
+margin/top = 0.0
+margin/right = 316.0
+margin/bottom = 192.0
+alignment = 0
+
+[node name="Title" type="Label" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 24.0
+text = "roll"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="STR" type="Button" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 0, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 28.0
+margin/right = 40.0
+margin/bottom = 52.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CHK"
+flat = false
+
+[node name="DEX" type="Button" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 0, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 56.0
+margin/right = 40.0
+margin/bottom = 80.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CHK"
+flat = false
+
+[node name="CON" type="Button" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 0, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 84.0
+margin/right = 40.0
+margin/bottom = 108.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CHK"
+flat = false
+
+[node name="INT" type="Button" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 0, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 112.0
+margin/right = 40.0
+margin/bottom = 136.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CHK"
+flat = false
+
+[node name="WIS" type="Button" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 0, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 140.0
+margin/right = 40.0
+margin/bottom = 164.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CHK"
+flat = false
+
+[node name="CHA" type="Button" parent="box/AbilityScores/Grid/Checks"]
+
+rect/min_size = Vector2( 0, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 168.0
+margin/right = 40.0
+margin/bottom = 192.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CHK"
+flat = false
+
+[node name="Prof" type="VBoxContainer" parent="box/AbilityScores/Grid"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 320.0
+margin/top = 0.0
+margin/right = 360.0
+margin/bottom = 192.0
+alignment = 0
+
+[node name="Title" type="Label" parent="box/AbilityScores/Grid/Prof"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 24.0
+text = "prof?"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="STR" type="Label" parent="box/AbilityScores/Grid/Prof"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 28.0
+margin/right = 40.0
+margin/bottom = 52.0
+custom_colors/font_color = Color( 0.0969086, 0.90625, 0.0708008, 1 )
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="DEX" type="Label" parent="box/AbilityScores/Grid/Prof"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 56.0
+margin/right = 40.0
+margin/bottom = 80.0
+custom_colors/font_color = Color( 0.0969086, 0.90625, 0.0708008, 1 )
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CON" type="Label" parent="box/AbilityScores/Grid/Prof"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 84.0
+margin/right = 40.0
+margin/bottom = 108.0
+custom_colors/font_color = Color( 0.0969086, 0.90625, 0.0708008, 1 )
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="INT" type="Label" parent="box/AbilityScores/Grid/Prof"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 112.0
+margin/right = 40.0
+margin/bottom = 136.0
+custom_colors/font_color = Color( 0.0969086, 0.90625, 0.0708008, 1 )
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="WIS" type="Label" parent="box/AbilityScores/Grid/Prof"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 140.0
+margin/right = 40.0
+margin/bottom = 164.0
+custom_colors/font_color = Color( 0.0969086, 0.90625, 0.0708008, 1 )
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CHA" type="Label" parent="box/AbilityScores/Grid/Prof"]
+
+rect/min_size = Vector2( 40, 24 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 168.0
+margin/right = 40.0
+margin/bottom = 192.0
+custom_colors/font_color = Color( 0.0969086, 0.90625, 0.0708008, 1 )
 align = 1
 valign = 1
 percent_visible = 1.0

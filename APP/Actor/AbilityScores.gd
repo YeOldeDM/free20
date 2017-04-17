@@ -17,6 +17,18 @@ func get_mod(ability):
 	if r == 0: return 0
 	else:	return r*s
 
+func STR():
+	return self.strength
+func DEX():
+	return self.dexterity
+func CON():
+	return self.constitution
+func INT():
+	return self.intelligence
+func WIS():
+	return self.wisdom
+func CHA():
+	return self.charisma
 
 func get_str_mod():
 	return self.get_mod('strength')

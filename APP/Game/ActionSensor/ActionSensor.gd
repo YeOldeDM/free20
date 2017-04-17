@@ -106,3 +106,7 @@ func _on_Active_hp_changed():
 func _on_Active_max_hp_changed():
 	var hp = Globals.active_actor.get_max_hp()
 	active_panel.get_node('box/HP/Max').set_text(str(hp))
+
+
+func _on_InfoButton_pressed():
+	Globals.Game.show_actorsheet(Globals.active_actor)

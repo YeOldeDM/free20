@@ -38,7 +38,10 @@ func set_active_actor(actor):
 	Globals.active_actor = actor
 	self.active_actor = actor
 
-	
+func show_actorsheet(actor):
+	var sheet = preload('res://Actor/ActorSheet.tscn').instance()
+	get_node('GUI').add_child(sheet)
+	sheet.actor = actor
 	
 # INIT #
 func _ready():

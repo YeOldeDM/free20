@@ -13,14 +13,14 @@ script/script = ExtResource( 1 )
 
 [node name="Board" parent="." instance=ExtResource( 2 )]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GUI" type="CanvasLayer" parent="."]
 
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="ActionSensor" parent="CanvasLayer" instance=ExtResource( 3 )]
+[node name="ActionSensor" parent="GUI" instance=ExtResource( 3 )]
 
 editor/display_folded = true
 anchor/top = 1
@@ -29,40 +29,35 @@ margin/top = 148.0
 margin/right = 11.0
 margin/bottom = 13.0
 
-[node name="Movement" parent="CanvasLayer/ActionSensor/Input"]
-
-editor/display_folded = false
-
-[node name="InitManager" parent="CanvasLayer" instance=ExtResource( 4 )]
+[node name="InitManager" parent="GUI" instance=ExtResource( 4 )]
 
 margin/left = 18.0
 margin/top = 18.0
 margin/right = 215.0
 margin/bottom = 365.0
 
-[node name="ActionController" parent="CanvasLayer" instance=ExtResource( 5 )]
+[node name="ActionController" parent="GUI" instance=ExtResource( 5 )]
 
 margin/left = 491.0
 margin/top = 8.0
 margin/right = 245.0
 margin/bottom = 282.0
 
-[node name="MessageBox" parent="CanvasLayer" instance=ExtResource( 6 )]
+[node name="MessageBox" parent="GUI" instance=ExtResource( 6 )]
 
 anchor/left = 1
 anchor/right = 1
 margin/left = 237.0
 margin/right = 12.0
 
-[connection signal="active_actor_set" from="." to="CanvasLayer/ActionSensor" method="_on_Game_active_actor_set"]
+[connection signal="active_actor_set" from="." to="GUI/InitManager" method="_on_Game_active_actor_set"]
 
-[connection signal="active_actor_set" from="." to="CanvasLayer/InitManager" method="_on_Game_active_actor_set"]
+[connection signal="active_actor_set" from="." to="GUI/ActionSensor" method="_on_Game_active_actor_set"]
 
-[connection signal="announce_check" from="." to="CanvasLayer/MessageBox" method="_on_Game_announce_check"]
+[connection signal="announce_check" from="." to="GUI/MessageBox" method="_on_Game_announce_check"]
 
-[connection signal="announce_roll" from="." to="CanvasLayer/MessageBox" method="_on_Game_announce_roll"]
+[connection signal="announce_roll" from="." to="GUI/MessageBox" method="_on_Game_announce_roll"]
 
-[connection signal="action" from="CanvasLayer/ActionSensor" to="CanvasLayer/ActionController" method="_on_action"]
+[connection signal="action" from="GUI/ActionSensor" to="GUI/ActionController" method="_on_action"]
 
 
-[editable path="CanvasLayer/ActionSensor"]

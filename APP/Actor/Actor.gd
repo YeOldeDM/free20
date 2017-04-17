@@ -19,9 +19,14 @@ signal ended_turn()
 export(int) var team = 0 setget _set_team
 
 export(String, MULTILINE) var name = "Noname" setget _set_name
+export(int,1,10) var level = 1
+export(String, "none", "male", "female") var gender = "none"
+export(bool) var unaligned = false
 export(int, "lawful", "neutral", "chaotic") var demeanor = 1
 export(int, "good", "neutral", "evil") var nature = 1
 
+export(String, MULTILINE) var Class = "Commoner"
+export(String, MULTILINE) var Race = "Human"
 
 export(int) var base_movement = 6
 
@@ -76,8 +81,34 @@ func set_actor_name(what):
 	self.name = what
 
 # Actor Alignment
+func get_alignment_as_string():
+	if self.unaligned:
+		return 'unaligned'
+	else:
+		var dem = RPG.ALIGNMENT.demeanor[self.demeanor].capitalize()
+		var nat = RPG.ALIGNMENT.nature[self.nature].capitalize()
+		return dem+'-'+nat
+
+func get_gender():
+	if self.gender == 'none':
+		return null
+	return self.gender
+
+func get_class():
+	return self.Class
+
+func get_race():
+	return self.Race
 
 
+func get_descriptor():
+	var L = "Level " + str(get_level())
+	var A = get_alignment_as_string()
+	var G = get_gender()
+	G = '' if G == null else G.capitalize()+' '
+	var R = get_race()
+	var C = get_class()
+	return L +' '+ A +' '+ G + R +' '+ C
 
 # Actor Icon
 func set_icon(texture):
@@ -96,15 +127,14 @@ func get_focus():
 	return !get_node('Focus').is_hidden()
 
 
-# Return alignment as string
-func get_alignment():
-	var dem = RPG.ALIGNMENT.demeanor(self.demeanor)
-	var nat = RPG.ALIGNMENT.nature(self.nature)
-	return dem.capitalize()+' '+nat.capitalize()
+
 
 
 
 # Get Stats
+func get_level():
+	return self.level
+
 func get_hp():
 	return self.hp
 

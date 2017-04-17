@@ -82,7 +82,7 @@ func _set_current_target(who):
 		target_panel.get_node('Name/Label').set_text("")
 	else:
 		target_panel.get_node('Name/Label').set_text(current_target.get_actor_name())
-	
+		target_panel.get_node('Info').set_button_icon(current_target.get_icon())
 	emit_signal('action_changed')
 
 
@@ -108,3 +108,7 @@ func _on_action_changed():
 func _on_Confirm_pressed():
 	if self.current_action == "ATTACK":
 		confirm_attack()
+
+
+func _on_Info_pressed():
+	Globals.Game.show_actorsheet(self.current_target)

@@ -303,6 +303,8 @@ shortcut = null
 text = "CONFIRM"
 flat = false
 
+[connection signal="pressed" from="box/Target/box/Info" to="." method="_on_Info_pressed"]
+
 [connection signal="pressed" from="box/Confirm" to="." method="_on_Confirm_pressed"]
 
 
