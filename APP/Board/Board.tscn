@@ -52,6 +52,8 @@ charisma = 16
 [node name="Weapon" parent="Actor1"]
 
 name = "Shortsword"
+enchantment = 0
+finesse = true
 
 [node name="Actor" parent="." instance=ExtResource( 3 )]
 
@@ -80,6 +82,7 @@ charisma = 4
 [node name="Weapon" parent="Actor"]
 
 name = "Claws"
+enchantment = 0
 
 
 [editable path="Actor1"]

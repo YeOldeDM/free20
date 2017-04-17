@@ -111,4 +111,5 @@ func _on_Confirm_pressed():
 
 
 func _on_Info_pressed():
-	Globals.Game.show_actorsheet(self.current_target)
+	if self.current_target:
+		Globals.Game.show_actorsheet(self.current_target)

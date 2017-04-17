@@ -24,7 +24,7 @@ func draw_info():
 	var actxt = str(self.actor.get_armor_class())
 	var initxt = str(self.actor.get_initiative_mod())
 	var atktxt = str(self.actor.get_attack_mod())
-	var dmgtxt = str(self.actor.weapon.damage)
+	var dmgtxt = str(self.actor.weapon.damage)+"+"+str(self.actor.weapon.get_damage_mod())
 	info_grid.get_node("1/Values/Proficiency").set_text(proftxt)
 	info_grid.get_node("1/Values/HP").set_text(hptxt)
 	info_grid.get_node("1/Values/AC").set_text(actxt)
@@ -42,6 +42,7 @@ func draw_abilities():
 
 
 func _set_actor(what):
+	assert actor != null
 	actor = what
 	popup_centered()
 	draw_all()
