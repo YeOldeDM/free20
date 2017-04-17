@@ -32,6 +32,7 @@ func confirm_attack():
 		var dmg = Globals.Game.roll("Damage roll for "+p.weapon.name, name, roll, mod)
 		t.take_damage(dmg.total)
 	Globals.active_actor.action_taken = true
+	emit_signal('action_changed')
 
 
 func _on_action( action ):

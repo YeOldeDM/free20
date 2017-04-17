@@ -31,7 +31,7 @@ draw_bg = true
 [node name="RollNote" type="PanelContainer"]
 
 focus/ignore_mouse = false
-focus/stop_mouse = true
+focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
@@ -126,7 +126,8 @@ max_lines_visible = -1
 
 [node name="Roll" type="Label" parent="box"]
 
-focus/ignore_mouse = true
+hint/tooltip = "hi"
+focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0

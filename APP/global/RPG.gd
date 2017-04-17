@@ -85,7 +85,26 @@ func check(DC=9, mod=0, has_advantage=BOON.none):
 		'DC':			DC,		# DC given to this check
 		'crit':			crit,	# Critical status (-1 miss, 1 hit, 0 normal)
 		'advantage':	has_advantage,	# Advantage status
+		'mod':			mod,
 		}
 	return data
 
+func get_check_as_string(data):
+	var die_txt = '1d20'
+	var txt = die_txt+"("+str(data.roll)+")"
+	if data.mod != 0:
+		txt += "+"+str(data.mod)
+	txt += "="+str(data.result)
+	txt += " vs DC "+str(data.DC)
+	return txt
+	
 
+func get_roll_as_string(data):
+	var roll = data.roll
+	var die_txt = str(roll[0])+'d'+str(roll[1])
+	var txt = die_txt+"("+str(data.result)+")"
+	if data.mod != 0:
+		txt += "+"+str(data.mod)
+	txt += "="+str(data.total)
+	
+	return txt

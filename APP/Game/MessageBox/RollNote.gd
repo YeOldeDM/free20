@@ -13,9 +13,13 @@ func draw(from_name, data, announcement=""):
 	announce_label.set_text(announcement)
 	
 	var roll = data.roll
-	var roll_txt = str(roll[0])+'d'+str(roll[1])+"+"+str(data.mod)
+	var die_txt = str(roll[0])+'d'+str(roll[1])
+	var roll_txt = die_txt+"+"+str(data.mod)
 	roll_label.set_text(roll_txt)
+	roll_label.set_tooltip(RPG.get_roll_as_string(data))
 	result_label.set_text(str(data.total))
+	
+	
 	
 	var size = get_size()
 	var l = announce_label.get_line_count() - 1

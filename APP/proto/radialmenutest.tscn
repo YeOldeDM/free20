@@ -1,0 +1,194 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://proto/radialmenutest.gd" type="Script" id=1]
+[ext_resource path="res://addons/KOBUGE-games.CircularContainer/CircularContainer.gd" type="Script" id=2]
+[ext_resource path="res://addons/KOBUGE-games.CircularContainer/icon.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "open"
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ring:animate/percent_visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ring:arrange/start_angle")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 180.0, 0.0 ]
+}
+
+[node name="radialmenutest" type="Button"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 128.0
+margin/top = 128.0
+margin/right = 160.0
+margin/bottom = 160.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "ME"
+flat = false
+script/script = ExtResource( 1 )
+
+[node name="Ring" type="Container" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -64.0
+margin/top = -64.0
+margin/right = 96.0
+margin/bottom = 96.0
+script/script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+arrange/force_squares = true
+arrange/force_expand = true
+arrange/start_angle = 180.0
+arrange/start_empty = false
+arrange/allow_node2d = false
+animate/percent_visible = 0.0
+animate/all_at_once = true
+
+[node name="Button" type="Button" parent="Ring"]
+
+visibility/opacity = 0.0
+rect/scale = Vector2( 0.01, 0.01 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 80.0
+margin/top = 80.0
+margin/right = 100.0
+margin/bottom = 100.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "1"
+flat = false
+
+[node name="Button1" type="Button" parent="Ring"]
+
+visibility/opacity = 0.0
+rect/scale = Vector2( 0.01, 0.01 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 80.0
+margin/top = 80.0
+margin/right = 100.0
+margin/bottom = 100.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "2"
+flat = false
+
+[node name="Button2" type="Button" parent="Ring"]
+
+visibility/opacity = 0.0
+rect/scale = Vector2( 0.01, 0.01 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 80.0
+margin/top = 80.0
+margin/right = 100.0
+margin/bottom = 100.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "3"
+flat = false
+
+[node name="Button3" type="Button" parent="Ring"]
+
+visibility/opacity = 0.0
+rect/scale = Vector2( 0.01, 0.01 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 80.0
+margin/top = 80.0
+margin/right = 100.0
+margin/bottom = 100.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "4"
+flat = false
+
+[node name="Button4" type="Button" parent="Ring"]
+
+visibility/opacity = 0.0
+rect/scale = Vector2( 0.01, 0.01 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 80.0
+margin/top = 80.0
+margin/right = 100.0
+margin/bottom = 100.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "5"
+flat = false
+
+[node name="Button5" type="Button" parent="Ring"]
+
+visibility/opacity = 0.0
+rect/scale = Vector2( 0.01, 0.01 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 80.0
+margin/top = 80.0
+margin/right = 100.0
+margin/bottom = 100.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "6"
+flat = false
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/open = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[connection signal="pressed" from="." to="." method="_on_radialmenutest_pressed"]
+
+

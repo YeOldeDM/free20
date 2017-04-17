@@ -214,6 +214,8 @@ func new_turn():
 	self.movement_spent = 0
 	self.move_history = []
 	clear_step_sprites()
+	self.action_taken = false
+	self.reaction_taken = false
 
 # End this actor's turn
 func end_turn():
