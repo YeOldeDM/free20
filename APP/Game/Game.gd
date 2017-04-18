@@ -64,3 +64,6 @@ func _set_active_actor(what):
 	active_actor.set_focus(true)
 	emit_signal('active_actor_set',active_actor)
 	
+
+
+

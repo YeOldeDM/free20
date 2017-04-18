@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Game/InitManager/InitItem.gd" type="Script" id=1]
-[ext_resource path="res://assets/graphics/creature/draconian_green_m.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/LiberationSerif-BoldItalic.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/graphics/creature/draconian_green_m.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+
+font/size = 20
+font/use_mipmaps = true
+font/use_filter = true
+font/font = ExtResource( 2 )
 
 [node name="InitItem" type="PanelContainer"]
 
@@ -27,38 +35,61 @@ margin/right = 191.0
 margin/bottom = 45.0
 alignment = 0
 
-[node name="Actor" type="Button" parent="box"]
+[node name="Team" type="Label" parent="box"]
 
-focus/ignore_mouse = true
+hint/tooltip = "Team #"
+focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 90.0
+margin/right = 10.0
 margin/bottom = 38.0
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-text = "[name]"
-icon = ExtResource( 2 )
-flat = false
-
-[node name="Value" type="Label" parent="box"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 94.0
-margin/top = 0.0
-margin/right = 184.0
-margin/bottom = 38.0
-text = "20"
+custom_fonts/font = SubResource( 1 )
+text = "0"
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Actor" type="Button" parent="box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 14.0
+margin/top = 0.0
+margin/right = 104.0
+margin/bottom = 38.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "[name]"
+icon = ExtResource( 3 )
+flat = false
+
+[node name="Value" type="Label" parent="box"]
+
+hint/tooltip = "Initiative Roll result"
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 108.0
+margin/top = 0.0
+margin/right = 184.0
+margin/bottom = 38.0
+custom_fonts/font = SubResource( 1 )
+text = "20"
+align = 2
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="pressed" from="box/Actor" to="." method="_on_Actor_pressed"]
 
 

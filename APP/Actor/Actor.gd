@@ -13,7 +13,7 @@ signal max_hp_changed()
 
 signal ended_turn()
 
-
+signal actor_provoke(who)
 
 # MEMBERS #
 export(int) var team = 0 setget _set_team
@@ -309,8 +309,11 @@ func get_map_pos():
 	return get_parent().world_to_map( self.get_pos() )
 
 
+
+
 # INIT #
 func _ready():
+	connect("actor_provoke", self, "_on_actor_provoke")
 	add_to_group('actors')
 	fill_hp()
 
@@ -349,3 +352,9 @@ func _set_team(what):
 	team = what
 	emit_signal('team_changed')
 
+
+
+
+# SIGNAL CALLBACKS
+func _on_actor_provoke(who):
+	pass

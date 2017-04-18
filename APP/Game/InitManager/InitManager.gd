@@ -26,6 +26,11 @@ func next_actor():
 	var next = get_first_actor()
 	next.actor.new_turn()
 	Globals.Game.set_active_actor(next.actor)
+	# Handle Threat Squares
+	next.actor.get_parent().clear_threat_squares()
+	for actor in get_tree().get_nodes_in_group('actors'):
+		if actor.team != next.actor.team:
+			actor.get_parent().add_threat_squares_from_actor(actor)
 
 
 func add_actor(actor):
