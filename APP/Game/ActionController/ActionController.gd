@@ -16,6 +16,11 @@ func set_target(who):
 	self.current_target = who
 	emit_signal("action_changed")
 
+func confirm_dash():
+	var p = Globals.active_actor
+	p.max_movement = p.base_movement * 2
+	Globals.active_actor.action_taken = true
+	emit_signal('action_changed')
 
 func confirm_attack():
 	var p = Globals.active_actor
@@ -77,8 +82,10 @@ func _set_current_action(what):
 
 
 func _set_current_target(who):
+	if current_target:
+		current_target.set_target(false)
 	current_target = who
-	
+	current_target.set_target(true)
 	if who == null:
 		target_panel.get_node('Name/Label').set_text("")
 	else:
@@ -95,6 +102,7 @@ func _on_action_changed():
 				if Globals.active_actor.can_reach(self.current_target):
 					can_confirm = true
 	elif self.current_action == "DASH":
+#		self.current_target = Globals.active_actor
 		can_confirm = true
 	
 	if Globals.active_actor.action_taken:
@@ -109,6 +117,8 @@ func _on_action_changed():
 func _on_Confirm_pressed():
 	if self.current_action == "ATTACK":
 		confirm_attack()
+	elif self.current_action == "DASH":
+		confirm_dash()
 
 
 func _on_Info_pressed():

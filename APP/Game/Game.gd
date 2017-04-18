@@ -40,8 +40,10 @@ func set_active_actor(actor):
 
 func show_actorsheet(actor):
 	var sheet = preload('res://Actor/ActorSheet.tscn').instance()
-	get_node('GUI').add_child(sheet)
 	sheet.actor = actor
+	get_node('GUI').add_child(sheet)
+	sheet.draw_all()
+	
 	
 # INIT #
 func _ready():

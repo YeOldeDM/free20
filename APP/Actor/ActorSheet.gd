@@ -15,6 +15,7 @@ func draw_all():
 	descriptor.set_text(actor.get_descriptor())
 	draw_info()
 	draw_abilities()
+	popup_centered()
 
 
 func draw_info():
@@ -42,7 +43,6 @@ func draw_abilities():
 
 
 func _set_actor(what):
-	assert actor != null
 	actor = what
-	popup_centered()
-	draw_all()
+	
+

@@ -37,7 +37,7 @@ export(int) var max_hp = 8 setget _set_max_hp
 
 
 var incapacitated = false
-var max_movement = base_movement
+var max_movement = base_movement setget _set_max_movement
 var movement_spent = 0 setget _set_movement_spent
 
 var initiative = 0 setget _set_initiative
@@ -126,7 +126,11 @@ func set_focus(what):
 func get_focus():
 	return !get_node('Focus').is_hidden()
 
+func set_target(what):
+	get_node("Target").set_hidden(!what)
 
+func get_target():
+	return !get_node("Target").is_hidden()
 
 
 
@@ -216,6 +220,7 @@ func new_turn():
 	clear_step_sprites()
 	self.action_taken = false
 	self.reaction_taken = false
+	Globals.ActionController.emit_signal('action_changed')
 
 # End this actor's turn
 func end_turn():
@@ -307,6 +312,9 @@ func _set_movement_spent(what):
 	movement_spent = what
 	emit_signal('movement_spent')
 
+func _set_max_movement(what):
+	max_movement = what
+	emit_signal('movement_spent')
 
 func _set_hp(what):
 	hp = clamp(what,0,self.max_hp)
