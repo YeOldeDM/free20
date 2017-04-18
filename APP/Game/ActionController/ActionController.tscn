@@ -13,9 +13,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 714.0
-margin/top = 203.0
+margin/top = 183.0
 margin/right = 59.0
-margin/bottom = 315.0
+margin/bottom = 337.0
 script/script = ExtResource( 1 )
 
 [node name="box" type="HBoxContainer" parent="."]
@@ -27,10 +27,22 @@ size_flags/vertical = 2
 margin/left = 7.0
 margin/top = 7.0
 margin/right = 648.0
-margin/bottom = 105.0
+margin/bottom = 147.0
 alignment = 0
 
-[node name="Action" type="PanelContainer" parent="box"]
+[node name="box" type="VBoxContainer" parent="box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 280.0
+margin/bottom = 140.0
+alignment = 0
+
+[node name="Action" type="PanelContainer" parent="box/box"]
 
 editor/display_folded = true
 focus/ignore_mouse = false
@@ -40,10 +52,11 @@ size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 280.0
-margin/bottom = 98.0
+margin/bottom = 66.0
 
-[node name="box" type="HBoxContainer" parent="box/Action"]
+[node name="box" type="HBoxContainer" parent="box/box/Action"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -51,10 +64,10 @@ size_flags/vertical = 2
 margin/left = 7.0
 margin/top = 7.0
 margin/right = 273.0
-margin/bottom = 91.0
+margin/bottom = 59.0
 alignment = 0
 
-[node name="Labels" type="VBoxContainer" parent="box/Action/box"]
+[node name="Labels" type="VBoxContainer" parent="box/box/Action/box"]
 
 editor/display_folded = true
 focus/ignore_mouse = false
@@ -64,58 +77,58 @@ size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 80.0
-margin/bottom = 84.0
+margin/bottom = 52.0
 alignment = 1
 
-[node name="Std" type="Label" parent="box/Action/box/Labels"]
+[node name="Std" type="Label" parent="box/box/Action/box/Labels"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 1.0
 margin/right = 80.0
-margin/bottom = 31.0
+margin/bottom = 15.0
 text = "Action:"
 align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="React" type="Label" parent="box/Action/box/Labels"]
+[node name="React" type="Label" parent="box/box/Action/box/Labels"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 35.0
+margin/top = 19.0
 margin/right = 80.0
-margin/bottom = 49.0
+margin/bottom = 33.0
 text = "Reaction:"
 align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Extra" type="Label" parent="box/Action/box/Labels"]
+[node name="Extra" type="Label" parent="box/box/Action/box/Labels"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 53.0
+margin/top = 37.0
 margin/right = 80.0
-margin/bottom = 67.0
+margin/bottom = 51.0
 text = "Extra Action:"
 align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Values" type="VBoxContainer" parent="box/Action/box"]
+[node name="Values" type="VBoxContainer" parent="box/box/Action/box"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -124,56 +137,125 @@ size_flags/vertical = 3
 margin/left = 84.0
 margin/top = 0.0
 margin/right = 266.0
-margin/bottom = 84.0
+margin/bottom = 52.0
 alignment = 1
 
-[node name="Std" type="Label" parent="box/Action/box/Values"]
+[node name="Std" type="Label" parent="box/box/Action/box/Values"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 1.0
 margin/right = 182.0
-margin/bottom = 31.0
+margin/bottom = 15.0
 text = "NIL"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="React" type="Label" parent="box/Action/box/Values"]
+[node name="React" type="Label" parent="box/box/Action/box/Values"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 35.0
+margin/top = 19.0
 margin/right = 182.0
-margin/bottom = 49.0
+margin/bottom = 33.0
 text = "NIL"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Extra" type="Label" parent="box/Action/box/Values"]
+[node name="Extra" type="Label" parent="box/box/Action/box/Values"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 53.0
+margin/top = 37.0
 margin/right = 182.0
-margin/bottom = 67.0
+margin/bottom = 51.0
 text = "NIL"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Threats" type="PanelContainer" parent="box/box"]
+
+rect/min_size = Vector2( 0, 70 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 70.0
+margin/right = 280.0
+margin/bottom = 140.0
+
+[node name="box" type="VBoxContainer" parent="box/box/Threats"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 273.0
+margin/bottom = 63.0
+alignment = 2
+
+[node name="scroll" type="ScrollContainer" parent="box/box/Threats/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 266.0
+margin/bottom = 38.0
+scroll/horizontal = true
+scroll/vertical = false
+
+[node name="box" type="HBoxContainer" parent="box/box/Threats/box/scroll"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 12.0
+margin/bottom = 20.0
+alignment = 0
+
+[node name="Label" type="Label" parent="box/box/Threats/box"]
+
+hint/tooltip = "If a creature can hit you with a melee attack from your position, and it is capable of performing a Reaction, 
+that creature becomes a Threat. If you leave a threatening creature's reach, they have the option to perform
+an Opportunity Attack.
+"
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 42.0
+margin/right = 266.0
+margin/bottom = 56.0
+text = "Threats"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
 [node name="Target" type="PanelContainer" parent="box"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
@@ -181,7 +263,7 @@ size_flags/vertical = 2
 margin/left = 284.0
 margin/top = 0.0
 margin/right = 564.0
-margin/bottom = 98.0
+margin/bottom = 140.0
 
 [node name="box" type="VBoxContainer" parent="box/Target"]
 
@@ -192,7 +274,7 @@ size_flags/vertical = 2
 margin/left = 7.0
 margin/top = 7.0
 margin/right = 273.0
-margin/bottom = 91.0
+margin/bottom = 133.0
 alignment = 0
 
 [node name="Name" type="HBoxContainer" parent="box/Target/box"]
@@ -295,7 +377,7 @@ size_flags/vertical = 2
 margin/left = 568.0
 margin/top = 0.0
 margin/right = 641.0
-margin/bottom = 98.0
+margin/bottom = 140.0
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2

@@ -52,6 +52,13 @@ var action_taken = false
 var reaction_taken = false
 
 
+var action_states = {
+	'attacking':	false,
+	'casting':		false,
+	'dashing':		false,
+	'dodging':		false,
+	'disengaging':	false,
+	}
 
 # COMPONENTS
 var abilities
@@ -208,9 +215,17 @@ func can_occupy(cell):
 		return true
 	return false
 
+func can_react():
+	return self.reaction_taken == false
 
 func can_reach(other_actor):
 	return other_actor in get_neighboring_actors()
+
+# Return array of map positions this actor threats
+func get_threat_squares():
+	if can_react():
+		return get_parent().get_cell_neighbors(get_map_pos())
+	return []
 
 # Start new turn for this actor
 func new_turn():
@@ -220,6 +235,9 @@ func new_turn():
 	clear_step_sprites()
 	self.action_taken = false
 	self.reaction_taken = false
+	for key in self.action_states:
+		self.action_states[key] = false
+	
 	Globals.ActionController.emit_signal('action_changed')
 
 # End this actor's turn

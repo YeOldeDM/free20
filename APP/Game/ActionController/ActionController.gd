@@ -2,7 +2,7 @@ extends PanelContainer
 
 signal action_changed()
 
-onready var action_values = get_node('box/Action/box/Values')
+onready var action_values = get_node('box/box/Action/box/Values')
 onready var target_panel = get_node('box/Target/box')
 onready var confirm_button = get_node('box/Confirm')
 
@@ -19,8 +19,8 @@ func set_target(who):
 func confirm_dash():
 	var p = Globals.active_actor
 	p.max_movement = p.base_movement * 2
-	Globals.active_actor.action_taken = true
-	emit_signal('action_changed')
+	Globals.active_actor.action_states.dashing = true
+
 
 func confirm_attack():
 	var p = Globals.active_actor
@@ -36,8 +36,8 @@ func confirm_attack():
 			mod = max(p.abilities.get_str_mod(),p.abilities.get_dex_mod())
 		var dmg = Globals.Game.roll("Damage roll for "+p.weapon.name, name, roll, mod)
 		t.take_damage(dmg.total)
-	Globals.active_actor.action_taken = true
-	emit_signal('action_changed')
+	Globals.active_actor.action_states.attacking = true
+	
 
 
 func _on_action( action ):
@@ -119,6 +119,8 @@ func _on_Confirm_pressed():
 		confirm_attack()
 	elif self.current_action == "DASH":
 		confirm_dash()
+	Globals.active_actor.action_taken = true
+	emit_signal('action_changed')
 
 
 func _on_Info_pressed():
