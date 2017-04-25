@@ -58,11 +58,11 @@ var reaction_taken = false
 
 
 var action_states = {
-	'attacking':	false,
-	'casting':		false,
-	'dashing':		false,
-	'dodging':		false,
-	'disengaging':	false,
+	"attacking":	false,
+	"casting":		false,
+	"dashing":		false,
+	"dodging":		false,
+	"disengaging":	false,
 	}
 
 # COMPONENTS
@@ -78,7 +78,7 @@ var threatened_by = [] setget _set_threatened_by
 
 # PUBLIC SETGETTERS
 
-# Actor's Team
+# Actor"s Team
 func get_team():
 	return self.team
 
@@ -95,14 +95,14 @@ func set_actor_name(what):
 # Actor Alignment
 func get_alignment_as_string():
 	if self.unaligned:
-		return 'unaligned'
+		return "unaligned"
 	else:
 		var dem = RPG.ALIGNMENT.demeanor[self.demeanor].capitalize()
 		var nat = RPG.ALIGNMENT.nature[self.nature].capitalize()
-		return dem+'-'+nat
+		return dem+"-"+nat
 
 func get_gender():
-	if self.gender == 'none':
+	if self.gender == "none":
 		return null
 	return self.gender
 
@@ -117,26 +117,26 @@ func get_descriptor():
 	var L = "Level " + str(get_level())
 	var A = get_alignment_as_string()
 	var G = get_gender()
-	G = '' if G == null else G.capitalize()+' '
+	G = "" if G == null else G.capitalize()+" "
 	var R = get_race()
 	var C = get_class()
-	return L +' '+ A +' '+ G + R +' '+ C
+	return L +" "+ A +" "+ G + R +" "+ C
 
 # Actor Icon
 func set_icon(texture):
-	get_node('Icon').set_texture(texture)
-	emit_signal('icon_changed')
+	get_node("Icon").set_texture(texture)
+	emit_signal("icon_changed")
 
 func get_icon():
-	return get_node('Icon').get_texture()
+	return get_node("Icon").get_texture()
 
 
 # Actor focus (shows when we are the active actor)
 func set_focus(what):
-	get_node('Focus').set_hidden(!what)
+	get_node("Focus").set_hidden(!what)
 
 func get_focus():
-	return !get_node('Focus').is_hidden()
+	return !get_node("Focus").is_hidden()
 
 func set_target(what):
 	get_node("Target").set_hidden(!what)
@@ -216,14 +216,14 @@ func get_neighboring_actors():
 	var list = []
 	var cells = get_parent().get_cell_neighbors(get_map_pos())
 
-	for actor in get_tree().get_nodes_in_group('actors'):
+	for actor in get_tree().get_nodes_in_group("actors"):
 		if actor.get_map_pos() in cells:
 			list.append(actor)
 
 	return list
 
 
-# Return array of map positions this actor threats
+# Return array of map positions this actor threatens
 func get_threat_squares():
 	if can_react():
 		return get_parent().get_cell_neighbors(get_map_pos())
@@ -291,26 +291,26 @@ func new_turn():
 	self.reaction_taken = false
 	for key in self.action_states:
 		self.action_states[key] = false
-	
-	Globals.ActionController.emit_signal('action_changed')
+	self.threatened_by = Globals.Board.get_threats_to_actor_at_cell( self, get_map_pos() )
+	Globals.ActionController.emit_signal( "action_changed" )
 
 
 # End this actor's turn
 func end_turn():
 	clear_step_sprites()
-	emit_signal('ended_turn')
+	emit_signal( "ended_turn" )
 	Globals.InitManager.next_actor()
 
 
 # Place movement markers in cells you move from
 func add_step_sprite(cell):
 	var sprite = Sprite.new()
-	sprite.set_texture(preload('res://assets/graphics/tiles/tile_red.png'))
-	sprite.set_centered(false)
-	sprite.set_opacity(0.5)
-	get_parent().add_child(sprite)
-	sprite.set_pos(get_parent().map_to_world(cell))
-	step_sprites.append(sprite)
+	sprite.set_texture( preload( "res://assets/graphics/tiles/tile_red.png" ) )
+	sprite.set_centered( false )
+	sprite.set_opacity( 0.5 )
+	get_parent().add_child( sprite )
+	sprite.set_pos( get_parent().map_to_world( cell ) )
+	step_sprites.append( sprite )
 
 
 # Clear all movement markers
@@ -338,7 +338,7 @@ func clear_step_sprites():
 #			var new_threats = get_parent().get_threats_to_actor_at_cell(self,get_map_pos())
 #			for actor in self.threatened_by:
 #				if !actor in new_threats:
-#					actor.emit_signal('provoked_by',self)
+#					actor.emit_signal("provoked_by",self)
 #			self.threatened_by = new_threats
 
 
@@ -375,7 +375,7 @@ func get_map_pos():
 # INIT #
 func _ready():
 	connect("provoked_by", self, "_on_actor_provoked_by")
-	add_to_group('actors')
+	add_to_group("actors")
 	fill_hp()
 
 
@@ -384,38 +384,38 @@ func _ready():
 # PRIVATE SETGETTERS #
 func _set_name(what):
 	name = what
-	emit_signal('name_changed')
+	emit_signal("name_changed")
 
 func _set_initiative(what):
 	initiative = what
-	emit_signal('init_set')
+	emit_signal("init_set")
 
 func _set_movement_spent(what):
 	movement_spent = what
-	emit_signal('movement_spent')
+	emit_signal("movement_spent")
 
 func _set_max_movement(what):
 	max_movement = what
-	emit_signal('movement_spent')
+	emit_signal("movement_spent")
 
 func _set_hp(what):
 	hp = clamp(what,0,self.max_hp)
-	emit_signal('hp_changed')
+	emit_signal("hp_changed")
 	if hp == 0:
 		die()
 
 func _set_max_hp(what):
 	max_hp = what
-	emit_signal('max_hp_changed')
+	emit_signal("max_hp_changed")
 
 
 func _set_team(what):
 	team = what
-	emit_signal('team_changed')
+	emit_signal("team_changed")
 
 func _set_threatened_by(what):
 	threatened_by = what
-	emit_signal('threats_changed')
+	emit_signal("threats_changed")
 
 
 # SIGNAL CALLBACKS

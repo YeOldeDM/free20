@@ -30,50 +30,39 @@ func set_threats():
 	
 
 func execute_dash(who):
-	pass
-
-# Replace with Above!
-func confirm_dash():
-	var p = Globals.active_actor
-	p.max_movement = p.base_movement * 2
-	Globals.active_actor.action_states.dashing = true
+	who.max_movement = who.base_movement * 2
+	who.action_states.dashing = true
 
 
 # Perform an attack between one actor and another
 func execute_attack(from,to):
-	pass
-
-# Replace with Above!
-func confirm_attack():
-	# shortcuts
-	var p = Globals.active_actor
-	var t = self.current_target
 	# Attack Roll info
-	var name = p.get_actor_name()
-	var mod = p.get_attack_mod()
-	var ac = t.get_armor_class()
+	var name = from.get_actor_name()
+	var mod = from.get_attack_mod()
+	var ac = to.get_armor_class()
 	# Announce the attack roll
-	var msg = "makes an attack roll against " +t.get_actor_name()+ "!"
+	var msg = "makes an attack roll against " +to.get_actor_name()+ "!"
 	var roll = Globals.Game.check( msg, name, ac, mod )
 	
 	# If the attack doesn"t miss..
 	if roll.passed:
 		# Get roll info
-		var roll = p.weapon.get_damage()
-		var mod = p.abilities.get_str_mod()
+		var roll = from.weapon.get_damage()
+		var mod = from.abilities.get_str_mod()
 		# Check for Finesse
-		if p.weapon.finesse:
-			mod = max( p.abilities.get_str_mod(), p.abilities.get_dex_mod() )
-		msg = "Damage roll for "+p.weapon.name
+		if from.weapon.finesse:
+			mod = max( from.abilities.get_str_mod(), from.abilities.get_dex_mod() )
+		msg = "Damage roll for "+from.weapon.name
 		# Announce the damage roll
 		var dmg = Globals.Game.roll( msg, name, roll, mod)
 		# Give DAMAGE to target
-		t.take_damage( dmg.total )
+		to.take_damage( dmg.total )
 	
 	# Mark the attacker as taking an Attack Action this round
 	Globals.active_actor.action_states.attacking = true
 
 
+# Make an actor step in a direction
 func step_actor(who, direction):
 	# Clamp direction to -1 or 1 or 0 in each direction
 	direction.x = sign( direction.x )
@@ -102,8 +91,7 @@ func step_actor(who, direction):
 		# update threats
 		who.threatened_by = new_threats
 	
-	else:
-		print("CANT")
+
 
 
 func _on_action( action ):
@@ -183,9 +171,9 @@ func _on_action_changed():
 
 func _on_Confirm_pressed():
 	if self.current_action == "ATTACK":
-		confirm_attack()
+		execute_attack(Globals.active_actor, self.current_target)
 	elif self.current_action == "DASH":
-		confirm_dash()
+		execute_dash()
 	Globals.active_actor.action_taken = true
 	emit_signal( "action_changed" )
 
