@@ -16,3 +16,13 @@ func _ready():
 
 func _on_choice_pressed(idx):
 	emit_signal('decided', idx)
+	get_tree().set_pause(false)
+	queue_free()
+
+func _on_DecisionPrompt_about_to_show():
+	raise()
+	get_tree().set_pause(true)
+
+
+
+

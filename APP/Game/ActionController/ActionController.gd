@@ -65,7 +65,7 @@ func execute_attack(from,to):
 		to.take_damage( dmg.total )
 	
 	# Mark the attacker as taking an Attack Action this round
-	Globals.active_actor.action_states.attacking = true
+	from.action_states.attacking = true
 
 
 # Make an actor step in a direction
@@ -79,23 +79,28 @@ func step_actor(who, direction):
 	
 	# ensure actor can move here
 	if who.can_step_to_cell( new_cell ):
+		var move = true
 		# get threats in new cell
 		var new_threats = Globals.Board.get_threats_to_actor_at_cell( who, new_cell )
 		# If old threats are not in new threats, actor is provoking opportunity to the threat
 		for actor in who.threatened_by:
 			if !actor in new_threats && who.can_provoke_opportunity():
-				actor.emit_signal( "provoked_by", who )
+				var pop = Globals.Game.make_decision( who.get_actor_name(), "This will provoke an attack of opportunity. Are you sure you want to do this?" )
+				var choice = yield( pop, "decided" )
+				move = bool(choice)
+				if move:
+					actor.emit_signal( "provoked_by", who )
 	
-		
-		# append current pos to move_history
-		who.move_history.append( who.get_map_pos() )
-		who.add_step_sprite( who.get_map_pos() )
-		# set new map position
-		who.set_map_pos( new_cell )
-		# spend a point of movement
-		who.movement_spent += 1
-		# update threats
-		who.threatened_by = new_threats
+		if move:
+			# append current pos to move_history
+			who.move_history.append( who.get_map_pos() )
+			who.add_step_sprite( who.get_map_pos() )
+			# set new map position
+			who.set_map_pos( new_cell )
+			# spend a point of movement
+			who.movement_spent += 1
+			# update threats
+			who.threatened_by = new_threats
 	
 
 
@@ -162,6 +167,7 @@ func _on_action_changed():
 			if self.current_target.has_method( "take_damage" ):
 				if Globals.active_actor.can_reach( self.current_target ):
 					can_confirm = true
+
 	elif self.current_action == "DASH":
 #		self.current_target = Globals.active_actor
 		can_confirm = true

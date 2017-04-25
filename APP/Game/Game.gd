@@ -9,6 +9,16 @@ signal announce_roll(who, roll, blurb)
 # MEMBERS #
 var active_actor = null setget _set_active_actor
 
+
+
+func make_decision( who_name, message ):
+	var pop = preload( "res://Game/DecisionPrompt/DecisionPrompt.tscn" ).instance()
+	get_node( "GUI" ).add_child( pop )
+	pop.popup_centered()
+	pop.draw( who_name, message )
+	return pop
+
+
 # Roll a d20 check from name. Announce the result as a signal
 # also return the result
 func check(announcement="rolls a check!",from_name="--",DC=9, mod=0,\

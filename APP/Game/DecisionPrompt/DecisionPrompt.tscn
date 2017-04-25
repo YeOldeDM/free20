@@ -1,9 +1,10 @@
 [gd_scene load_steps=2 format=1]
 
-[ext_resource path="res://Game/DesicionPrompt/DecisionPrompt.gd" type="Script" id=1]
+[ext_resource path="res://Game/DecisionPrompt/DecisionPrompt.gd" type="Script" id=1]
 
 [node name="DecisionPrompt" type="WindowDialog"]
 
+process/pause_mode = 2
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -12,7 +13,7 @@ margin/left = 363.0
 margin/top = 181.0
 margin/right = 674.0
 margin/bottom = 337.0
-popup/exclusive = false
+popup/exclusive = true
 window/title = "WHO must make a DECISION!!"
 script/script = ExtResource( 1 )
 
@@ -90,5 +91,7 @@ enabled_focus_mode = 2
 shortcut = null
 text = "NO"
 flat = false
+
+[connection signal="about_to_show" from="." to="." method="_on_DecisionPrompt_about_to_show"]
 
 

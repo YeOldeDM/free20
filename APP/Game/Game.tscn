@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://Board/Board.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Game/ActionController/ActionController.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Game/InitManager/InitManager.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Game/MessageBox/MessageBox.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Game/DesicionPrompt/DecisionPrompt.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -81,14 +80,9 @@ anchor/right = 1
 margin/left = 237.0
 margin/right = 12.0
 
-[node name="DecisionPrompt" parent="GUI" instance=ExtResource( 8 )]
-
-visibility/visible = false
-popup/exclusive = true
+[connection signal="active_actor_set" from="." to="GUI/Control/ActionSensor" method="_on_Game_active_actor_set"]
 
 [connection signal="active_actor_set" from="." to="GUI/Control/InitManager" method="_on_Game_active_actor_set"]
-
-[connection signal="active_actor_set" from="." to="GUI/Control/ActionSensor" method="_on_Game_active_actor_set"]
 
 [connection signal="announce_check" from="." to="GUI/Control/MessageBox" method="_on_Game_announce_check"]
 

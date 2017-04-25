@@ -413,4 +413,10 @@ func _set_threatened_by(what):
 # SIGNAL CALLBACKS
 func _on_actor_provoked_by(who):
 	prints(who.get_actor_name(),"is provoking",get_actor_name())
-	pass
+	var pop = Globals.Game.make_decision( get_actor_name(), "React with an Opportunity Attack?" )
+	var choice = yield(pop, "decided")
+	if bool(choice):
+		Globals.ActionController.execute_attack( self, who )
+		self.reaction_taken = true
+
+
