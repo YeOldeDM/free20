@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://Actor/Actor.gd" type="Script" id=1]
-[ext_resource path="res://assets/graphics/creature/draconian_green_m.png" type="Texture" id=2]
-[ext_resource path="res://assets/graphics/tiles/cursor.png" type="Texture" id=3]
-[ext_resource path="res://assets/graphics/tiles/cursor_red.png" type="Texture" id=4]
-[ext_resource path="res://Actor/AbilityScores.gd" type="Script" id=5]
-[ext_resource path="res://Actor/Weapon.gd" type="Script" id=6]
+[ext_resource path="res://resources/material_outline.tres" type="CanvasItemMaterial" id=2]
+[ext_resource path="res://assets/graphics/creature/draconian_green_m.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/tiles/cursor.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/tiles/cursor_red.png" type="Texture" id=5]
+[ext_resource path="res://Actor/AbilityScores.gd" type="Script" id=6]
+[ext_resource path="res://Actor/Weapon.gd" type="Script" id=7]
 
 [node name="Actor" type="Node2D"]
 
@@ -25,24 +26,25 @@ max_hp = 8
 
 [node name="Icon" type="Sprite" parent="."]
 
-texture = ExtResource( 2 )
+material/material = ExtResource( 2 )
+texture = ExtResource( 3 )
 centered = false
 
 [node name="Focus" type="Sprite" parent="."]
 
 visibility/visible = false
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 centered = false
 
 [node name="Target" type="Sprite" parent="."]
 
 visibility/visible = false
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 centered = false
 
 [node name="AbilityScores" type="Node" parent="."]
 
-script/script = ExtResource( 5 )
+script/script = ExtResource( 6 )
 strength = 8
 dexterity = 8
 constitution = 8
@@ -52,7 +54,7 @@ charisma = 8
 
 [node name="Weapon" type="Node" parent="."]
 
-script/script = ExtResource( 6 )
+script/script = ExtResource( 7 )
 name = ""
 weight = 0.0
 value = 0.0

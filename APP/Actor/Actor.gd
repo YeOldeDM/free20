@@ -130,6 +130,13 @@ func set_icon(texture):
 func get_icon():
 	return get_node("Icon").get_texture()
 
+func set_icon_outline_color( color ):
+	var mat = get_node("Icon").get_material().set_shader_param( "outline_color", color )
+
+
+func get_icon_outline_color():
+	var mat = get_node("Icon").get_material().get_shader_param("outline_color")
+
 
 # Actor focus (shows when we are the active actor)
 func set_focus(what):
@@ -295,7 +302,12 @@ func new_turn():
 		self.action_states[key] = false
 	self.threatened_by = Globals.Board.get_threats_to_actor_at_cell( self, get_map_pos() )
 	Globals.ActionController.emit_signal( "action_changed" )
-
+	
+	for actor in get_tree().get_nodes_in_group( "actors" ):
+		if actor.get_team() == self.get_team():
+			actor.set_icon_outline_color( Color(0,1,0,1) )
+		else:
+			actor.set_icon_outline_color( Color(1,0,0,1) )
 
 # End this actor's turn
 func end_turn():
@@ -354,10 +366,10 @@ func get_map_pos():
 
 # INIT #
 func _ready():
-	connect("provoked_by", self, "_on_actor_provoked_by")
-	add_to_group("actors")
+	connect( "provoked_by", self, "_on_actor_provoked_by" )
+	add_to_group( "actors" )
 	fill_hp()
-
+	get_node( "Icon" ).set_material( get_node("Icon").get_material().duplicate() )
 
 
 

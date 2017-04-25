@@ -1,9 +1,48 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://tilesets/TestSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Board/Board.gd" type="Script" id=2]
 [ext_resource path="res://Actor/Actor.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/graphics/creature/human.png" type="Texture" id=4]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = {
+"fragment": "uniform float outline_width=1.0;
+uniform color outline_color=vec4(0,0,0,1);
+
+vec4 col = tex(TEXTURE,UV);
+vec2 ps = TEXTURE_PIXEL_SIZE;
+float a;
+float maxa=col.a;
+float mina=col.a;
+a=tex(TEXTURE,UV+vec2(0,-outline_width)*ps).a;
+maxa=max(a,maxa); 
+mina=min(a,mina);
+a=tex(TEXTURE,UV+vec2(0,outline_width)*ps).a;
+maxa=max(a,maxa); 
+mina=min(a,mina);
+a=tex(TEXTURE,UV+vec2(-outline_width,0)*ps).a;
+maxa=max(a,maxa); 
+mina=min(a,mina);
+a=tex(TEXTURE,UV+vec2(outline_width,0)*ps).a;
+maxa=max(a,maxa); 
+mina=min(a,mina);
+
+COLOR=mix(col,outline_color,maxa-mina);",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+shader_param/outline_width = 0.5
+shader_param/outline_color = Color( 0, 1, 0, 1 )
 
 [node name="Board" type="TileMap"]
 
@@ -28,9 +67,7 @@ script/script = ExtResource( 2 )
 
 transform/pos = Vector2( 576, 224 )
 name = "Jeff"
-level = 1
 gender = "male"
-unaligned = false
 nature = 0
 Class = "Rogue"
 Race = "Halfling"
@@ -38,6 +75,7 @@ max_hp = 12
 
 [node name="Icon" parent="Actor1"]
 
+material/material = SubResource( 2 )
 texture = ExtResource( 4 )
 
 [node name="AbilityScores" parent="Actor1"]
@@ -52,7 +90,6 @@ charisma = 16
 [node name="Weapon" parent="Actor1"]
 
 name = "Shortsword"
-enchantment = 0
 finesse = true
 
 [node name="Actor" parent="." instance=ExtResource( 3 )]
@@ -60,7 +97,6 @@ finesse = true
 transform/pos = Vector2( 448, 256 )
 team = 1
 name = "Troggy"
-level = 1
 gender = "female"
 unaligned = true
 demeanor = 2
@@ -82,7 +118,21 @@ charisma = 4
 [node name="Weapon" parent="Actor"]
 
 name = "Claws"
-enchantment = 0
+
+[node name="Actor2" parent="." instance=ExtResource( 3 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 384, 224 )
+team = 1
+name = "Troggy"
+gender = "female"
+unaligned = true
+demeanor = 2
+nature = 2
+Class = "Stalker"
+Race = "Troglodyte"
+base_movement = 7
+max_hp = 4
 
 
 [editable path="Actor1"]
