@@ -54,6 +54,8 @@ charisma = 8
 
 script/script = ExtResource( 6 )
 name = ""
+weight = 0.0
+value = 0.0
 damage = "1d6"
 enchantment = 0
 finesse = false

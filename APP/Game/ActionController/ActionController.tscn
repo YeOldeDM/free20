@@ -216,7 +216,7 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 18.0
+margin/top = 38.0
 margin/right = 266.0
 margin/bottom = 38.0
 scroll/horizontal = true
@@ -230,8 +230,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 12.0
-margin/bottom = 20.0
+margin/right = 0.0
+margin/bottom = 0.0
 alignment = 0
 
 [node name="Label" type="Label" parent="box/box/Threats/box"]
@@ -255,7 +255,6 @@ max_lines_visible = -1
 
 [node name="Target" type="PanelContainer" parent="box"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3

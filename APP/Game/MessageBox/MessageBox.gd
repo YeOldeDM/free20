@@ -22,9 +22,7 @@ func clear():
 		list.get_child(0).queue_free()
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
+	Globals.MessageBox = self
 
 
 func _on_Game_announce_check( who, check, blurb ):

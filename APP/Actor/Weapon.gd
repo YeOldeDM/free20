@@ -1,10 +1,10 @@
 # WEAPON COMPONENT
 
-extends Node
+extends "res://Data/Item.gd"
 
 onready var owner = get_parent()
 
-export(String, MULTILINE) var name = ""
+#export(String, MULTILINE) var name = ""
 export(String) var damage = "1d6"
 export(int,-5,5) var enchantment = 0
 
@@ -37,4 +37,5 @@ func roll_damage():
 
 func _ready():
 	owner.weapon = self
+
 

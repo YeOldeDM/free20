@@ -49,13 +49,20 @@ func get_cell_neighbors( cell ):
 	return neighbors
 
 
-
+func get_threats_to_actor_at_cell(actor, pos):
+	var list = []
+	for other_actor in get_tree().get_nodes_in_group('actors'):
+		if other_actor.get_team() != actor.get_team():
+			if pos in other_actor.get_threat_squares():
+				list.append(other_actor)
+	return list
 
 
 
 
 # INIT #
 func _ready():
+	Globals.Board = self
 	set_process_input(true)
 
 

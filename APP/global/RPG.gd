@@ -13,6 +13,12 @@ const ALIGNMENT = {
 		'evil']
 	}
 
+enum GENDER {
+	male,
+	female,
+	none
+	}
+
 enum BOON {
 	advantage,
 	disadvantage,
@@ -41,9 +47,8 @@ const DIRECTIONS = {
 
 
 # DICE ROLLERS
-
 func roll( low, high ):
-	return int(round(rand_range( low, high )))
+	return _roll(low,high)
 
 func dx(n):
 	return 1 + randi()%n
@@ -108,3 +113,8 @@ func get_roll_as_string(data):
 	txt += "="+str(data.total)
 	
 	return txt
+
+
+
+func _roll( a,b ):
+	return int(round(rand_range(min(a,b),max(a,b))))

@@ -6,7 +6,8 @@ signal action(action)
 var actor_inputs = [
 	'name_changed', 'icon_changed',
 	'movement_spent',
-	'hp_changed', 'max_hp_changed'
+	'hp_changed', 'max_hp_changed',
+	'threats_changed',
 	]
 
 onready var step_pad = get_node('Input/Movement/StepPad')
@@ -107,6 +108,8 @@ func _on_Active_max_hp_changed():
 	var hp = Globals.active_actor.get_max_hp()
 	active_panel.get_node('box/HP/Max').set_text(str(hp))
 
+func _on_Active_threats_changed():
+	Globals.ActionController.set_threats()
 
 func _on_InfoButton_pressed():
 	Globals.Game.show_actorsheet(Globals.active_actor)

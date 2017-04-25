@@ -1,0 +1,246 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Game/DiceRoller/DiceRoller.gd" type="Script" id=1]
+
+[node name="DiceRoller" type="PanelContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 195.0
+margin/bottom = 160.0
+script/script = ExtResource( 1 )
+
+[node name="box" type="VBoxContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 188.0
+margin/bottom = 153.0
+alignment = 0
+
+[node name="Title" type="Label" parent="box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 181.0
+margin/bottom = 14.0
+text = "Roll Dice"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="dice" type="GridContainer" parent="box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 181.0
+margin/bottom = 118.0
+columns = 3
+
+[node name="d4" type="Button" parent="box/dice"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 57.0
+margin/bottom = 30.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "1d4"
+flat = false
+
+[node name="d6" type="Button" parent="box/dice"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 61.0
+margin/top = 0.0
+margin/right = 118.0
+margin/bottom = 30.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "1d6"
+flat = false
+
+[node name="d8" type="Button" parent="box/dice"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 122.0
+margin/top = 0.0
+margin/right = 179.0
+margin/bottom = 30.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "1d8"
+flat = false
+
+[node name="d10" type="Button" parent="box/dice"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 34.0
+margin/right = 57.0
+margin/bottom = 64.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "1d10"
+flat = false
+
+[node name="d12" type="Button" parent="box/dice"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 61.0
+margin/top = 34.0
+margin/right = 118.0
+margin/bottom = 64.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "1d12"
+flat = false
+
+[node name="d20" type="Button" parent="box/dice"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 122.0
+margin/top = 34.0
+margin/right = 179.0
+margin/bottom = 64.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "1d20"
+flat = false
+
+[node name="d100" type="Button" parent="box/dice"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 68.0
+margin/right = 57.0
+margin/bottom = 98.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "d%"
+flat = false
+
+[node name="dX" type="HBoxContainer" parent="box"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 122.0
+margin/right = 181.0
+margin/bottom = 146.0
+alignment = 0
+
+[node name="num" type="LineEdit" parent="box/dX"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 0
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 58.0
+margin/bottom = 24.0
+text = "1"
+placeholder/alpha = 0.6
+align = 1
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="d" type="Label" parent="box/dX"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 62.0
+margin/top = 5.0
+margin/right = 70.0
+margin/bottom = 19.0
+text = "d"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="sides" type="LineEdit" parent="box/dX"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 0
+size_flags/vertical = 2
+margin/left = 74.0
+margin/top = 0.0
+margin/right = 132.0
+margin/bottom = 24.0
+text = "6"
+placeholder/alpha = 0.6
+align = 1
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="Button" type="Button" parent="box/dX"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 136.0
+margin/top = 0.0
+margin/right = 181.0
+margin/bottom = 24.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "ROLL"
+flat = false
+
+

@@ -1,0 +1,132 @@
+[gd_scene load_steps=14 format=1]
+
+[ext_resource path="res://proto/CostumeMaker.gd" type="Script" id=1]
+[ext_resource path="res://assets/graphics/player/cloak/black.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/player/base/centaur_brown_f.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/player/legs/belt_gray.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/player/boots/blue_gold.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/player/gloves/claws.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/player/body/animal_skin.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/player/barding/centaur_barding_blue.png" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/player/hair/aragorn.png" type="Texture" id=9]
+[ext_resource path="res://assets/graphics/player/beard/long_black.png" type="Texture" id=10]
+[ext_resource path="res://assets/graphics/player/head/art_dragonhelm.png" type="Texture" id=11]
+[ext_resource path="res://assets/graphics/player/hand1/aragorn.png" type="Texture" id=12]
+[ext_resource path="res://assets/graphics/player/hand2/boromir.png" type="Texture" id=13]
+
+[node name="CostumeMaker" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 1 )
+
+[node name="Paperdoll" type="Node2D" parent="."]
+
+transform/pos = Vector2( 218.671, 297.906 )
+transform/scale = Vector2( 2, 2 )
+
+[node name="cloak" type="Sprite" parent="Paperdoll"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="base" type="Sprite" parent="Paperdoll"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="legs" type="Sprite" parent="Paperdoll"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+
+[node name="boots" type="Sprite" parent="Paperdoll"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+
+[node name="gloves" type="Sprite" parent="Paperdoll"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="body" type="Sprite" parent="Paperdoll"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 7 )
+
+[node name="barding" type="Sprite" parent="Paperdoll"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+
+[node name="hair" type="Sprite" parent="Paperdoll"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 9 )
+
+[node name="beard" type="Sprite" parent="Paperdoll"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 10 )
+
+[node name="head" type="Sprite" parent="Paperdoll"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 11 )
+
+[node name="hand1" type="Sprite" parent="Paperdoll"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
+[node name="hand2" type="Sprite" parent="Paperdoll"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
+
+[node name="Choices" type="PanelContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 372.0
+margin/top = 48.0
+margin/right = 700.0
+margin/bottom = 563.0
+
+[node name="scroll" type="ScrollContainer" parent="Choices"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 321.0
+margin/bottom = 508.0
+scroll/horizontal = false
+scroll/vertical = true
+
+[node name="box" type="VBoxContainer" parent="Choices/scroll"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 314.0
+margin/bottom = 501.0
+alignment = 0
+
+

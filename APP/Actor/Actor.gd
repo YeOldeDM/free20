@@ -8,12 +8,17 @@ signal icon_changed()
 signal init_set()
 signal movement_spent()
 
+
+
 signal hp_changed()
 signal max_hp_changed()
 
 signal ended_turn()
+signal threats_changed()
+signal provoked_by(who)
 
-signal actor_provoke(who)
+
+
 
 # MEMBERS #
 export(int) var team = 0 setget _set_team
@@ -69,7 +74,7 @@ var race
 var jobs
 
 
-
+var threatened_by = [] setget _set_threatened_by
 
 # PUBLIC SETGETTERS
 
@@ -172,6 +177,13 @@ func get_initiative_mod():
 	return self.abilities.get_dex_mod()
 
 
+
+
+# PUBLIC METHODS #
+
+
+	# DOERS #
+
 # Roll Inish!
 func roll_init():
 	self.initiative = RPG.d20() + get_initiative_mod()
@@ -193,7 +205,13 @@ func fill_hp():
 	self.hp = self.get_max_hp()
 
 
-# PUBLIC METHODS
+
+
+
+
+
+	# GETTERS #
+	
 func get_neighboring_actors():
 	var list = []
 	var cells = get_parent().get_cell_neighbors(get_map_pos())
@@ -205,6 +223,28 @@ func get_neighboring_actors():
 	return list
 
 
+# Return array of map positions this actor threats
+func get_threat_squares():
+	if can_react():
+		return get_parent().get_cell_neighbors(get_map_pos())
+	return []
+
+
+
+
+	# CHECKERS #
+
+# True if we have no movement left
+func is_out_of_movement():
+	return self.movement_spent < self.max_movement
+
+
+# True if we have at least n movement left
+func has_movement(n):
+	return self.movement_spent + n <= self.max_movement
+
+
+# True if we can occupy this cell
 func can_occupy(cell):
 	var flr = get_parent().is_floor(cell)
 	if flr:
@@ -215,17 +255,31 @@ func can_occupy(cell):
 		return true
 	return false
 
+
+# True if we can move to this cell
+func can_step_to_cell(cell):
+	return has_movement(1) && can_occupy(cell)
+
+
+# True if we can end our movement in this cell
+func can_finish_movement_in_cell(cell):
+	pass
+
+# True if we can perform a Reaction
 func can_react():
 	return self.reaction_taken == false
 
+
+# True if other_actor is within Reach
 func can_reach(other_actor):
 	return other_actor in get_neighboring_actors()
 
-# Return array of map positions this actor threats
-func get_threat_squares():
-	if can_react():
-		return get_parent().get_cell_neighbors(get_map_pos())
-	return []
+
+
+
+
+
+
 
 # Start new turn for this actor
 func new_turn():
@@ -239,6 +293,7 @@ func new_turn():
 		self.action_states[key] = false
 	
 	Globals.ActionController.emit_signal('action_changed')
+
 
 # End this actor's turn
 func end_turn():
@@ -267,18 +322,24 @@ func clear_step_sprites():
 
 # Step one tile in a direction
 # Check for valid tile and movement points
-func step( direction ):
-	direction.x = sign( direction.x )
-	direction.y = sign( direction.y )
-	
-	var target_cell = self.get_map_pos() + direction
-	if can_occupy( target_cell ):
-		if self.movement_spent < self.max_movement:
-			self.move_history.append( self.get_map_pos() )
-			add_step_sprite(self.get_map_pos())
-			set_map_pos( target_cell )
-			
-			self.movement_spent += 1
+#func step( direction ):
+#	direction.x = sign( direction.x )
+#	direction.y = sign( direction.y )
+#	
+#	var target_cell = self.get_map_pos() + direction
+#	if can_occupy( target_cell ):
+#		if self.movement_spent < self.max_movement:
+#			self.move_history.append( self.get_map_pos() )
+#			add_step_sprite(self.get_map_pos())
+#			set_map_pos( target_cell )
+#			
+#			self.movement_spent += 1
+#			
+#			var new_threats = get_parent().get_threats_to_actor_at_cell(self,get_map_pos())
+#			for actor in self.threatened_by:
+#				if !actor in new_threats:
+#					actor.emit_signal('provoked_by',self)
+#			self.threatened_by = new_threats
 
 
 # Undo a step in movement history
@@ -313,7 +374,7 @@ func get_map_pos():
 
 # INIT #
 func _ready():
-	connect("actor_provoke", self, "_on_actor_provoke")
+	connect("provoked_by", self, "_on_actor_provoked_by")
 	add_to_group('actors')
 	fill_hp()
 
@@ -352,9 +413,12 @@ func _set_team(what):
 	team = what
 	emit_signal('team_changed')
 
-
+func _set_threatened_by(what):
+	threatened_by = what
+	emit_signal('threats_changed')
 
 
 # SIGNAL CALLBACKS
-func _on_actor_provoke(who):
+func _on_actor_provoked_by(who):
+	prints(who.get_actor_name(),"is provoking",get_actor_name())
 	pass

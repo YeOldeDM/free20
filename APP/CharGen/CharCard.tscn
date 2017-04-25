@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://CharGen/CharCard.gd" type="Script" id=1]
+
+[node name="CharCard" type="Button"]
+
+rect/min_size = Vector2( 80, 120 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 412.0
+margin/top = 196.0
+margin/right = 492.0
+margin/bottom = 316.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+clip_text = true
+script/script = ExtResource( 1 )
+
+

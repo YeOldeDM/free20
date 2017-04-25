@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Game/DesicionPrompt/DecisionPrompt.gd" type="Script" id=1]
+
+[node name="DecisionPrompt" type="WindowDialog"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 363.0
+margin/top = 181.0
+margin/right = 674.0
+margin/bottom = 337.0
+popup/exclusive = false
+window/title = "WHO must make a DECISION!!"
+script/script = ExtResource( 1 )
+
+[node name="box" type="VBoxContainer" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 8.0
+margin/top = 8.0
+margin/right = 8.0
+margin/bottom = 8.0
+alignment = 0
+
+[node name="Message" type="Label" parent="box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 295.0
+margin/bottom = 116.0
+text = "This is the message that you will see. This message will ask you if you're really sure you want to do whatever you're about to do...?"
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Choices" type="HBoxContainer" parent="box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 120.0
+margin/right = 295.0
+margin/bottom = 140.0
+alignment = 1
+
+[node name="Yes" type="Button" parent="box/Choices"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 112.0
+margin/top = 0.0
+margin/right = 145.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "YES"
+flat = false
+
+[node name="No" type="Button" parent="box/Choices"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 149.0
+margin/top = 0.0
+margin/right = 182.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "NO"
+flat = false
+
+
