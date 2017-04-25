@@ -34,6 +34,12 @@ func execute_dash(who):
 	who.action_states.dashing = true
 
 
+func execute_disengage(who):
+	who.action_states.disengaging = true
+
+func execute_dodge(who):
+	who.action_states.dodging = true
+
 # Perform an attack between one actor and another
 func execute_attack(from,to):
 	# Attack Roll info
@@ -77,7 +83,7 @@ func step_actor(who, direction):
 		var new_threats = Globals.Board.get_threats_to_actor_at_cell( who, new_cell )
 		# If old threats are not in new threats, actor is provoking opportunity to the threat
 		for actor in who.threatened_by:
-			if !actor in new_threats:
+			if !actor in new_threats && who.can_provoke_opportunity():
 				actor.emit_signal( "provoked_by", who )
 	
 		
@@ -170,10 +176,21 @@ func _on_action_changed():
 
 
 func _on_Confirm_pressed():
+	# Parse current action
+		# ATTACK
 	if self.current_action == "ATTACK":
 		execute_attack(Globals.active_actor, self.current_target)
+		# DASH
 	elif self.current_action == "DASH":
-		execute_dash()
+		execute_dash(Globals.active_actor)
+		# DISENGAGE
+	elif self.current_action == "DISENGAGE":
+		execute_disengage(Globals.active_actor)
+		# DODGE
+	elif self.current_action == "DODGE":
+		execute_dodge(Globals.active_actor)
+	
+	
 	Globals.active_actor.action_taken = true
 	emit_signal( "action_changed" )
 

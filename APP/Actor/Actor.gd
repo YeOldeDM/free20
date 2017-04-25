@@ -275,6 +275,8 @@ func can_reach(other_actor):
 	return other_actor in get_neighboring_actors()
 
 
+func can_provoke_opportunity():
+	return !self.action_states.disengaging
 
 
 
@@ -318,28 +320,6 @@ func clear_step_sprites():
 	while step_sprites.size() > 0:
 		step_sprites[0].queue_free()
 		step_sprites.remove(0)
-
-
-# Step one tile in a direction
-# Check for valid tile and movement points
-#func step( direction ):
-#	direction.x = sign( direction.x )
-#	direction.y = sign( direction.y )
-#	
-#	var target_cell = self.get_map_pos() + direction
-#	if can_occupy( target_cell ):
-#		if self.movement_spent < self.max_movement:
-#			self.move_history.append( self.get_map_pos() )
-#			add_step_sprite(self.get_map_pos())
-#			set_map_pos( target_cell )
-#			
-#			self.movement_spent += 1
-#			
-#			var new_threats = get_parent().get_threats_to_actor_at_cell(self,get_map_pos())
-#			for actor in self.threatened_by:
-#				if !actor in new_threats:
-#					actor.emit_signal("provoked_by",self)
-#			self.threatened_by = new_threats
 
 
 # Undo a step in movement history
