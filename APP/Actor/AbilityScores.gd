@@ -10,6 +10,8 @@ export(int) var wisdom = 8
 export(int) var charisma = 8
 
 
+# Get Ability Modifier based on score
+# (score - 10) / 2, round toward 0
 func get_mod(ability):
 	var n = self.get(ability)-10
 	var s = sign(n)

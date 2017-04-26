@@ -17,6 +17,7 @@ func init(sprite,files):
 	self.category = sprite.get_name().to_lower()
 	get_node('Enable').set_text(sprite.get_name())
 	self.files = files
+	_on_File_item_selected( 0 )
 
 func get_texture(idx):
 	var fname = files[idx]+'.png'
@@ -25,8 +26,6 @@ func get_texture(idx):
 
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
 	pass
 
 
@@ -41,6 +40,7 @@ func _on_Enable_toggled( pressed ):
 func _on_File_item_selected( ID ):
 	emit_signal("choose_texture",self.category,get_texture(ID))
 	self.sprite.set_texture(get_texture(ID))
+	self.sprite.set_meta("file", files[ID])
 
 
 

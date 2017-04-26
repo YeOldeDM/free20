@@ -3,6 +3,28 @@ extends Control
 onready var doll = get_node('Paperdoll')
 onready var choices = get_node('Choices')
 
+func bake_paperdoll():
+	var h = ""
+	for node in doll.get_children():
+		h += node.get_meta("file")+str(!node.is_hidden())
+	h = str(hash(h))
+	print(h)
+	
+	var img = Image(32,32, false, Image.FORMAT_RGBA)
+	var maxi = doll.get_child_count() - 1
+	for i in range(maxi):
+		if !doll.get_child(i).is_hidden():
+			print(i)
+			var tex = doll.get_child(i).get_texture()
+			var dat = tex.get_data()
+			for x in range(32):
+				for y in range(32):
+					var a = dat.get_pixel(x,y).a
+					if a >= 1.0:
+						img.put_pixel(x, y, dat.get_pixel(x,y))
+	img.save_png("res://generated_icon"+h+".png")
+	
+
 func make_choosers():
 	clear_choosers()
 	for node in doll.get_children():
@@ -41,3 +63,7 @@ func add_chooser(sprite,files):
 
 func _ready():
 	make_choosers()
+
+
+func _on_Button_pressed():
+	bake_paperdoll()

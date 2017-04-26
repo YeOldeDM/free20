@@ -12,7 +12,7 @@
 [ext_resource path="res://Game/InitManager/InitManager.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Game/MessageBox/MessageBox.tscn" type="PackedScene" id=11]
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=1]
 
 content_margin/left = 4.0
 content_margin/right = 4.0
@@ -29,7 +29,7 @@ expand_margin/top = 2.0
 expand_margin/bottom = 2.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=2]
 
 content_margin/left = 4.0
 content_margin/right = 4.0
@@ -46,7 +46,7 @@ expand_margin/top = 2.0
 expand_margin/bottom = 2.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="StyleBoxTexture" id=3]
 
 content_margin/left = 4.0
 content_margin/right = 4.0
@@ -63,7 +63,7 @@ expand_margin/top = 2.0
 expand_margin/bottom = 2.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=4]
 
 content_margin/left = 4.0
 content_margin/right = 4.0
@@ -80,20 +80,20 @@ expand_margin/top = 2.0
 expand_margin/bottom = 2.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=5]
 
 font/size = 16
 font/use_mipmaps = true
 font/use_filter = true
 font/font = ExtResource( 7 )
 
-[sub_resource type="Theme" id=3]
+[sub_resource type="Theme" id=6]
 
-default_font = SubResource( 2 )
-Button/styles/disabled = SubResource( 6 )
-Button/styles/hover = SubResource( 4 )
-Button/styles/normal = SubResource( 1 )
-Button/styles/pressed = SubResource( 5 )
+default_font = SubResource( 5 )
+Button/styles/disabled = SubResource( 1 )
+Button/styles/hover = SubResource( 2 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 4 )
 
 [node name="Game" type="Node2D"]
 
@@ -116,7 +116,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = SubResource( 3 )
+theme/theme = SubResource( 6 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
@@ -156,9 +156,9 @@ anchor/right = 1
 margin/left = 237.0
 margin/right = 12.0
 
-[connection signal="active_actor_set" from="." to="GUI/Control/InitManager" method="_on_Game_active_actor_set"]
-
 [connection signal="active_actor_set" from="." to="GUI/Control/ActionSensor" method="_on_Game_active_actor_set"]
+
+[connection signal="active_actor_set" from="." to="GUI/Control/InitManager" method="_on_Game_active_actor_set"]
 
 [connection signal="announce_check" from="." to="GUI/Control/MessageBox" method="_on_Game_announce_check"]
 

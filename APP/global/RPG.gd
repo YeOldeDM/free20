@@ -47,14 +47,20 @@ const DIRECTIONS = {
 
 
 # DICE ROLLERS
-func roll( low, high ):
+func roll_low_to_high( low, high ):
 	return _roll(low,high)
 
-func dx(n):
-	return 1 + randi()%n
+func ndx( n, x ):
+	var total = 0
+	for i in range(n):
+		total += dx( x )
+	return total
+
+func dx( x ):
+	return 1 + randi() % x
 
 func d20():
-	return 1 + randi()%20
+	return 1 + randi() % 20
 
 
 func d20_advantage():
@@ -83,16 +89,52 @@ func check(DC=9, mod=0, has_advantage=BOON.none):
 		crit = CRITICAL.miss
 		passed = false
 	# Return data dictionary
-	var data = {
+	return {
 		'passed':		passed,	# bool roll passes the check?
 		'roll':			roll,	# raw d20 roll
 		'result':		result,	# Result (roll+mod)
 		'DC':			DC,		# DC given to this check
 		'crit':			crit,	# Critical status (-1 miss, 1 hit, 0 normal)
 		'advantage':	has_advantage,	# Advantage status
-		'mod':			mod,
+		'mod':			mod,		# mod given to this roll
 		}
-	return data
+
+
+
+# Roll a set of dice and apply a MOD
+# to the result of the total rolled.
+func roll( dice=[ [1,6] ], mod=0 ):
+	# Roll results
+	var rolls = []
+	# no. of dice accumulator
+	var _nd = 0
+	# max roll accumulator
+	var _tr = 0
+	# Roll dice..
+	for p in dice:
+		rolls.append( ndx( p[0], p[1] ) )
+		_nd += p[0]
+		_tr += p[0] * p[1]
+	# Add up rolls for roll_total
+	var roll_total = 0
+	for r in rolls:
+		roll_total += r
+	# Apply MOD for total
+	var total = roll_total + mod
+	# Get roll range
+	var roll_range = [
+		_nd + mod, _tr + mod
+		]
+	# Assemble data
+	return {
+		'rolls': rolls,				# Array of roll results
+		'roll_total': roll_total,	# Total of rolled dice (sans mod)
+		'total': total,				# Grand total including mod
+		'range': roll_range,		# Array of min-max values possible
+		'mod': mod,					# mod applied to the roll
+		}
+
+
 
 func get_check_as_string(data):
 	var die_txt = '1d20'
