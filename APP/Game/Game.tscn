@@ -1,17 +1,18 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://Board/Board.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/graphics/stylebox/grey_round_bevel_hover.png" type="Texture" id=3]
-[ext_resource path="res://assets/graphics/stylebox/grey_round_bevel_normal.png" type="Texture" id=4]
-[ext_resource path="res://assets/graphics/stylebox/grey_round_bevel_pressed.png" type="Texture" id=5]
-[ext_resource path="res://assets/fonts/LiberationSerif-Regular.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Game/ActionSensor/ActionSensor.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Game/ActionController/ActionController.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Game/InitManager/InitManager.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Game/MessageBox/MessageBox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/graphics/stylebox/grey_round_bevel_disabled.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/stylebox/grey_round_bevel_hover.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/stylebox/grey_round_bevel_normal.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/stylebox/grey_round_bevel_pressed.png" type="Texture" id=6]
+[ext_resource path="res://assets/fonts/LiberationSerif-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Game/ActionSensor/ActionSensor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Game/ActionController/ActionController.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Game/InitManager/InitManager.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Game/MessageBox/MessageBox.tscn" type="PackedScene" id=11]
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=6]
 
 content_margin/left = 4.0
 content_margin/right = 4.0
@@ -28,7 +29,7 @@ expand_margin/top = 2.0
 expand_margin/bottom = 2.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="StyleBoxTexture" id=4]
 
 content_margin/left = 4.0
 content_margin/right = 4.0
@@ -45,7 +46,7 @@ expand_margin/top = 2.0
 expand_margin/bottom = 2.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=1]
 
 content_margin/left = 4.0
 content_margin/right = 4.0
@@ -62,16 +63,34 @@ expand_margin/top = 2.0
 expand_margin/bottom = 2.0
 draw_center = true
 
+[sub_resource type="StyleBoxTexture" id=5]
+
+content_margin/left = 4.0
+content_margin/right = 4.0
+content_margin/top = 4.0
+content_margin/bottom = 4.0
+texture = ExtResource( 6 )
+margin/left = 16.0
+margin/right = 16.0
+margin/top = 16.0
+margin/bottom = 16.0
+expand_margin/left = 2.0
+expand_margin/right = 2.0
+expand_margin/top = 2.0
+expand_margin/bottom = 2.0
+draw_center = true
+
 [sub_resource type="DynamicFont" id=2]
 
 font/size = 16
 font/use_mipmaps = true
 font/use_filter = true
-font/font = ExtResource( 6 )
+font/font = ExtResource( 7 )
 
 [sub_resource type="Theme" id=3]
 
 default_font = SubResource( 2 )
+Button/styles/disabled = SubResource( 6 )
 Button/styles/hover = SubResource( 4 )
 Button/styles/normal = SubResource( 1 )
 Button/styles/pressed = SubResource( 5 )
@@ -103,7 +122,7 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
-[node name="ActionSensor" parent="GUI/Control" instance=ExtResource( 7 )]
+[node name="ActionSensor" parent="GUI/Control" instance=ExtResource( 8 )]
 
 editor/display_folded = true
 anchor/top = 1
@@ -112,7 +131,7 @@ margin/top = 148.0
 margin/right = 11.0
 margin/bottom = 3.0
 
-[node name="ActionController" parent="GUI/Control" instance=ExtResource( 8 )]
+[node name="ActionController" parent="GUI/Control" instance=ExtResource( 9 )]
 
 anchor/left = 0
 anchor/top = 1
@@ -123,14 +142,14 @@ margin/top = 307.0
 margin/right = 782.0
 margin/bottom = 146.0
 
-[node name="InitManager" parent="GUI/Control" instance=ExtResource( 9 )]
+[node name="InitManager" parent="GUI/Control" instance=ExtResource( 10 )]
 
 margin/left = 18.0
 margin/top = 18.0
 margin/right = 215.0
 margin/bottom = 296.0
 
-[node name="MessageBox" parent="GUI/Control" instance=ExtResource( 10 )]
+[node name="MessageBox" parent="GUI/Control" instance=ExtResource( 11 )]
 
 anchor/left = 1
 anchor/right = 1
