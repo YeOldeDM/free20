@@ -225,7 +225,6 @@ alignment = 0
 
 [node name="StepPad" type="GridContainer" parent="Input/Movement"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -317,6 +316,7 @@ margin/left = 37.0
 margin/top = 34.0
 margin/right = 69.0
 margin/bottom = 66.0
+disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -471,7 +471,6 @@ max_lines_visible = -1
 
 [node name="Standard" type="GridContainer" parent="Input"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
@@ -511,13 +510,14 @@ margin/left = 303.0
 margin/top = 0.0
 margin/right = 598.0
 margin/bottom = 29.0
+disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Cast Spell"
 flat = false
 
-[node name="Use" type="Button" parent="Input/Standard"]
+[node name="Dash" type="Button" parent="Input/Standard"]
 
 rect/min_size = Vector2( 0, 16 )
 focus/ignore_mouse = false
@@ -531,10 +531,10 @@ margin/bottom = 62.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Use Item"
+text = "Dash"
 flat = false
 
-[node name="Dash" type="Button" parent="Input/Standard"]
+[node name="Use" type="Button" parent="Input/Standard"]
 
 rect/min_size = Vector2( 0, 16 )
 focus/ignore_mouse = false
@@ -545,10 +545,11 @@ margin/left = 303.0
 margin/top = 33.0
 margin/right = 598.0
 margin/bottom = 62.0
+disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Dash"
+text = "Use Item"
 flat = false
 
 [node name="Disengage" type="Button" parent="Input/Standard"]
@@ -579,13 +580,14 @@ margin/left = 303.0
 margin/top = 66.0
 margin/right = 598.0
 margin/bottom = 95.0
+disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Hide"
 flat = false
 
-[node name="Aid" type="Button" parent="Input/Standard"]
+[node name="Dodge" type="Button" parent="Input/Standard"]
 
 rect/min_size = Vector2( 0, 16 )
 focus/ignore_mouse = false
@@ -599,10 +601,10 @@ margin/bottom = 128.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Aid"
+text = "Dodge"
 flat = false
 
-[node name="Dodge" type="Button" parent="Input/Standard"]
+[node name="Aid" type="Button" parent="Input/Standard"]
 
 rect/min_size = Vector2( 0, 16 )
 focus/ignore_mouse = false
@@ -613,10 +615,11 @@ margin/left = 303.0
 margin/top = 99.0
 margin/right = 598.0
 margin/bottom = 128.0
+disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Dodge"
+text = "Aid"
 flat = false
 
 [node name="VSeparator" type="VSeparator" parent="Input"]

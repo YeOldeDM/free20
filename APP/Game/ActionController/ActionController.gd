@@ -46,8 +46,9 @@ func execute_attack(from,to):
 	var name = from.get_actor_name()
 	var mod = from.get_attack_mod()
 	var ac = to.get_armor_class()
+	var defname = to.get_actor_name()
 	# Announce the attack roll
-	var msg = "makes an attack roll against " +to.get_actor_name()+ "!"
+	var msg = "makes an attack roll against " +defname+ "!"
 	var roll = Globals.Game.check( msg, name, ac, mod )
 	
 	# If the attack doesn"t miss..
