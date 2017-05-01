@@ -29,22 +29,12 @@ script/script = ExtResource( 2 )
 
 [node name="Temele" parent="." instance=ExtResource( 3 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 640, 256 )
+name = ""
 
 [node name="Icon" parent="Temele"]
 
 texture = ExtResource( 4 )
-
-[node name="Character" parent="Temele"]
-
-strength = 11
-dexterity = 11
-constitution = 13
-intelligence = 9
-wisdom = 16
-charisma = 12
-name = "Temele"
 
 [node name="Weapon" parent="Temele"]
 
@@ -65,21 +55,11 @@ weight_class = 3
 
 editor/display_folded = true
 transform/pos = Vector2( 672, 288 )
+name = ""
 
 [node name="Icon" parent="Berf"]
 
 texture = ExtResource( 5 )
-
-[node name="Character" parent="Berf"]
-
-strength = 18
-dexterity = 13
-constitution = 14
-intelligence = 7
-wisdom = 5
-charisma = 9
-name = "Berf"
-HD = "1d10"
 
 [node name="Weapon" parent="Berf"]
 
@@ -100,21 +80,13 @@ AC = 12
 
 [node name="Pekkins" parent="." instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 704, 256 )
+name = ""
 
 [node name="Icon" parent="Pekkins"]
 
 texture = ExtResource( 6 )
-
-[node name="Character" parent="Pekkins"]
-
-dexterity = 17
-constitution = 10
-intelligence = 15
-wisdom = 7
-charisma = 14
-name = "Pekkins"
-HD = "1d6"
 
 [node name="Weapon" parent="Pekkins"]
 
@@ -136,21 +108,13 @@ AC = 12
 
 [node name="Morus" parent="." instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 672, 224 )
+name = ""
 
 [node name="Icon" parent="Morus"]
 
 texture = ExtResource( 7 )
-
-[node name="Character" parent="Morus"]
-
-strength = 12
-dexterity = 7
-constitution = 10
-intelligence = 10
-wisdom = 14
-charisma = 12
-name = "Morus"
 
 [node name="Weapon" parent="Morus"]
 

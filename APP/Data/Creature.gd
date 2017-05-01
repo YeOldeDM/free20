@@ -155,8 +155,8 @@ func _ready():
 	set_max_HP( self.calculate_total_hitpoints() )
 	fill_HP()
 	# Associate with Actor
-	self.actor = get_parent()
-	self.actor.creature = self
+#	self.actor = get_parent()
+#	self.actor.creature = self
 
 
 

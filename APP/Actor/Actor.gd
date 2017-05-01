@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://Data/Character.gd"
 
 # SIGNALS #
 signal team_changed()
@@ -23,26 +23,8 @@ signal provoked_by(who)
 # MEMBERS #
 export(int) var team = 0 setget _set_team
 
-#export(String, MULTILINE) var name = "Noname" setget _set_name
-#export(int,1,10) var level = 1
-#export(String, "none", "male", "female") var gender = "none"
-#export(bool) var unaligned = false
-#export(int, "lawful", "neutral", "chaotic") var demeanor = 1
-#export(int, "good", "neutral", "evil") var nature = 1
 
-#export(String, MULTILINE) var Class = "Commoner"
-#export(String, MULTILINE) var Race = "Human"
-
-#export(int) var base_movement = 6
-
-#export(int) var proficiency = 2
-
-#export(int) var max_hp = 8 setget _set_max_hp
-
-
-
-#var incapacitated = false
-var max_movement = 0 setget _set_max_movement
+var max_movement = self.base_movement setget _set_max_movement
 var movement_spent = 0 setget _set_movement_spent
 
 var initiative = 0 setget _set_initiative
@@ -51,7 +33,6 @@ var move_history = []
 var step_sprites = []
 
 
-#var hp = max_hp setget _set_hp
 
 var action_taken = false
 var reaction_taken = false
@@ -90,10 +71,10 @@ func set_team(what):
 
 # Actor Name
 func get_actor_name():
-	return self.creature.name
+	return self.name
 
 func set_actor_name( what ):
-	self.creature.name = what
+	self.name = what
 	emit_signal( "name_changed" )
 
 # Actor Alignment
@@ -163,29 +144,29 @@ func is_target():
 #	return self.level
 
 func get_hp():
-	return self.creature.HP.get_value()
+	return self.HP.get_value()
 
 func get_max_hp():
-	return self.creature.HP.get_max()
+	return self.HP.get_max()
 
 func get_proficiency():
-	return self.creature.get_proficiency()
+	return self.get_proficiency()
 
 func get_attack_mod(proficient=true,use_dex=false):
 	var prof = get_proficiency() if proficient else 0
-	var abil = self.creature.get_dex_mod() if use_dex else self.creature.get_str_mod()
+	var abil = self.get_dex_mod() if use_dex else self.get_str_mod()
 	return prof+abil
 	
 func get_armor_class():
 	var ac = 7
-	var dex = self.creature.get_dex_mod()
+	var dex = self.get_dex_mod()
 	return ac+dex
 
 func get_initiative():
 	return self.initiative
 
 func get_initiative_mod():
-	return self.creature.get_dex_mod()
+	return self.get_dex_mod()
 
 
 
@@ -201,7 +182,7 @@ func roll_init():
 
 # Take damage
 func take_damage( amt ):
-	self.creature.take_damage( amt )
+	self.take_damage( amt )
 	emit_signal( "hp_changed" )
 
 # Heal damage
@@ -297,7 +278,7 @@ func can_provoke_opportunity():
 
 # Start new turn for this actor
 func new_turn():
-	self.max_movement = self.creature.base_movement
+	self.max_movement = self.base_movement
 	self.movement_spent = 0
 	self.move_history = []
 	clear_step_sprites()
@@ -373,9 +354,9 @@ func get_map_pos():
 func _ready():
 	connect( "provoked_by", self, "_on_actor_provoked_by" )
 	add_to_group( "actors" )
-	self.creature.fill_HP()
+	self.fill_HP()
 	get_node( "Icon" ).set_material( get_node("Icon").get_material().duplicate() )
-
+	print(self.name)
 
 
 # PRIVATE SETGETTERS #

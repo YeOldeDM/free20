@@ -1,18 +1,29 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://Actor/Actor.gd" type="Script" id=1]
 [ext_resource path="res://resources/material_outline.tres" type="CanvasItemMaterial" id=2]
 [ext_resource path="res://assets/graphics/creature/draconian_green_m.png" type="Texture" id=3]
 [ext_resource path="res://assets/graphics/tiles/cursor.png" type="Texture" id=4]
 [ext_resource path="res://assets/graphics/tiles/cursor_red.png" type="Texture" id=5]
-[ext_resource path="res://Data/Character.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Actor/Weapon.gd" type="Script" id=7]
-[ext_resource path="res://Data/Armor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Actor/Weapon.gd" type="Script" id=6]
+[ext_resource path="res://Data/Armor.tscn" type="PackedScene" id=7]
 
 [node name="Actor" type="Node2D"]
 
 transform/pos = Vector2( 37.7628, 37.7628 )
 script/script = ExtResource( 1 )
+strength = 8
+dexterity = 8
+constitution = 8
+intelligence = 8
+wisdom = 8
+charisma = 8
+name = "Blapp"
+HD = "1d8"
+base_level = 1
+base_movement = 4
+size = 1
+XP = 0
 team = 0
 
 [node name="Icon" type="Sprite" parent="."]
@@ -33,11 +44,9 @@ visibility/visible = false
 texture = ExtResource( 5 )
 centered = false
 
-[node name="Character" parent="." instance=ExtResource( 6 )]
-
 [node name="Weapon" type="Node" parent="."]
 
-script/script = ExtResource( 7 )
+script/script = ExtResource( 6 )
 name = ""
 description = ""
 weight = 0.0
@@ -55,6 +64,6 @@ damage_type = 0
 missile_type = 0
 missile_range = 0
 
-[node name="Armor" parent="." instance=ExtResource( 8 )]
+[node name="Armor" parent="." instance=ExtResource( 7 )]
 
 
