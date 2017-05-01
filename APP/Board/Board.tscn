@@ -1,48 +1,12 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://tilesets/TestSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Board/Board.gd" type="Script" id=2]
 [ext_resource path="res://Actor/Actor.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/graphics/creature/human.png" type="Texture" id=4]
-
-[sub_resource type="CanvasItemShader" id=1]
-
-_code = {
-"fragment": "uniform float outline_width=1.0;
-uniform color outline_color=vec4(0,0,0,1);
-
-vec4 col = tex(TEXTURE,UV);
-vec2 ps = TEXTURE_PIXEL_SIZE;
-float a;
-float maxa=col.a;
-float mina=col.a;
-a=tex(TEXTURE,UV+vec2(0,-outline_width)*ps).a;
-maxa=max(a,maxa); 
-mina=min(a,mina);
-a=tex(TEXTURE,UV+vec2(0,outline_width)*ps).a;
-maxa=max(a,maxa); 
-mina=min(a,mina);
-a=tex(TEXTURE,UV+vec2(-outline_width,0)*ps).a;
-maxa=max(a,maxa); 
-mina=min(a,mina);
-a=tex(TEXTURE,UV+vec2(outline_width,0)*ps).a;
-maxa=max(a,maxa); 
-mina=min(a,mina);
-
-COLOR=mix(col,outline_color,maxa-mina);",
-"fragment_ofs": 0,
-"light": "",
-"light_ofs": 0,
-"vertex": "",
-"vertex_ofs": 0
-}
-
-[sub_resource type="CanvasItemMaterial" id=2]
-
-shader/shader = SubResource( 1 )
-shader/shading_mode = 0
-shader_param/outline_width = 0.5
-shader_param/outline_color = Color( 0, 1, 0, 1 )
+[ext_resource path="res://assets/graphics/creature/temele.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/creature/berg.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/creature/pekkins.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/creature/morus.png" type="Texture" id=7]
 
 [node name="Board" type="TileMap"]
 
@@ -63,77 +27,148 @@ occluder/light_mask = 1
 tile_data = IntArray( 327686, 0, 327687, 0, 327688, 0, 327689, 0, 327690, 0, 327691, 0, 327692, 0, 327693, 0, 327694, 0, 327695, 0, 327696, 0, 327697, 0, 327698, 0, 327699, 0, 327700, 0, 327701, 0, 327702, 0, 393222, 0, 393223, 0, 393224, 0, 393225, 0, 393226, 0, 393227, 0, 393228, 0, 393229, 0, 393230, 0, 393231, 0, 393232, 0, 393233, 0, 393234, 0, 393235, 0, 393236, 0, 393237, 0, 393238, 0, 458758, 0, 458759, 0, 458760, 0, 458761, 0, 458762, 0, 458763, 0, 458764, 0, 458765, 0, 458766, 0, 458767, 0, 458768, 0, 458769, 0, 458770, 0, 458771, 0, 458772, 0, 458773, 0, 458774, 0, 524294, 0, 524295, 0, 524296, 0, 524297, 0, 524298, 0, 524299, 0, 524300, 0, 524301, 0, 524302, 0, 524303, 0, 524304, 0, 524305, 0, 524306, 0, 524307, 0, 524308, 0, 524309, 0, 524310, 0, 589830, 0, 589831, 0, 589832, 0, 589833, 0, 589834, 0, 589835, 0, 589836, 0, 589837, 0, 589838, 0, 589839, 0, 589840, 0, 589841, 0, 589842, 0, 589843, 0, 589844, 0, 589845, 0, 589846, 0, 655367, 0, 655368, 0, 655369, 0, 655370, 0, 655371, 0, 655372, 0, 655373, 0, 655374, 0, 655375, 0, 655376, 0, 655377, 0, 655378, 0, 655379, 0, 655380, 0, 655381, 0, 655382, 0, 720903, 0, 720904, 0, 720905, 0, 720906, 0, 720907, 0, 720908, 0, 720909, 0, 720910, 0, 720911, 0, 720912, 0, 720913, 0, 720914, 0, 720915, 0, 720916, 0, 720917, 0, 720918, 0, 786448, 0, 786449, 0, 786450, 0, 786451, 0 )
 script/script = ExtResource( 2 )
 
-[node name="Actor1" parent="." instance=ExtResource( 3 )]
-
-transform/pos = Vector2( 576, 224 )
-name = "Jeff"
-gender = "male"
-nature = 0
-Class = "Rogue"
-Race = "Halfling"
-max_hp = 12
-
-[node name="Icon" parent="Actor1"]
-
-material/material = SubResource( 2 )
-texture = ExtResource( 4 )
-
-[node name="AbilityScores" parent="Actor1"]
-
-strength = 9
-dexterity = 16
-constitution = 11
-intelligence = 15
-wisdom = 11
-charisma = 16
-
-[node name="Weapon" parent="Actor1"]
-
-name = "Shortsword"
-finesse = true
-
-[node name="Actor" parent="." instance=ExtResource( 3 )]
-
-transform/pos = Vector2( 448, 256 )
-team = 1
-name = "Troggy"
-gender = "female"
-unaligned = true
-demeanor = 2
-nature = 2
-Class = "Stalker"
-Race = "Troglodyte"
-base_movement = 7
-max_hp = 4
-
-[node name="AbilityScores" parent="Actor"]
-
-strength = 14
-dexterity = 12
-constitution = 14
-intelligence = 6
-wisdom = 7
-charisma = 4
-
-[node name="Weapon" parent="Actor"]
-
-name = "Claws"
-
-[node name="Actor2" parent="." instance=ExtResource( 3 )]
+[node name="Temele" parent="." instance=ExtResource( 3 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 384, 224 )
-team = 1
-name = "Troggy"
-gender = "female"
-unaligned = true
-demeanor = 2
-nature = 2
-Class = "Stalker"
-Race = "Troglodyte"
-base_movement = 7
-max_hp = 4
+transform/pos = Vector2( 640, 256 )
+
+[node name="Icon" parent="Temele"]
+
+texture = ExtResource( 4 )
+
+[node name="Character" parent="Temele"]
+
+strength = 11
+dexterity = 11
+constitution = 13
+intelligence = 9
+wisdom = 16
+charisma = 12
+name = "Temele"
+
+[node name="Weapon" parent="Temele"]
+
+name = "Rapier"
+finesse = true
+prof_class = 1
+damage_type = 1
+
+[node name="Armor" parent="Temele"]
+
+name = "Breastplate"
+weight = 600.0
+value = 60.0
+AC = 16
+weight_class = 3
+
+[node name="Berf" parent="." instance=ExtResource( 3 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 672, 288 )
+
+[node name="Icon" parent="Berf"]
+
+texture = ExtResource( 5 )
+
+[node name="Character" parent="Berf"]
+
+strength = 18
+dexterity = 13
+constitution = 14
+intelligence = 7
+wisdom = 5
+charisma = 9
+name = "Berf"
+HD = "1d10"
+
+[node name="Weapon" parent="Berf"]
+
+name = "Greatclub"
+weight = 250.0
+value = 5.0
+damage = "2d6"
+damage2h = "2d6"
+handedness = 1
+weight_class = 2
+
+[node name="Armor" parent="Berf"]
+
+name = "Leather Armor"
+weight = 200.0
+value = 10.0
+AC = 12
+
+[node name="Pekkins" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 704, 256 )
+
+[node name="Icon" parent="Pekkins"]
+
+texture = ExtResource( 6 )
+
+[node name="Character" parent="Pekkins"]
+
+dexterity = 17
+constitution = 10
+intelligence = 15
+wisdom = 7
+charisma = 14
+name = "Pekkins"
+HD = "1d6"
+
+[node name="Weapon" parent="Pekkins"]
+
+name = "Dagger"
+damage = "1d4"
+damage2h = "1d4"
+finesse = true
+weight_class = 1
+damage_type = 2
+missile_type = 1
+missile_range = 2
+
+[node name="Armor" parent="Pekkins"]
+
+name = "Leather Armor"
+weight = 200.0
+value = 10.0
+AC = 12
+
+[node name="Morus" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 672, 224 )
+
+[node name="Icon" parent="Morus"]
+
+texture = ExtResource( 7 )
+
+[node name="Character" parent="Morus"]
+
+strength = 12
+dexterity = 7
+constitution = 10
+intelligence = 10
+wisdom = 14
+charisma = 12
+name = "Morus"
+
+[node name="Weapon" parent="Morus"]
+
+name = "Quarterstaff"
+damage2h = "1d8"
+handedness = 2
+
+[node name="Armor" parent="Morus"]
+
+name = "Chainmail"
+weight = 500.0
+value = 50.0
+AC = 15
+weight_class = 2
+noisy = true
 
 
-[editable path="Actor1"]
-[editable path="Actor"]
+[editable path="Temele"]
+[editable path="Berf"]
+[editable path="Pekkins"]
+[editable path="Morus"]

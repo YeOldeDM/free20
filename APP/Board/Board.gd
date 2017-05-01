@@ -71,6 +71,6 @@ func _ready():
 func _input(event):
 	if event.type == InputEvent.MOUSE_BUTTON:
 		# Click a map cell to target actor in that cell
-		var target = get_actor_in_cell(world_to_map(event.pos))
+		var target = get_actor_in_cell(world_to_map(Globals.Board.get_local_mouse_pos()))
 		if target:
 			Globals.ActionController.set_target(target)

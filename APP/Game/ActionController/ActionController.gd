@@ -10,8 +10,31 @@ onready var confirm_button = get_node( "box/Confirm" )
 var current_action = null setget _set_current_action
 var current_target = null setget _set_current_target
 
-#func set_current_action(what):
-#	self.current_action = what
+var current_round = -1		# First round will begin at 0
+
+# BATTLE consists of many ROUNDS
+func new_battle():
+	next_round()
+
+func end_battle():
+	pass
+
+# ROUNDS consist of each active actor taking a TURN
+func next_round():
+	self.current_round += 1
+	next_turn()
+
+func end_round():
+	next_round()
+
+
+# TURN is the active actor performing movement & action(s)
+func next_turn():
+	pass
+
+func end_turn():
+	next_turn()
+
 
 func set_target(who):
 	self.current_target = who
@@ -55,10 +78,10 @@ func execute_attack(from,to):
 	if roll.passed:
 		# Get roll info
 		var roll = from.weapon.get_damage()
-		var mod = from.abilities.get_str_mod()
+		var mod = from.creature.get_str_mod()
 		# Check for Finesse
 		if from.weapon.finesse:
-			mod = max( from.abilities.get_str_mod(), from.abilities.get_dex_mod() )
+			mod = max( from.creature.get_str_mod(), from.creature.get_dex_mod() )
 		msg = "Damage roll for "+from.weapon.name
 		# Announce the damage roll
 		var dmg = Globals.Game.roll( msg, name, roll, mod)

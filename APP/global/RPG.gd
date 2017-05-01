@@ -103,7 +103,8 @@ func check(DC=9, mod=0, has_advantage=BOON.none):
 
 # Roll a set of dice and apply a MOD
 # to the result of the total rolled.
-func roll( dice=[ [1,6] ], mod=0 ):
+func roll( mod=0, dice1=[1,6], dice2=null, 
+		dice3=null, dice4=null, dice5=null, dice6=null ):
 	# Roll results
 	var rolls = []
 	# no. of dice accumulator
@@ -111,10 +112,13 @@ func roll( dice=[ [1,6] ], mod=0 ):
 	# max roll accumulator
 	var _tr = 0
 	# Roll dice..
-	for p in dice:
-		rolls.append( ndx( p[0], p[1] ) )
-		_nd += p[0]
-		_tr += p[0] * p[1]
+	for v in [dice1, dice2, dice3, dice4, dice5, dice6]:
+		if v != null:
+			rolls.append( ndx( v[0], v[1] ) )
+#	for p in dice:
+#		rolls.append( ndx( p[0], p[1] ) )
+#		_nd += p[0]
+#		_tr += p[0] * p[1]
 	# Add up rolls for roll_total
 	var roll_total = 0
 	for r in rolls:
@@ -127,6 +131,7 @@ func roll( dice=[ [1,6] ], mod=0 ):
 		]
 	# Assemble data
 	return {
+		'dice': dice1,
 		'rolls': rolls,				# Array of roll results
 		'roll_total': roll_total,	# Total of rolled dice (sans mod)
 		'total': total,				# Grand total including mod
@@ -147,9 +152,9 @@ func get_check_as_string(data):
 	
 
 func get_roll_as_string(data):
-	var roll = data.roll
+	var roll = data.dice
 	var die_txt = str(roll[0])+'d'+str(roll[1])
-	var txt = die_txt+"("+str(data.result)+")"
+	var txt = die_txt+"("+str(data.roll_total)+")"
 	if data.mod != 0:
 		txt += "+"+str(data.mod)
 	txt += "="+str(data.total)

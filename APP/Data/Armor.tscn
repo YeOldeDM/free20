@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Data/Armor.gd" type="Script" id=1]
+
+[node name="Armor" type="Node"]
+
+script/script = ExtResource( 1 )
+name = ""
+description = ""
+weight = 0.0
+value = 0.0
+doll_texture = null
+AC = 10
+weight_class = 1
+noisy = false
+clumsy = false
+
+

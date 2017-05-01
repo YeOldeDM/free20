@@ -1,0 +1,117 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://Data/Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Data/Armor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Data/Armor.gd" type="Script" id=3]
+
+[node name="Node" type="Node"]
+
+[node name="WEAPONS" type="Node" parent="."]
+
+editor/display_folded = true
+
+[node name="Club" parent="WEAPONS" instance=ExtResource( 1 )]
+
+name = "Club"
+description = "Perhaps the first hand-held weapon, the humble club can be made from any hard peice of wood. 
+They lack the power and versitility to make them a true threat in combat. Despite this though, clubs are light, easy to use, and cheap to replace. 
+Clubs are often seen only in the hands of those who are unable to or do not desire to aquire anything better."
+weight = 20.0
+value = 0.1
+doll_texture = null
+damage = "1d4"
+damage2h = "1d4"
+reach = false
+handedness = 0
+prof_class = 0
+weight_class = 1
+damage_type = 0
+missile_type = 0
+missile_range = 0
+
+[node name="Longbow" parent="WEAPONS" instance=ExtResource( 1 )]
+
+name = "Longbow"
+description = "An elegant advancement of the more simple Shortbow."
+weight = 40.0
+value = 50.0
+doll_texture = null
+damage = "1d8"
+damage2h = "1d8"
+reach = false
+handedness = 1
+prof_class = 1
+weight_class = 2
+damage_type = 2
+missile_type = 2
+missile_range = 10
+
+[node name="Rapier" parent="WEAPONS" instance=ExtResource( 1 )]
+
+name = "Rapier"
+description = "A long, thin-bladed sword designed for quick skilled thrusts and parries."
+weight = 18.0
+value = 25.0
+doll_texture = null
+damage = "1d8"
+damage2h = "1d8"
+finesse = true
+reach = false
+handedness = 0
+prof_class = 1
+weight_class = 0
+damage_type = 2
+missile_type = 0
+missile_range = 0
+
+[node name="Quarterstaff" parent="WEAPONS" instance=ExtResource( 1 )]
+
+name = "Quarterstaff"
+description = "A long wooden staff. A combination of light weight and large size makes it an effective weapon for one- and two-handed combat."
+weight = 45.0
+value = 1.0
+doll_texture = null
+damage2h = "1d8"
+reach = false
+handedness = 2
+prof_class = 0
+weight_class = 0
+damage_type = 0
+missile_type = 0
+missile_range = 0
+
+[node name="Spear" parent="WEAPONS" instance=ExtResource( 1 )]
+
+name = "Spear"
+description = "The spear is the staple of a conventional military. They are simple and cheap to produce en masse, and takes little training for a soldier to gain proficiency in its use.
+Spears are also a very dynamic weapon. It can be held effectively along with a shield, or used in both hands for increased effectiveness. Spears can also be thrown with effect over short distances."
+weight = 30.0
+value = 5.0
+doll_texture = null
+damage2h = "1d8"
+reach = false
+handedness = 2
+prof_class = 0
+weight_class = 0
+damage_type = 2
+missile_type = 1
+missile_range = 3
+
+[node name="ARMORS" type="Node" parent="."]
+
+[node name="Armor" parent="ARMORS" instance=ExtResource( 2 )]
+
+script/script = ExtResource( 3 )
+name = ""
+description = ""
+weight = 0.0
+value = 0.0
+doll_texture = null
+AC = 10
+weight_class = 1
+noisy = false
+clumsy = false
+
+[node name="RACES" type="Node" parent="."]
+
+

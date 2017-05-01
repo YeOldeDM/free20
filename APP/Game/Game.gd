@@ -28,14 +28,8 @@ func check(announcement="rolls a check!",from_name="--",DC=9, mod=0,\
 	emit_signal('announce_check', from_name, data, announcement)
 	return data
 
-func roll(announcement="rolls some dice!",from_name="--",roll=[1,6],mod=0):
-	var roll_result = RPG.roll(roll[0],roll[1])
-	var data = {
-		'roll':		roll,
-		'result':	roll_result,
-		'mod':		mod,
-		'total':	roll_result + mod,
-		}
+func roll(announcement="rolls some dice!", from_name="--", roll=[1,6], mod=0):
+	var data = RPG.roll(mod, roll )
 	emit_signal('announce_roll', from_name, data, announcement)
 	return data
 	

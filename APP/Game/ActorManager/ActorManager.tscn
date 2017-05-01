@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Game/ActorManager/ActorManager.gd" type="Script" id=1]
+
+[node name="ActorManager" type="PanelContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 26.0
+margin/top = 25.0
+margin/right = 179.0
+margin/bottom = 302.0
+script/script = ExtResource( 1 )
+
+[node name="tabs" type="TabContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 146.0
+margin/bottom = 270.0
+tab_align = 1
+tabs_visible = true
+
+

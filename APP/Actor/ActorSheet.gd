@@ -12,7 +12,7 @@ var actor = null setget _set_actor
 
 func draw_all():
 	set_title("CHARACTER SHEET FOR "+self.actor.get_actor_name())
-	descriptor.set_text(actor.get_descriptor())
+	#descriptor.set_text(actor.get_descriptor())
 	draw_info()
 	draw_abilities()
 	popup_centered()
@@ -35,9 +35,9 @@ func draw_info():
 
 func draw_abilities():
 	for a in ['STR','DEX','CON','INT','WIS','CHA']:
-		abil_scores.get_node(a).set_text(str(actor.abilities.call(a)))
+		abil_scores.get_node(a).set_text(str(actor.creature.call(a)))
 		var mod_call = 'get_'+a.to_lower()+'_mod'
-		var v = actor.abilities.call(mod_call)
+		var v = actor.creature.call(mod_call)
 		v = "+"+str(v) if v > 0 else str(v)
 		abil_mods.get_node(a).set_text(v)
 

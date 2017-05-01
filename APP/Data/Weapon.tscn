@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Actor/Weapon.gd" type="Script" id=1]
+
+[node name="Weapon" type="Node"]
+
+script/script = ExtResource( 1 )
+name = ""
+weight = 0.0
+value = 0.0
+damage = "1d6"
+enchantment = 0
+finesse = false
+
+

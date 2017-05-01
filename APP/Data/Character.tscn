@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Data/Character.gd" type="Script" id=1]
+
+[node name="Character" type="Node"]
+
+script/script = ExtResource( 1 )
+strength = 8
+dexterity = 8
+constitution = 8
+intelligence = 8
+wisdom = 8
+charisma = 8
+name = ""
+HD = "1d8"
+base_level = 1
+base_movement = 4
+size = 1
+XP = 0
+
+

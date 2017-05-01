@@ -12,7 +12,7 @@ func draw(from_name, data, announcement=""):
 	# Announcement
 	announce_label.set_text(announcement)
 	
-	var roll = data.roll
+	var roll = data.dice
 	var die_txt = str(roll[0])+'d'+str(roll[1])
 	var roll_txt = die_txt+"+"+str(data.mod)
 	roll_label.set_text(roll_txt)

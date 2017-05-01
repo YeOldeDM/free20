@@ -45,7 +45,3 @@ func get_wis_mod():
 func get_cha_mod():
 	return self.get_mod('charisma')
 
-
-
-func _ready():
-	owner.abilities = self
