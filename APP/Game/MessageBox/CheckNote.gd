@@ -1,5 +1,8 @@
 extends PanelContainer
 
+const COLOR_ADVANTAGE = Color(0,1,0)
+const COLOR_DISADVANTAGE = Color(1,0,0)
+
 onready var title_label = get_node('box/Title/Label')
 onready var announce_label = get_node('box/Announce')
 onready var d20roll_label = get_node('box/Roll/d20')
@@ -22,8 +25,10 @@ func draw(from_name, data, announcement=""):
 	var advtxt = ""
 	if data.advantage == RPG.BOON.advantage:
 		advtxt = "HAS ADVANTAGE!"
+		advantage_label.set( "custom_colors/font_color", COLOR_ADVANTAGE )
 	elif data.advantage == RPG.BOON.disadvantage:
 		advtxt = "HAS DISADVANTAGE!"
+		advantage_label.set( "custom_colors/font_color", COLOR_DISADVANTAGE )
 	advantage_label.set_text(advtxt)
 	# Result
 	result_label.set_text(str(data.result))

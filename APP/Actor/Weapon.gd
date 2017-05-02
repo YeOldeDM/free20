@@ -42,8 +42,8 @@ func get_damage( dmg2h=false ):
 
 func get_damage_mod():
 	var total = self.enchantment
-	var STR = owner.creature.get_str_mod()
-	var DEX = owner.creature.get_dex_mod()
+	var STR = owner.get_str_mod()
+	var DEX = owner.get_dex_mod()
 	if self.finesse:
 		total += max(STR,DEX)
 	else:

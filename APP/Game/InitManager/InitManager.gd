@@ -21,8 +21,11 @@ func get_first_actor():
 
 
 func next_actor():
+	# Move first actor to bottom of init stack
 	var itm = get_first_actor()
 	actor_list.move_child(itm, actor_list.get_child_count()-1)
+	
+	# Get new first actor
 	var next = get_first_actor()
 	next.actor.new_turn()
 	Globals.Game.set_active_actor(next.actor)

@@ -2,18 +2,13 @@ extends "res://Data/Character.gd"
 
 # SIGNALS #
 signal team_changed()
-signal name_changed()
 signal icon_changed()
 
 signal init_set()
 signal movement_spent()
 
-
-
-signal hp_changed()
-signal max_hp_changed()
-
 signal ended_turn()
+
 signal threats_changed()
 signal provoked_by(who)
 
@@ -47,17 +42,10 @@ var action_states = {
 	}
 
 # COMPONENTS
-#var abilities
 var weapon
 var armor
-var creature
-#var race
-#var jobs
-
 
 var threatened_by = [] setget _set_threatened_by
-
-
 
 
 # PUBLIC SETGETTERS
@@ -69,43 +57,6 @@ func get_team():
 func set_team(what):
 	self.team = what
 
-# Actor Name
-func get_actor_name():
-	return self.name
-
-func set_actor_name( what ):
-	self.name = what
-	emit_signal( "name_changed" )
-
-# Actor Alignment
-#func get_alignment_as_string():
-#	if self.unaligned:
-#		return "unaligned"
-#	else:
-#		var dem = RPG.ALIGNMENT.demeanor[self.demeanor].capitalize()
-#		var nat = RPG.ALIGNMENT.nature[self.nature].capitalize()
-#		return dem+"-"+nat
-#
-#func get_gender():
-#	if self.gender == "none":
-#		return null
-#	return self.gender
-#
-#func get_class():
-#	return self.Class
-#
-#func get_race():
-#	return self.Race
-
-
-#func get_descriptor():
-#	var L = "Level " + str(get_level())
-#	var A = get_alignment_as_string()
-#	var G = get_gender()
-#	G = "" if G == null else G.capitalize()+" "
-#	var R = get_race()
-#	var C = get_class()
-#	return L +" "+ A +" "+ G + R +" "+ C
 
 # Actor Icon
 func set_icon( texture ):
@@ -137,21 +88,6 @@ func is_target():
 	return !get_node("Target").is_hidden()
 
 
-
-
-# Get Stats
-#func get_level():
-#	return self.level
-
-func get_hp():
-	return self.HP.get_value()
-
-func get_max_hp():
-	return self.HP.get_max()
-
-func get_proficiency():
-	return self.get_proficiency()
-
 func get_attack_mod(proficient=true,use_dex=false):
 	var prof = get_proficiency() if proficient else 0
 	var abil = self.get_dex_mod() if use_dex else self.get_str_mod()
@@ -169,38 +105,16 @@ func get_initiative_mod():
 	return self.get_dex_mod()
 
 
-
-
 # PUBLIC METHODS #
-
-
-	# DOERS #
 
 # Roll Inish!
 func roll_init():
 	self.initiative = RPG.d20() + get_initiative_mod()
 
-# Take damage
-func take_damage( amt ):
-	self.take_damage( amt )
-	emit_signal( "hp_changed" )
-
-# Heal damage
-func heal_damage(amt):
-	self.hp += amt
 
 # Actor dies (becomes incapacitated)
 func die():
-	self.incapacitated = true
-
-# Refill HP to max
-#func fill_hp():
-#	self.hp = self.get_max_hp()
-
-
-
-
-
+	self.add_status_effect( "incapacitated" )
 
 
 	# GETTERS #
@@ -271,9 +185,15 @@ func can_reach(other_actor):
 func can_provoke_opportunity():
 	return !self.action_states.disengaging
 
-
-
-
+func get_attack_boon(other_actor):
+	var boon = 1
+	if other_actor.action_states.dodging:
+		boon -= 1
+	return [ 
+		RPG.BOON.disadvantage,
+		RPG.BOON.none,
+		RPG.BOON.advantage,
+		][ boon ]
 
 
 # Start new turn for this actor
@@ -354,16 +274,14 @@ func get_map_pos():
 func _ready():
 	connect( "provoked_by", self, "_on_actor_provoked_by" )
 	add_to_group( "actors" )
+	# Start with full HP
 	self.fill_HP()
+	# Make Icon's shader a unique instance
 	get_node( "Icon" ).set_material( get_node("Icon").get_material().duplicate() )
-	print(self.name)
+
 
 
 # PRIVATE SETGETTERS #
-#func _set_name(what):
-#	name = what
-#	emit_signal("name_changed")
-
 func _set_initiative(what):
 	initiative = what
 	emit_signal("init_set")
@@ -375,16 +293,6 @@ func _set_movement_spent(what):
 func _set_max_movement(what):
 	max_movement = what
 	emit_signal("movement_spent")
-
-#func _set_hp(what):
-#	hp = clamp(what,0,self.max_hp)
-#	emit_signal("hp_changed")
-#	if hp == 0:
-#		die()
-#
-#func _set_max_hp(what):
-#	max_hp = what
-#	emit_signal("max_hp_changed")
 
 
 func _set_team(what):

@@ -94,7 +94,7 @@ func check(DC=9, mod=0, has_advantage=BOON.none):
 		'roll':			roll,	# raw d20 roll
 		'result':		result,	# Result (roll+mod)
 		'DC':			DC,		# DC given to this check
-		'crit':			crit,	# Critical status (-1 miss, 1 hit, 0 normal)
+		'crit':			crit,	# Critical status (enum)
 		'advantage':	has_advantage,	# Advantage status
 		'mod':			mod,		# mod given to this roll
 		}

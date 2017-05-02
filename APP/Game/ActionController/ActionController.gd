@@ -64,27 +64,30 @@ func execute_dodge(who):
 	who.action_states.dodging = true
 
 # Perform an attack between one actor and another
-func execute_attack(from,to):
+func execute_attack( from, to ):
 	# Attack Roll info
 	var name = from.get_actor_name()
 	var mod = from.get_attack_mod()
 	var ac = to.get_armor_class()
 	var defname = to.get_actor_name()
+	var boon = from.get_attack_boon( to )
 	# Announce the attack roll
 	var msg = "makes an attack roll against " +defname+ "!"
-	var roll = Globals.Game.check( msg, name, ac, mod )
+	var roll = Globals.Game.check( msg, name, ac, mod, boon )
 	
 	# If the attack doesn"t miss..
 	if roll.passed:
 		# Get roll info
-		var roll = from.weapon.get_damage()
-		var mod = from.creature.get_str_mod()
+		var dmg_roll = from.weapon.get_damage()
+		if roll.crit == RPG.CRITICAL.hit:
+			dmg_roll[0] *= 2
+		var mod = from.get_str_mod()
 		# Check for Finesse
 		if from.weapon.finesse:
-			mod = max( from.creature.get_str_mod(), from.creature.get_dex_mod() )
+			mod = max( from.get_str_mod(), from.get_dex_mod() )
 		msg = "Damage roll for "+from.weapon.name
 		# Announce the damage roll
-		var dmg = Globals.Game.roll( msg, name, roll, mod)
+		var dmg = Globals.Game.roll( msg, name, dmg_roll, mod)
 		# Give DAMAGE to target
 		to.take_damage( dmg.total )
 	
@@ -194,8 +197,7 @@ func _on_action_changed():
 				if Globals.active_actor.can_reach( self.current_target ):
 					can_confirm = true
 
-	elif self.current_action == "DASH":
-#		self.current_target = Globals.active_actor
+	elif self.current_action in [ "DASH", "DISENGAGE", "DODGE" ]:
 		can_confirm = true
 	
 	if Globals.active_actor.action_taken:
@@ -208,10 +210,11 @@ func _on_action_changed():
 
 
 func _on_Confirm_pressed():
+	
 	# Parse current action
 		# ATTACK
 	if self.current_action == "ATTACK":
-		execute_attack(Globals.active_actor, self.current_target)
+		execute_attack( Globals.active_actor, self.current_target )
 		# DASH
 	elif self.current_action == "DASH":
 		execute_dash(Globals.active_actor)

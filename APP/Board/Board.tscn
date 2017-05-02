@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://tilesets/TestSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Board/Board.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/graphics/creature/berg.png" type="Texture" id=5]
 [ext_resource path="res://assets/graphics/creature/pekkins.png" type="Texture" id=6]
 [ext_resource path="res://assets/graphics/creature/morus.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/creature/orc.png" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/creature/orc_warrior.png" type="Texture" id=9]
 
 [node name="Board" type="TileMap"]
 
@@ -29,8 +31,9 @@ script/script = ExtResource( 2 )
 
 [node name="Temele" parent="." instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 640, 256 )
-name = ""
+name = "Temele"
 
 [node name="Icon" parent="Temele"]
 
@@ -55,7 +58,7 @@ weight_class = 3
 
 editor/display_folded = true
 transform/pos = Vector2( 672, 288 )
-name = ""
+name = "Berf"
 
 [node name="Icon" parent="Berf"]
 
@@ -82,7 +85,7 @@ AC = 12
 
 editor/display_folded = true
 transform/pos = Vector2( 704, 256 )
-name = ""
+name = "Pekkins"
 
 [node name="Icon" parent="Pekkins"]
 
@@ -110,7 +113,7 @@ AC = 12
 
 editor/display_folded = true
 transform/pos = Vector2( 672, 224 )
-name = ""
+name = "Morus"
 
 [node name="Icon" parent="Morus"]
 
@@ -131,8 +134,83 @@ AC = 15
 weight_class = 2
 noisy = true
 
+[node name="Orc" parent="." instance=ExtResource( 3 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 320, 256 )
+strength = 12
+dexterity = 9
+constitution = 12
+intelligence = 6
+charisma = 4
+name = "Orc"
+HD = "2d4"
+team = 1
+
+[node name="Icon" parent="Orc"]
+
+texture = ExtResource( 8 )
+
+[node name="Weapon" parent="Orc"]
+
+name = "Shortsword"
+prof_class = 1
+damage_type = 1
+
+[node name="Armor" parent="Orc"]
+
+name = "Leather Armor"
+AC = 12
+
+[node name="Orc1" parent="." instance=ExtResource( 3 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 288, 224 )
+strength = 12
+dexterity = 9
+constitution = 12
+intelligence = 6
+charisma = 4
+name = "Orc"
+HD = "2d4"
+team = 1
+
+[node name="Icon" parent="Orc1"]
+
+texture = ExtResource( 8 )
+
+[node name="Weapon" parent="Orc1"]
+
+name = "Shortsword"
+prof_class = 1
+damage_type = 1
+
+[node name="Armor" parent="Orc1"]
+
+name = "Leather Armor"
+AC = 12
+
+[node name="Orc2" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 288, 288 )
+strength = 12
+dexterity = 9
+constitution = 12
+intelligence = 6
+charisma = 4
+name = "Orc"
+HD = "2d4"
+team = 1
+
+[node name="Icon" parent="Orc2"]
+
+texture = ExtResource( 9 )
+
 
 [editable path="Temele"]
 [editable path="Berf"]
 [editable path="Pekkins"]
 [editable path="Morus"]
+[editable path="Orc"]
+[editable path="Orc1"]
+[editable path="Orc2"]

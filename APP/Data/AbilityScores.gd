@@ -1,7 +1,9 @@
 extends Node
 
-onready var owner = get_parent()
-
+ ############################
+ #	ABILITYSCORES CLASS		#
+ #							#
+ ############################
 export(int) var strength = 8
 export(int) var dexterity = 8
 export(int) var constitution = 8

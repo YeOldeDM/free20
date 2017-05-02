@@ -7,6 +7,10 @@ extends "res://Data/AbilityScores.gd"
  #	CREATURE CLASS			#
  #	inherits AbilityScores	#
  ############################
+signal name_changed()
+
+signal hp_changed()
+signal max_hp_changed()
 
 # Creature Name
 export(String, MULTILINE) var name = ""
@@ -14,9 +18,7 @@ export(String, MULTILINE) var name = ""
 # Hit Die (1dn)
 export(String) var HD = "1d8"
 
-# Base Creature Level 
-# ( Class levels are added to get total level )
-export(int) var base_level = 1
+
 
 
 
@@ -41,6 +43,16 @@ var status_effects = {}
 var actor
 
 
+# Actor Name
+func get_actor_name():
+	return self.name
+
+func set_actor_name( what ):
+	self.name = what
+	emit_signal( "name_changed" )
+
+
+
 func take_damage( amount=0 ):
 	var new_hp = self.get_current_HP() - amount
 	set_current_HP( new_hp )
@@ -48,6 +60,7 @@ func take_damage( amount=0 ):
 # Set Current HP
 func set_current_HP( what ):
 	self.HP.set_value( what )
+	emit_signal( "hp_changed" )
 
 
 # Set Max HP (overrites generated HP)
@@ -58,10 +71,6 @@ func set_max_HP( what ):
 func set_base_movement( what ):
 	self.base_movement = what
 
-
-# Get XP
-func get_XP():
-	return self.XP
 
 
 # Get Current HP
@@ -86,14 +95,14 @@ func get_base_movement():
 func has_status_effect( what ):
 	return what in self.status_effects
 
-func add_status_effect( effect, duration ):
+func add_status_effect( effect, duration=-1 ):
 	self.status_effects[effect] = int(duration)\
 	if !effect in self.status_effects else\
 	max( int(duration), self.status_effects[effect] )
 
 func remove_status_effect( effect ):
 	if effect in self.status_effects:
-		self.status_effects.erase(effect)
+		self.status_effects.erase( effect )
 
 func process_status_effects():
 	if self.status_effects.empty():
@@ -102,7 +111,7 @@ func process_status_effects():
 		var v = self.status_effects[effect]
 		if v < 0: return
 		elif v == 0:
-			remove_status_effect(effect)
+			remove_status_effect( effect )
 		else:
 			self.status_effects[effect] -= 1
 
@@ -134,17 +143,6 @@ func roll_HD():
 func create_HP_log():
 	for i in range( self.get_total_level() ):
 		HP_log.append( self.roll_HD() )
-
-
-# Get Creature total level
-func get_total_level():
-	return self.base_level
-
-# Get proficiency bonus
-func get_proficiency():
-	var l = self.get_total_level()
-	return 2 + int( ( l - 1 ) / 2 )
-
 
 
 func _ready():

@@ -21,7 +21,7 @@ func draw_all():
 func draw_info():
 	var proftxt = self.actor.get_proficiency()
 	proftxt = "+"+str(proftxt) if proftxt > 0 else str(proftxt)
-	var hptxt = str(self.actor.get_hp()) +'/'+ str(self.actor.get_max_hp())
+	var hptxt = str(self.actor.get_current_HP()) +'/'+ str(self.actor.get_max_HP())
 	var actxt = str(self.actor.get_armor_class())
 	var initxt = str(self.actor.get_initiative_mod())
 	var atktxt = str(self.actor.get_attack_mod())
@@ -35,9 +35,9 @@ func draw_info():
 
 func draw_abilities():
 	for a in ['STR','DEX','CON','INT','WIS','CHA']:
-		abil_scores.get_node(a).set_text(str(actor.creature.call(a)))
+		abil_scores.get_node(a).set_text(str(actor.call(a)))
 		var mod_call = 'get_'+a.to_lower()+'_mod'
-		var v = actor.creature.call(mod_call)
+		var v = actor.call(mod_call)
 		v = "+"+str(v) if v > 0 else str(v)
 		abil_mods.get_node(a).set_text(v)
 

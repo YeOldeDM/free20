@@ -100,12 +100,12 @@ func _on_Active_movement_spent():
 	movement_panel.get_node('Undo').set_disabled(V<=0)
 
 func _on_Active_hp_changed():
-	var hp = Globals.active_actor.get_hp()
+	var hp = Globals.active_actor.get_current_HP()
 	active_panel.get_node('box/HP/Now').set_text(str(hp))
 
 
 func _on_Active_max_hp_changed():
-	var hp = Globals.active_actor.get_max_hp()
+	var hp = Globals.active_actor.get_max_HP()
 	active_panel.get_node('box/HP/Max').set_text(str(hp))
 
 func _on_Active_threats_changed():
