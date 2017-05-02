@@ -40,6 +40,7 @@ func set_target(who):
 	self.current_target = who
 	emit_signal( "action_changed" )
 
+
 func set_threats():
 	var p = Globals.active_actor
 	for node in threat_box.get_children():

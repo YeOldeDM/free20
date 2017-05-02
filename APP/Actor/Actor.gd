@@ -198,6 +198,9 @@ func get_attack_boon(other_actor):
 
 # Start new turn for this actor
 func new_turn():
+	if Globals.ActionController.current_target != null:
+		Globals.ActionController.current_target.set_target(false)
+	
 	self.max_movement = self.base_movement
 	self.movement_spent = 0
 	self.move_history = []
