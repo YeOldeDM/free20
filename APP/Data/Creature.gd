@@ -53,9 +53,7 @@ func set_actor_name( what ):
 
 
 
-func take_damage( amount=0 ):
-	var new_hp = self.get_current_HP() - amount
-	set_current_HP( new_hp )
+
 
 # Set Current HP
 func set_current_HP( what ):
