@@ -30,7 +30,7 @@ var step_sprites = []
 
 
 var action_taken = false
-var reaction_taken = false
+export(String) var reaction_taken = null
 
 
 var action_states = {
@@ -174,7 +174,7 @@ func can_finish_movement_in_cell(cell):
 
 # True if we can perform a Reaction
 func can_react():
-	return self.reaction_taken == false
+	return self.reaction_taken == null
 
 
 # True if other_actor is within Reach
@@ -206,7 +206,7 @@ func new_turn():
 	self.move_history = []
 	clear_step_sprites()
 	self.action_taken = false
-	self.reaction_taken = false
+	self.reaction_taken = null
 	for key in self.action_states:
 		self.action_states[key] = false
 	self.threatened_by = Globals.Board.get_threats_to_actor_at_cell( self, get_map_pos() )
@@ -314,6 +314,6 @@ func _on_actor_provoked_by(who):
 	var choice = yield(pop, "decided")
 	if bool(choice):
 		Globals.ActionController.execute_attack( self, who )
-		self.reaction_taken = true
+		self.reaction_taken = "Opportunity Attack"
 
 

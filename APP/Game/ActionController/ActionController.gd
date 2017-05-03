@@ -8,6 +8,7 @@ onready var target_panel = get_node( "box/Target/box" )
 onready var confirm_button = get_node( "box/Confirm" )
 
 var current_action = null setget _set_current_action
+var current_reaction = null setget _set_current_reaction
 var current_target = null setget _set_current_target
 
 var current_round = -1		# First round will begin at 0
@@ -177,6 +178,12 @@ func _set_current_action( what ):
 	action_values.get_node( "Std" ).set_text( txt )
 
 
+func _set_current_reaction( what ):
+	current_reaction = what
+	var txt = "None" if current_reaction == null else current_reaction
+	action_values.get_node( "React" ).set_text( txt )
+
+
 func _set_current_target( who ):
 	if current_target:
 		current_target.set_target(false)
@@ -188,6 +195,7 @@ func _set_current_target( who ):
 		target_panel.get_node( "Name/Label" ).set_text( current_target.get_actor_name() )
 		target_panel.get_node( "Info" ).set_button_icon( current_target.get_icon() )
 	emit_signal( "action_changed" )
+	self.current_reaction = who.reaction_taken
 
 
 func _on_action_changed():
