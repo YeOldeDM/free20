@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://Actor/Actor.gd" type="Script" id=1]
 [ext_resource path="res://resources/material_outline.tres" type="CanvasItemMaterial" id=2]
@@ -9,9 +9,34 @@
 [ext_resource path="res://Actor/Weapon.gd" type="Script" id=7]
 [ext_resource path="res://Data/Armor.tscn" type="PackedScene" id=8]
 
+[sub_resource type="StyleBoxFlat" id=1]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.675781, 0.0501556, 0.0501556, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.0742188, 0.0742188, 0.0742188, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
 [node name="Actor" type="Node2D"]
 
-transform/pos = Vector2( 37.7628, 37.7628 )
 script/script = ExtResource( 1 )
 strength = 8
 dexterity = 8
@@ -73,5 +98,26 @@ missile_type = 0
 missile_range = 0
 
 [node name="Armor" parent="." instance=ExtResource( 8 )]
+
+[node name="HP" type="ProgressBar" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 3.0
+margin/top = -2.0
+margin/right = 29.0
+margin/bottom = 0.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 100.0
+range/exp_edit = false
+range/rounded = false
+percent/visible = false
 
 

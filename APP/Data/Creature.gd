@@ -59,11 +59,15 @@ func set_actor_name( what ):
 func set_current_HP( what ):
 	self.HP.set_value( what )
 	emit_signal( "hp_changed" )
+	if has_node( "HP" ):
+		get_node( "HP" ).set_value( what )
 
 
 # Set Max HP (overrites generated HP)
 func set_max_HP( what ):
 	self.HP.set_max( max( 1,what ) )
+	if has_node( "HP" ):
+		get_node( "HP" ).set_max( what )
 
 # Set Base Movement
 func set_base_movement( what ):

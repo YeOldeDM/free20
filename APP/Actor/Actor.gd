@@ -283,6 +283,7 @@ func get_map_pos():
 
 # INIT #
 func _ready():
+	print(get_node("../").get_name())
 	connect( "provoked_by", self, "_on_actor_provoked_by" )
 	add_to_group( "actors" )
 	# Start with full HP
