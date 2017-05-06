@@ -159,6 +159,9 @@ func has_movement(n):
 	return self.movement_spent + n <= self.max_movement
 
 
+func occupies_cell():
+	return !self.has_status_effect( "incapacitated" )
+
 # True if we can occupy this cell
 func can_occupy(cell):
 	var flr = get_parent().is_floor(cell)
@@ -177,12 +180,16 @@ func can_step_to_cell(cell):
 
 
 # True if we can end our movement in this cell
-func can_finish_movement_in_cell(cell):
-	pass
+func can_finish_movement_in_cell( cell=self.get_map_pos() ):
+	var actors = get_parent().get_actors_in_cell( cell )
+	for actor in actors:
+		if actor != self:
+			return false
+	return true
 
 # True if we can perform a Reaction
 func can_react():
-	return self.reaction_taken == null
+	return self.occupies_cell() && self.reaction_taken == null
 
 
 # True if other_actor is within Reach

@@ -95,7 +95,7 @@ func get_base_movement():
 
 
 func has_status_effect( what ):
-	return what in self.status_effects
+	return what in self.status_effects.keys()
 
 func add_status_effect( effect, duration=-1 ):
 	self.status_effects[effect] = int(duration)\
