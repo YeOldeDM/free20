@@ -11,39 +11,7 @@ var current_action = null setget _set_current_action
 var current_reaction = null setget _set_current_reaction
 var current_target = null setget _set_current_target
 
-var current_round = -1		# First round will begin at 0
 
-# BATTLE consists of many ROUNDS
-
-# Begin a new battle
-func new_battle():
-	next_round()
-
-# End the current battle
-func end_battle():
-	pass
-
-# ROUNDS consist of each active actor taking a TURN
-
-# Begin the next round
-func next_round():
-	self.current_round += 1
-	next_turn()
-
-# End the current round
-func end_round():
-	next_round()
-
-
-# TURN is the active actor performing movement & action(s)
-
-# Begin the next turn
-func next_turn():
-	pass
-
-# End the current turn
-func end_turn():
-	next_turn()
 
 
 # Set the current target

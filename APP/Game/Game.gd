@@ -53,10 +53,8 @@ func show_actorsheet(actor):
 func _ready():
 	Globals.Game = self
 	randomize()
-	var actors = get_tree().get_nodes_in_group('actors')
-	for actor in actors:
-		actor.roll_init()
-	Globals.InitManager.build_list(actors)
+	Globals.InitManager.begin_battle()
+	
 
 
 
