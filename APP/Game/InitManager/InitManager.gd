@@ -45,6 +45,7 @@ func next_turn():
 	P.movement_spent = 0
 	P.move_history = []
 	P.clear_step_sprites()
+	P.clear_action_brand()
 	P.action_taken = false
 	P.reaction_taken = null
 	for key in P.action_states:

@@ -30,7 +30,7 @@ var step_sprites = []
 
 
 var action_taken = false
-export(String) var reaction_taken = null
+var reaction_taken = null
 
 
 var action_states = {
@@ -66,26 +66,34 @@ func set_icon( texture ):
 func get_icon():
 	return get_node("Icon").get_texture()
 
+# Action Brand
+func set_action_brand( action ):
+	var tex = load( "res://assets/graphics/brands/action_" +action.to_lower()+ ".png" )
+	get_node( "ActionBrand" ).set_texture( tex )
+
+func clear_action_brand():
+	get_node( "ActionBrand" ).set_texture( null )
+
 func set_icon_outline_color( color ):
-	var mat = get_node("Icon").get_material().set_shader_param( "outline_color", color )
+	var mat = get_node( "Icon" ).get_material().set_shader_param( "outline_color", color )
 
 
 func get_icon_outline_color():
-	var mat = get_node("Icon").get_material().get_shader_param("outline_color")
+	var mat = get_node( "Icon" ).get_material().get_shader_param("outline_color")
 
 
 # Actor focus (shows when we are the active actor)
 func set_focus( is_focus ):
-	get_node("Focus").set_hidden( !is_focus )
+	get_node( "Focus" ).set_hidden( !is_focus )
 
 func is_focus():
-	return !get_node("Focus").is_hidden()
+	return !get_node( "Focus" ).is_hidden()
 
 func set_target( is_target ):
-	get_node("Target").set_hidden( !is_target )
+	get_node( "Target" ).set_hidden( !is_target )
 
 func is_target():
-	return !get_node("Target").is_hidden()
+	return !get_node( "Target" ).is_hidden()
 
 
 func get_attack_mod(proficient=true,use_dex=false):
@@ -106,6 +114,7 @@ func get_initiative_mod():
 
 
 # PUBLIC METHODS #
+
 
 # Roll Inish!
 func roll_init():

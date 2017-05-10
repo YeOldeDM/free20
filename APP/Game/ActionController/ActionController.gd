@@ -38,16 +38,19 @@ func set_threats():
 func execute_dash(who):
 	who.max_movement = who.base_movement * 2
 	who.action_states.dashing = true
+	who.set_action_brand( "dash" )
 
 
 # Make Actor who perform a Disengage action
 func execute_disengage(who):
 	who.action_states.disengaging = true
+	who.set_action_brand( "disengage" )
 
 
 # Make Actor who perform a Dodge action
 func execute_dodge(who):
 	who.action_states.dodging = true
+	who.set_action_brand( "dodge" )
 
 
 # Perform an attack between one actor and another
@@ -80,6 +83,7 @@ func execute_attack( from, to ):
 	
 	# Mark the attacker as taking an Attack Action this round
 	from.action_states.attacking = true
+	from.set_action_brand( "attack" )
 
 
 # Make an actor step in a direction
@@ -117,8 +121,16 @@ func step_actor(who, direction):
 		who.movement_spent += 1
 		# update threats
 		who.threatened_by = new_threats
+		
+		if self.current_target:
+			update_target_distance()
 	
-
+func update_target_distance():
+	var P = Globals.active_actor
+	var T = self.current_target
+	if P && T:
+		var d = Globals.Board.get_distance( P.get_map_pos(), T.get_map_pos() )
+		target_panel.get_node( "Distance/Value" ).set_text( str( d ) )
 
 # Action comes in from ActionSensor
 # Interprets String action
@@ -189,6 +201,7 @@ func _set_current_target( who ):
 		target_panel.get_node( "Info" ).set_button_icon( current_target.get_icon() )
 	emit_signal( "action_changed" )
 	self.current_reaction = who.reaction_taken
+	update_target_distance()
 
 
 # Called when actions come in

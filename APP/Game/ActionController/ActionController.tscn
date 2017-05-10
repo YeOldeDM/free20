@@ -32,6 +32,7 @@ alignment = 0
 
 [node name="box" type="VBoxContainer" parent="box"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
@@ -306,7 +307,6 @@ max_lines_visible = -1
 
 [node name="Distance" type="HBoxContainer" parent="box/Target/box"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2

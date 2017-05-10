@@ -51,7 +51,6 @@ size = 1
 XP = 0
 base_level = 1
 team = 0
-reaction_taken = null
 
 [node name="Icon" type="Sprite" parent="."]
 
@@ -69,6 +68,10 @@ centered = false
 
 visibility/visible = false
 texture = ExtResource( 5 )
+centered = false
+
+[node name="ActionBrand" type="Sprite" parent="."]
+
 centered = false
 
 [node name="Dead" type="Sprite" parent="."]

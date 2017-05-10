@@ -65,6 +65,9 @@ func get_threats_to_actor_at_cell(actor, pos):
 	return list
 
 
+func get_distance( from_cell, to_cell ):
+	var D = ( to_cell - from_cell ).length()
+	return int( D )
 
 
 # INIT #
