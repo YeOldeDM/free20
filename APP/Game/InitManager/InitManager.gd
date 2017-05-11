@@ -8,10 +8,11 @@ signal victory( team )
 onready var actor_list = get_node('box/Actors/Active/List')
 
 var current_round = -1		# First round will begin at 0
-
 # Assigned to the last actor in a round
 # signals a new round after they act
 var round_ender = null
+
+
 
 # BATTLE consists of many ROUNDS
 
@@ -24,10 +25,13 @@ func begin_battle():
 	self.round_ender = get_last_actor()
 	next_round()
 
-
 # End the current battle
-func end_battle():
-	pass
+func end_battle( winning_team=null ):
+	var txt = "The battle was ended in a stalemate."
+	if winning_team != null:
+		txt = "Team" +str( winning_team )+ " claims Victory!"
+	OS.alert( txt, "Battle Over!" )
+
 
 # ROUNDS consist of each active actor taking a TURN
 
@@ -49,36 +53,22 @@ func next_turn():
 	next_actor()
 	#Globals.active_actor.new_turn()
 	var P = Globals.active_actor
-	
 	# Clear target icons
 	if Globals.ActionController.current_target != null:
 		Globals.ActionController.current_target.set_target(false)
-	
 	# Reset Actor params
-	# ( Maybe move these back to Actor.gd? )
-	P.max_movement = P.base_movement
-	P.movement_spent = 0
-	P.move_history = []
-	P.clear_step_sprites()
-	P.clear_action_brand()
-	P.action_taken = false
-	P.reaction_taken = null
-	for key in P.action_states:
-		P.action_states[key] = false
-	
+	P.next_turn()
 	# Get Threatened squares
 	P.threatened_by = Globals.Board.get_threats_to_actor_at_cell( P, P.get_map_pos() )
-	
 	# Poke ActionController to update
 	Globals.ActionController.emit_signal( "action_changed" )
-	
 	# Assign ally/foe coloring
 	for actor in get_tree().get_nodes_in_group( "actors" ):
 		if actor.get_team() == P.get_team():
 			actor.set_icon_outline_color( Color(0,1,0,1) )
 		else:
 			actor.set_icon_outline_color( Color(1,0,0,1) )
-	
+
 
 # End the current turn
 func end_turn():
@@ -164,12 +154,8 @@ func _sort_by_init(a,b):
 
 func _ready():
 	Globals.InitManager = self
-	connect( "stalemate", self, "_on_stalemate" )
-	connect( "victory", self, "_on_victory" )
+	connect( "stalemate", self, "end_battle" )
+	connect( "victory", self, "end_battle" )
 
 
-func _on_stalemate():
-	OS.alert( "The battle was ended in a stalemate.", "Game Over!" )
 
-func _on_victory( team ):
-	OS.alert( "Team" +str( team )+ " claims Victory!", "Game Over!" )

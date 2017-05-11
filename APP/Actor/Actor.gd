@@ -212,9 +212,12 @@ func can_reach(other_actor):
 	return other_actor in get_neighboring_actors()
 
 
+# True if we provoke opportunity
 func can_provoke_opportunity():
 	return !self.action_states.disengaging
 
+
+# Calculate Advantage/Disadvantage to attack other_actor
 func get_attack_boon(other_actor):
 	var boon = 1
 	if other_actor.action_states.dodging:
@@ -226,27 +229,18 @@ func get_attack_boon(other_actor):
 		][ boon ]
 
 
-# Start new turn for this actor
-#func new_turn():
-#	if Globals.ActionController.current_target != null:
-#		Globals.ActionController.current_target.set_target(false)
-#	
-#	self.max_movement = self.base_movement
-#	self.movement_spent = 0
-#	self.move_history = []
-#	clear_step_sprites()
-#	self.action_taken = false
-#	self.reaction_taken = null
-#	for key in self.action_states:
-#		self.action_states[key] = false
-#	self.threatened_by = Globals.Board.get_threats_to_actor_at_cell( self, get_map_pos() )
-#	Globals.ActionController.emit_signal( "action_changed" )
-#	
-#	for actor in get_tree().get_nodes_in_group( "actors" ):
-#		if actor.get_team() == self.get_team():
-#			actor.set_icon_outline_color( Color(0,1,0,1) )
-#		else:
-#			actor.set_icon_outline_color( Color(1,0,0,1) )
+# Reset this actor for their next turn
+func next_turn():
+	self.max_movement = self.base_movement
+	self.movement_spent = 0
+	self.move_history = []
+	self.clear_step_sprites()
+	self.clear_action_brand()
+	self.action_taken = false
+	self.reaction_taken = null
+	for key in self.action_states:
+		self.action_states[key] = false
+
 
 # End this actor's turn
 func end_turn():
