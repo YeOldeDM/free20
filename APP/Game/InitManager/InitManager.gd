@@ -1,8 +1,17 @@
 extends PanelContainer
 
+
+signal stalemate()
+signal victory( team )
+
+
 onready var actor_list = get_node('box/Actors/Active/List')
 
 var current_round = -1		# First round will begin at 0
+
+# Assigned to the last actor in a round
+# signals a new round after they act
+var round_ender = null
 
 # BATTLE consists of many ROUNDS
 
@@ -12,6 +21,7 @@ func begin_battle():
 	for actor in actors:
 		actor.roll_init()
 	build_list(actors)
+	self.round_ender = get_last_actor()
 	next_round()
 
 
@@ -25,6 +35,7 @@ func end_battle():
 func next_round():
 	self.current_round += 1
 	next_turn()
+	
 
 # End the current round
 func end_round():
@@ -38,9 +49,13 @@ func next_turn():
 	next_actor()
 	#Globals.active_actor.new_turn()
 	var P = Globals.active_actor
+	
+	# Clear target icons
 	if Globals.ActionController.current_target != null:
 		Globals.ActionController.current_target.set_target(false)
 	
+	# Reset Actor params
+	# ( Maybe move these back to Actor.gd? )
 	P.max_movement = P.base_movement
 	P.movement_spent = 0
 	P.move_history = []
@@ -50,9 +65,14 @@ func next_turn():
 	P.reaction_taken = null
 	for key in P.action_states:
 		P.action_states[key] = false
+	
+	# Get Threatened squares
 	P.threatened_by = Globals.Board.get_threats_to_actor_at_cell( P, P.get_map_pos() )
+	
+	# Poke ActionController to update
 	Globals.ActionController.emit_signal( "action_changed" )
 	
+	# Assign ally/foe coloring
 	for actor in get_tree().get_nodes_in_group( "actors" ):
 		if actor.get_team() == P.get_team():
 			actor.set_icon_outline_color( Color(0,1,0,1) )
@@ -62,12 +82,36 @@ func next_turn():
 
 # End the current turn
 func end_turn():
-	next_turn()
+	if self.round_ender == Globals.active_actor:
+		end_round()
+	else:
+		next_turn()
+
+
+# Check for teams with living members
+# Declare victory if one team remains
+# or Stalemate if all teams are dead
+func check_for_victory():
+	# List of teams left
+	var teams_left = []
+	for actor in actor_list:
+		# append living actors' teams to the list
+		if !actor.get_team() in teams_left:
+			if actor.is_alive:
+				teams_left.append( actor.get_team() )
+	
+	# They're all dead..
+	if teams_left.empty():
+		emit_signal( "stalemate" )
+	# Only one team left..
+	elif teams_left.size() == 1:
+		emit_signal( "victory", teams_left[0] )
 
 
 func clear_list():
 	while actor_list.get_child_count() > 0:
 		actor_list.get_child(0).queue_free()
+
 
 func build_list(actors=[]):
 	clear_list()
@@ -78,7 +122,11 @@ func build_list(actors=[]):
 
 
 func get_first_actor():
-	return actor_list.get_child(0)
+	return actor_list.get_child( 0 )
+
+
+func get_last_actor():
+	return actor_list.get_child( actor_list.size() - 1 )
 
 
 func next_actor():
@@ -107,6 +155,7 @@ func sort_actors_by_init(actors):
 	actors.sort_custom(self,'_sort_by_init')
 	return actors
 
+
 func _sort_by_init(a,b):
 	if a.get_initiative() >= b.get_initiative():
 		return true
@@ -115,8 +164,12 @@ func _sort_by_init(a,b):
 
 func _ready():
 	Globals.InitManager = self
+	connect( "stalemate", self, "_on_stalemate" )
+	connect( "victory", self, "_on_victory" )
 
 
+func _on_stalemate():
+	OS.alert( "The battle was ended in a stalemate.", "Game Over!" )
 
-func _on_Game_active_actor_set( actor ):
-	pass # replace with function body
+func _on_victory( team ):
+	OS.alert( "Team" +str( team )+ " claims Victory!", "Game Over!" )

@@ -158,6 +158,12 @@ func get_threat_squares():
 
 	# CHECKERS #
 
+
+# True if we are technically "Alive"
+# ( active battle participant )
+func is_alive():
+	return !self.occupies_cell()
+
 # True if we have no movement left
 func is_out_of_movement():
 	return self.movement_spent < self.max_movement
