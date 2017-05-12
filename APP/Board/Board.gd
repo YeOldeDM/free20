@@ -31,10 +31,17 @@ func is_floor(cell):
 	return get_cellv( cell ) >= 0
 
 
+func get_actors_in_cell( cell ):
+	var list = []
+	for actor in get_tree().get_nodes_in_group('actors'):
+		if actor.occupies_cell() && actor.get_map_pos() == cell:
+			list.append( actor )
+	return list
+
 # Get the actor in this cell
 func get_actor_in_cell( cell ):
 	for actor in get_tree().get_nodes_in_group('actors'):
-		if actor.get_map_pos() == cell:
+		if actor.occupies_cell() && actor.get_map_pos() == cell:
 			return actor
 
 
@@ -58,6 +65,9 @@ func get_threats_to_actor_at_cell(actor, pos):
 	return list
 
 
+func get_distance( from_cell, to_cell ):
+	var D = ( to_cell - from_cell ).length()
+	return int( D )
 
 
 # INIT #

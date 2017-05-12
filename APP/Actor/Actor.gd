@@ -30,7 +30,7 @@ var step_sprites = []
 
 
 var action_taken = false
-var reaction_taken = false
+var reaction_taken = null
 
 
 var action_states = {
@@ -66,26 +66,34 @@ func set_icon( texture ):
 func get_icon():
 	return get_node("Icon").get_texture()
 
+# Action Brand
+func set_action_brand( action ):
+	var tex = load( "res://assets/graphics/brands/action_" +action.to_lower()+ ".png" )
+	get_node( "ActionBrand" ).set_texture( tex )
+
+func clear_action_brand():
+	get_node( "ActionBrand" ).set_texture( null )
+
 func set_icon_outline_color( color ):
-	var mat = get_node("Icon").get_material().set_shader_param( "outline_color", color )
+	var mat = get_node( "Icon" ).get_material().set_shader_param( "outline_color", color )
 
 
 func get_icon_outline_color():
-	var mat = get_node("Icon").get_material().get_shader_param("outline_color")
+	var mat = get_node( "Icon" ).get_material().get_shader_param("outline_color")
 
 
 # Actor focus (shows when we are the active actor)
 func set_focus( is_focus ):
-	get_node("Focus").set_hidden( !is_focus )
+	get_node( "Focus" ).set_hidden( !is_focus )
 
 func is_focus():
-	return !get_node("Focus").is_hidden()
+	return !get_node( "Focus" ).is_hidden()
 
 func set_target( is_target ):
-	get_node("Target").set_hidden( !is_target )
+	get_node( "Target" ).set_hidden( !is_target )
 
 func is_target():
-	return !get_node("Target").is_hidden()
+	return !get_node( "Target" ).is_hidden()
 
 
 func get_attack_mod(proficient=true,use_dex=false):
@@ -94,7 +102,7 @@ func get_attack_mod(proficient=true,use_dex=false):
 	return prof+abil
 	
 func get_armor_class():
-	var ac = 7
+	var ac = 10
 	var dex = self.get_dex_mod()
 	return ac+dex
 
@@ -107,14 +115,23 @@ func get_initiative_mod():
 
 # PUBLIC METHODS #
 
+
 # Roll Inish!
 func roll_init():
 	self.initiative = RPG.d20() + get_initiative_mod()
 
 
+func take_damage( amount=0 ):
+	var new_hp = self.get_current_HP() - amount
+	self.set_current_HP( new_hp )
+	if new_hp <= 0:
+		die()
+
+
 # Actor dies (becomes incapacitated)
 func die():
 	self.add_status_effect( "incapacitated" )
+	get_node( "Dead" ).show()
 
 
 	# GETTERS #
@@ -141,6 +158,12 @@ func get_threat_squares():
 
 	# CHECKERS #
 
+
+# True if we are technically "Alive"
+# ( active battle participant )
+func is_alive():
+	return self.occupies_cell()
+
 # True if we have no movement left
 func is_out_of_movement():
 	return self.movement_spent < self.max_movement
@@ -150,6 +173,9 @@ func is_out_of_movement():
 func has_movement(n):
 	return self.movement_spent + n <= self.max_movement
 
+
+func occupies_cell():
+	return !self.has_status_effect( "incapacitated" )
 
 # True if we can occupy this cell
 func can_occupy(cell):
@@ -169,12 +195,16 @@ func can_step_to_cell(cell):
 
 
 # True if we can end our movement in this cell
-func can_finish_movement_in_cell(cell):
-	pass
+func can_finish_movement_in_cell( cell=self.get_map_pos() ):
+	var actors = get_parent().get_actors_in_cell( cell )
+	for actor in actors:
+		if actor != self:
+			return false
+	return true
 
 # True if we can perform a Reaction
 func can_react():
-	return self.reaction_taken == false
+	return self.occupies_cell() && self.reaction_taken == null
 
 
 # True if other_actor is within Reach
@@ -182,9 +212,12 @@ func can_reach(other_actor):
 	return other_actor in get_neighboring_actors()
 
 
+# True if we provoke opportunity
 func can_provoke_opportunity():
 	return !self.action_states.disengaging
 
+
+# Calculate Advantage/Disadvantage to attack other_actor
 func get_attack_boon(other_actor):
 	var boon = 1
 	if other_actor.action_states.dodging:
@@ -196,30 +229,24 @@ func get_attack_boon(other_actor):
 		][ boon ]
 
 
-# Start new turn for this actor
-func new_turn():
+# Reset this actor for their next turn
+func next_turn():
 	self.max_movement = self.base_movement
 	self.movement_spent = 0
 	self.move_history = []
-	clear_step_sprites()
+	self.clear_step_sprites()
+	self.clear_action_brand()
 	self.action_taken = false
-	self.reaction_taken = false
+	self.reaction_taken = null
 	for key in self.action_states:
 		self.action_states[key] = false
-	self.threatened_by = Globals.Board.get_threats_to_actor_at_cell( self, get_map_pos() )
-	Globals.ActionController.emit_signal( "action_changed" )
-	
-	for actor in get_tree().get_nodes_in_group( "actors" ):
-		if actor.get_team() == self.get_team():
-			actor.set_icon_outline_color( Color(0,1,0,1) )
-		else:
-			actor.set_icon_outline_color( Color(1,0,0,1) )
+
 
 # End this actor's turn
 func end_turn():
 	clear_step_sprites()
 	emit_signal( "ended_turn" )
-	Globals.InitManager.next_actor()
+	Globals.InitManager.end_turn()
 
 
 # Place movement markers in cells you move from
@@ -272,6 +299,7 @@ func get_map_pos():
 
 # INIT #
 func _ready():
+	print(get_node("../").get_name())
 	connect( "provoked_by", self, "_on_actor_provoked_by" )
 	add_to_group( "actors" )
 	# Start with full HP
@@ -311,6 +339,6 @@ func _on_actor_provoked_by(who):
 	var choice = yield(pop, "decided")
 	if bool(choice):
 		Globals.ActionController.execute_attack( self, who )
-		self.reaction_taken = true
+		self.reaction_taken = "Opportunity Attack"
 
 

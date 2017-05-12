@@ -1,14 +1,11 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://Data/Weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Data/Armor.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Data/Armor.gd" type="Script" id=3]
 
 [node name="Node" type="Node"]
 
 [node name="WEAPONS" type="Node" parent="."]
-
-editor/display_folded = true
 
 [node name="Club" parent="WEAPONS" instance=ExtResource( 1 )]
 
@@ -100,17 +97,6 @@ missile_range = 3
 [node name="ARMORS" type="Node" parent="."]
 
 [node name="Armor" parent="ARMORS" instance=ExtResource( 2 )]
-
-script/script = ExtResource( 3 )
-name = ""
-description = ""
-weight = 0.0
-value = 0.0
-doll_texture = null
-AC = 10
-weight_class = 1
-noisy = false
-clumsy = false
 
 [node name="RACES" type="Node" parent="."]
 

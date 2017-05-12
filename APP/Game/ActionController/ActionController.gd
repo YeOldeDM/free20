@@ -8,38 +8,20 @@ onready var target_panel = get_node( "box/Target/box" )
 onready var confirm_button = get_node( "box/Confirm" )
 
 var current_action = null setget _set_current_action
+var current_reaction = null setget _set_current_reaction
 var current_target = null setget _set_current_target
 
-var current_round = -1		# First round will begin at 0
-
-# BATTLE consists of many ROUNDS
-func new_battle():
-	next_round()
-
-func end_battle():
-	pass
-
-# ROUNDS consist of each active actor taking a TURN
-func next_round():
-	self.current_round += 1
-	next_turn()
-
-func end_round():
-	next_round()
 
 
-# TURN is the active actor performing movement & action(s)
-func next_turn():
-	pass
 
-func end_turn():
-	next_turn()
-
-
+# Set the current target
 func set_target(who):
 	self.current_target = who
 	emit_signal( "action_changed" )
 
+
+# Display Actors currently Threatening
+# the active actor
 func set_threats():
 	var p = Globals.active_actor
 	for node in threat_box.get_children():
@@ -52,16 +34,24 @@ func set_threats():
 			threat_box.add_child( but )
 	
 
+# Make Actor who perform a Dash action
 func execute_dash(who):
 	who.max_movement = who.base_movement * 2
 	who.action_states.dashing = true
+	who.set_action_brand( "dash" )
 
 
+# Make Actor who perform a Disengage action
 func execute_disengage(who):
 	who.action_states.disengaging = true
+	who.set_action_brand( "disengage" )
 
+
+# Make Actor who perform a Dodge action
 func execute_dodge(who):
 	who.action_states.dodging = true
+	who.set_action_brand( "dodge" )
+
 
 # Perform an attack between one actor and another
 func execute_attack( from, to ):
@@ -93,6 +83,7 @@ func execute_attack( from, to ):
 	
 	# Mark the attacker as taking an Attack Action this round
 	from.action_states.attacking = true
+	from.set_action_brand( "attack" )
 
 
 # Make an actor step in a direction
@@ -113,7 +104,7 @@ func step_actor(who, direction):
 	var new_threats = Globals.Board.get_threats_to_actor_at_cell( who, new_cell )
 	# If old threats are not in new threats, actor is provoking opportunity to the threat
 	for actor in who.threatened_by:
-		if !actor in new_threats && who.can_provoke_opportunity():
+		if actor.can_react() && !actor in new_threats && who.can_provoke_opportunity():
 			var pop = Globals.Game.make_decision( who.get_actor_name(), "This will provoke an attack of opportunity. Are you sure you want to do this?" )
 			var choice = yield( pop, "decided" )
 			move = bool(choice)
@@ -130,14 +121,25 @@ func step_actor(who, direction):
 		who.movement_spent += 1
 		# update threats
 		who.threatened_by = new_threats
+		
+		if self.current_target:
+			update_target_distance()
 	
+func update_target_distance():
+	var P = Globals.active_actor
+	var T = self.current_target
+	if P && T:
+		var d = Globals.Board.get_distance( P.get_map_pos(), T.get_map_pos() )
+		target_panel.get_node( "Distance/Value" ).set_text( str( d ) )
 
-
-
+# Action comes in from ActionSensor
+# Interprets String action
 func _on_action( action ):
+	var P = Globals.active_actor
+	
 	# End turn and fall out on DONE
-	if action == "DONE":
-		Globals.active_actor.end_turn()
+	if action == "DONE" && P.can_finish_movement_in_cell():
+		P.end_turn()
 		self.current_action = null
 		return
 
@@ -146,12 +148,13 @@ func _on_action( action ):
 		print(action)
 		var dirkey = action.replace( "STEP_", "" )
 		var dir = 	RPG.DIRECTIONS[ dirkey ]
-		step_actor( Globals.active_actor, dir )
+		step_actor( P, dir )
 	
-	# Undo STEP
+	# Process Undo STEP
 	elif action == "UNDO_STEP":
-		Globals.active_actor.undo_step()
+		P.undo_step()
 	
+	# Process any other action
 	else:
 		self.current_action = action
 	emit_signal( "action_changed" )
@@ -169,13 +172,23 @@ func _ready():
 
 
 
-
+# Called when current Action is selected
+# Only one current Action at a time
 func _set_current_action( what ):
 	current_action = what
 	var txt = "None" if current_action == null else current_action
 	action_values.get_node( "Std" ).set_text( txt )
 
 
+# Called when a Reaction comes in
+func _set_current_reaction( what ):
+	current_reaction = what
+	var txt = "None" if current_reaction == null else current_reaction
+	action_values.get_node( "React" ).set_text( txt )
+
+
+# Called when a target Actor is chosen
+# Only one current target Actor at a time, for now
 func _set_current_target( who ):
 	if current_target:
 		current_target.set_target(false)
@@ -187,22 +200,30 @@ func _set_current_target( who ):
 		target_panel.get_node( "Name/Label" ).set_text( current_target.get_actor_name() )
 		target_panel.get_node( "Info" ).set_button_icon( current_target.get_icon() )
 	emit_signal( "action_changed" )
+	self.current_reaction = who.reaction_taken
+	update_target_distance()
 
 
+# Called when actions come in
+# Locks/Unlocks the Confirm Action command
 func _on_action_changed():
+	var P = Globals.active_actor
+	var T = self.current_target
+	
 	var can_confirm = false
+	# Attack requires a valid target
 	if self.current_action == "ATTACK":
-		if self.current_target:
-			if self.current_target.has_method( "take_damage" ):
-				if Globals.active_actor.can_reach( self.current_target ):
+		if T && P.can_finish_movement_in_cell():
+			if T.has_method( "take_damage" ):
+				if P.can_reach( T ):
 					can_confirm = true
-
+	# These have no requirements
 	elif self.current_action in [ "DASH", "DISENGAGE", "DODGE" ]:
 		can_confirm = true
-	
-	if Globals.active_actor.action_taken:
+	# Can't take an action if we've already taken an action
+	if P.action_taken:
 		can_confirm = false
-	
+	# Lock/unlock the confirm button
 	confirm_button.set_disabled( !can_confirm )
 
 

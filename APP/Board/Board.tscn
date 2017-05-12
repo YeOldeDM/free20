@@ -32,7 +32,7 @@ script/script = ExtResource( 2 )
 [node name="Temele" parent="." instance=ExtResource( 3 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 640, 256 )
+transform/pos = Vector2( 512, 256 )
 name = "Temele"
 
 [node name="Icon" parent="Temele"]
@@ -57,7 +57,7 @@ weight_class = 3
 [node name="Berf" parent="." instance=ExtResource( 3 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 672, 288 )
+transform/pos = Vector2( 512, 288 )
 name = "Berf"
 
 [node name="Icon" parent="Berf"]
@@ -84,7 +84,7 @@ AC = 12
 [node name="Pekkins" parent="." instance=ExtResource( 3 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 704, 256 )
+transform/pos = Vector2( 544, 288 )
 name = "Pekkins"
 
 [node name="Icon" parent="Pekkins"]
@@ -112,7 +112,7 @@ AC = 12
 [node name="Morus" parent="." instance=ExtResource( 3 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 672, 224 )
+transform/pos = Vector2( 512, 224 )
 name = "Morus"
 
 [node name="Icon" parent="Morus"]
@@ -137,7 +137,7 @@ noisy = true
 [node name="Orc" parent="." instance=ExtResource( 3 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 320, 256 )
+transform/pos = Vector2( 448, 256 )
 strength = 12
 dexterity = 9
 constitution = 12
@@ -165,7 +165,7 @@ AC = 12
 [node name="Orc1" parent="." instance=ExtResource( 3 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 288, 224 )
+transform/pos = Vector2( 416, 192 )
 strength = 12
 dexterity = 9
 constitution = 12
@@ -192,7 +192,7 @@ AC = 12
 
 [node name="Orc2" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 288, 288 )
+transform/pos = Vector2( 416, 288 )
 strength = 12
 dexterity = 9
 constitution = 12

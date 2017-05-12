@@ -53,19 +53,21 @@ func set_actor_name( what ):
 
 
 
-func take_damage( amount=0 ):
-	var new_hp = self.get_current_HP() - amount
-	set_current_HP( new_hp )
+
 
 # Set Current HP
 func set_current_HP( what ):
 	self.HP.set_value( what )
 	emit_signal( "hp_changed" )
+	if has_node( "HP" ):
+		get_node( "HP" ).set_value( what )
 
 
 # Set Max HP (overrites generated HP)
 func set_max_HP( what ):
 	self.HP.set_max( max( 1,what ) )
+	if has_node( "HP" ):
+		get_node( "HP" ).set_max( what )
 
 # Set Base Movement
 func set_base_movement( what ):
@@ -93,7 +95,7 @@ func get_base_movement():
 
 
 func has_status_effect( what ):
-	return what in self.status_effects
+	return what in self.status_effects.keys()
 
 func add_status_effect( effect, duration=-1 ):
 	self.status_effects[effect] = int(duration)\
