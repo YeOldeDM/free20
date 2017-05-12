@@ -43,6 +43,21 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="Round" type="Label" parent="box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 224.0
+margin/bottom = 32.0
+text = "Round nil"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="Actors" type="PanelContainer" parent="box"]
 
 focus/ignore_mouse = false
@@ -50,7 +65,7 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 18.0
+margin/top = 36.0
 margin/right = 224.0
 margin/bottom = 333.0
 
@@ -63,7 +78,7 @@ size_flags/vertical = 3
 margin/left = 7.0
 margin/top = 7.0
 margin/right = 217.0
-margin/bottom = 308.0
+margin/bottom = 290.0
 scroll/horizontal = false
 scroll/vertical = true
 
@@ -76,7 +91,7 @@ size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 210.0
-margin/bottom = 301.0
+margin/bottom = 283.0
 alignment = 0
 
 

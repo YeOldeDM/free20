@@ -22,14 +22,15 @@ func begin_battle():
 	for actor in actors:
 		actor.roll_init()
 	build_list(actors)
-	self.round_ender = get_last_actor()
+	self.round_ender = get_last_actor().actor
+	print("round ender is: %s" % self.round_ender.get_actor_name())
 	next_round()
 
 # End the current battle
 func end_battle( winning_team=null ):
 	var txt = "The battle was ended in a stalemate."
 	if winning_team != null:
-		txt = "Team" +str( winning_team )+ " claims Victory!"
+		txt = "Team $s claims Victory!" % winning_team
 	OS.alert( txt, "Battle Over!" )
 
 
@@ -38,6 +39,8 @@ func end_battle( winning_team=null ):
 # Begin the next round
 func next_round():
 	self.current_round += 1
+	get_node("box/Round").set_text( "Round %s" % self.current_round )
+	printt("New Round!", self.current_round)
 	next_turn()
 	
 
@@ -72,6 +75,7 @@ func next_turn():
 
 # End the current turn
 func end_turn():
+	check_for_victory()
 	if self.round_ender == Globals.active_actor:
 		end_round()
 	else:
@@ -84,10 +88,11 @@ func end_turn():
 func check_for_victory():
 	# List of teams left
 	var teams_left = []
-	for actor in actor_list:
+	for actor in actor_list.get_children():
+		actor = actor.actor
 		# append living actors' teams to the list
 		if !actor.get_team() in teams_left:
-			if actor.is_alive:
+			if actor.is_alive():
 				teams_left.append( actor.get_team() )
 	
 	# They're all dead..
@@ -116,7 +121,7 @@ func get_first_actor():
 
 
 func get_last_actor():
-	return actor_list.get_child( actor_list.size() - 1 )
+	return actor_list.get_child( actor_list.get_child_count() - 1 )
 
 
 func next_actor():
