@@ -40,7 +40,7 @@ var HP_log = IntArray()
 var status_effects = {}
 
 
-var actor
+#var actor
 
 
 # Actor Name
@@ -116,6 +116,20 @@ func process_status_effects():
 			remove_status_effect( effect )
 		else:
 			self.status_effects[effect] -= 1
+
+
+func take_damage( amount=0 ):
+	var new_hp = self.get_current_HP() - amount
+	self.set_current_HP( new_hp )
+	if new_hp <= 0:
+		die()
+
+
+# Actor dies (becomes incapacitated)
+func die():
+	self.add_status_effect( "incapacitated" )
+	get_node( "Dead" ).show()
+
 
 # Fill HP
 func fill_HP():

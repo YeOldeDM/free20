@@ -55,6 +55,7 @@ team = 0
 [node name="Icon" type="Sprite" parent="."]
 
 material/material = ExtResource( 2 )
+transform/pos = Vector2( 0, -8 )
 texture = ExtResource( 3 )
 centered = false
 
@@ -72,6 +73,7 @@ centered = false
 
 [node name="ActionBrand" type="Sprite" parent="."]
 
+transform/pos = Vector2( 0, -8 )
 centered = false
 
 [node name="Dead" type="Sprite" parent="."]
@@ -109,9 +111,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 3.0
-margin/top = -2.0
+margin/top = -10.0
 margin/right = 29.0
-margin/bottom = 0.0
+margin/bottom = -8.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 range/min = 0.0

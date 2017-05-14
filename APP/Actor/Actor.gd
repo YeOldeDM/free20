@@ -121,17 +121,6 @@ func roll_init():
 	self.initiative = RPG.d20() + get_initiative_mod()
 
 
-func take_damage( amount=0 ):
-	var new_hp = self.get_current_HP() - amount
-	self.set_current_HP( new_hp )
-	if new_hp <= 0:
-		die()
-
-
-# Actor dies (becomes incapacitated)
-func die():
-	self.add_status_effect( "incapacitated" )
-	get_node( "Dead" ).show()
 
 
 	# GETTERS #
