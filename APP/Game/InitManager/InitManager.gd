@@ -30,7 +30,7 @@ func begin_battle():
 func end_battle( winning_team=null ):
 	var txt = "The battle was ended in a stalemate."
 	if winning_team != null:
-		txt = "Team $s claims Victory!" % winning_team
+		txt = "Team %s claims Victory!" % winning_team
 	OS.alert( txt, "Battle Over!" )
 
 
