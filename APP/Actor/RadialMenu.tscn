@@ -1,0 +1,186 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://addons/KOBUGE-games.CircularContainer/CircularContainer.gd" type="Script" id=1]
+[ext_resource path="res://addons/KOBUGE-games.CircularContainer/icon.png" type="Texture" id=2]
+
+[node name="RadialMenu" type="CenterContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 160.0
+margin/bottom = 160.0
+use_top_left = false
+
+[node name="Options" type="Container" parent="."]
+
+editor/display_folded = true
+rect/min_size = Vector2( 200, 200 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 200.0
+margin/bottom = 200.0
+script/script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+arrange/force_squares = false
+arrange/force_expand = true
+arrange/start_angle = 0.0
+arrange/start_empty = false
+arrange/allow_node2d = false
+animate/percent_visible = 1.0
+animate/all_at_once = false
+
+[node name="Button" type="Button" parent="Options"]
+
+rect/min_size = Vector2( 32, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 84.0
+margin/top = 0.0
+margin/right = 116.0
+margin/bottom = 32.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Button1" type="Button" parent="Options"]
+
+rect/min_size = Vector2( 32, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 143.397
+margin/top = 24.603
+margin/right = 175.397
+margin/bottom = 56.603
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Button2" type="Button" parent="Options"]
+
+rect/min_size = Vector2( 32, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 168.0
+margin/top = 84.0
+margin/right = 200.0
+margin/bottom = 116.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Button3" type="Button" parent="Options"]
+
+rect/min_size = Vector2( 32, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 143.397
+margin/top = 143.397
+margin/right = 175.397
+margin/bottom = 175.397
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Button4" type="Button" parent="Options"]
+
+rect/min_size = Vector2( 32, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 84.0
+margin/top = 168.0
+margin/right = 116.0
+margin/bottom = 200.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Button5" type="Button" parent="Options"]
+
+rect/min_size = Vector2( 32, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 24.603
+margin/top = 143.397
+margin/right = 56.603
+margin/bottom = 175.397
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Button6" type="Button" parent="Options"]
+
+rect/min_size = Vector2( 32, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 84.0
+margin/right = 32.0
+margin/bottom = 116.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Button7" type="Button" parent="Options"]
+
+rect/min_size = Vector2( 32, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 24.603
+margin/top = 24.603
+margin/right = 56.603
+margin/bottom = 56.603
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Back" type="Button" parent="."]
+
+rect/min_size = Vector2( 32, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 84.0
+margin/top = 84.0
+margin/right = 116.0
+margin/bottom = 116.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+
