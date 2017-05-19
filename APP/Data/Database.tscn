@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://Data/Database.gd" type="Script" id=1]
+[ext_resource path="res://Data/Weapon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Data/Armor.tscn" type="PackedScene" id=3]
+
+[node name="Database" type="Node"]
+
+script/script = ExtResource( 1 )
+
+[node name="Weapons" type="Node" parent="."]
+
+[node name="dagger" parent="Weapons" instance=ExtResource( 2 )]
+
+name = "Dagger"
+description = "Short n Pointy"
+weight = 2.0
+value = 0.5
+doll_texture = null
+damage = "1d4"
+damage2h = "1d4"
+finesse = true
+reach = false
+handedness = 0
+prof_class = 0
+weight_class = 1
+damage_type = 2
+missile_type = 1
+missile_range = 2
+
+[node name="longsword" parent="Weapons" instance=ExtResource( 2 )]
+
+name = "Longsword"
+description = "It's a long sword."
+weight = 60.0
+value = 15.0
+doll_texture = null
+damage = "1d8"
+damage2h = "1d10"
+reach = false
+handedness = 2
+prof_class = 1
+weight_class = 0
+damage_type = 1
+missile_type = 0
+missile_range = 0
+
+[node name="Armor" type="Node" parent="."]
+
+[node name="leather" parent="Armor" instance=ExtResource( 3 )]
+
+name = "Leather Armor"
+description = "Cheap and Light"
+weight = 100.0
+value = 10.0
+AC = 12
+
+[node name="chainmail" parent="Armor" instance=ExtResource( 3 )]
+
+name = "Chainmail"
+description = "Mail of chain"
+weight = 500.0
+value = 50.0
+AC = 15
+weight_class = 2
+noisy = true
+
+[node name="platemail" parent="Armor" instance=ExtResource( 3 )]
+
+name = "Platemail"
+description = "Suit of armored plates. Worth its weight in gold!"
+weight = 800.0
+value = 800.0
+AC = 18
+weight_class = 3
+noisy = true
+clumsy = true
+
+

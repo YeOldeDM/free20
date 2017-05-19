@@ -41,9 +41,7 @@ var action_states = {
 	"disengaging":	false,
 	}
 
-# COMPONENTS
-var weapon
-var armor
+
 
 var threatened_by = [] setget _set_threatened_by
 
@@ -96,20 +94,7 @@ func is_target():
 	return !get_node( "Target" ).is_hidden()
 
 
-#func get_attack_mod(proficient=true,use_dex=false):
-#	var prof = get_proficiency() if proficient else 0
-#	var abil = self.get_dex_mod() if use_dex else self.get_str_mod()
-#	return prof+abil
-#	
-#func get_armor_class():
-#	var ac = 10
-#	var dex = self.get_dex_mod()
-#	return ac+dex
-#
-#
-#
-#func get_initiative_mod():
-#	return self.get_dex_mod()
+
 
 
 func get_initiative():

@@ -48,8 +48,6 @@ name = "Blapp"
 HD = "1d8"
 base_movement = 4
 size = 1
-XP = 0
-base_level = 1
 team = 0
 
 [node name="Icon" type="Sprite" parent="."]

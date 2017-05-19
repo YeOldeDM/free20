@@ -2,7 +2,7 @@
 
 extends "res://Data/Item.gd"
 
-var owner
+#var owner
 
 
 export(Texture) var doll_texture = null
@@ -13,8 +13,5 @@ export(bool) var clumsy = false
 
 
 func get_AC():
-	var dex = self.owner.creature.get_dex_mod()
+	return self.AC
 
-func _ready():
-	self.owner = get_parent()
-	self.owner.armor = self

@@ -18,10 +18,6 @@ export(String, MULTILINE) var name = ""
 # Hit Die (1dn)
 export(String) var HD = "1d8"
 
-
-
-
-
 export(int) var base_movement = 4
 
 export(int, "Small", "Medium", "Large") var size = 1
@@ -31,16 +27,12 @@ var HP = Range.new()
 # Log of int HitDie rolls
 var HP_log = IntArray()
 
-
-
 # Status Effects
 # key: status name
 # value: effect duration (decrements)
 # -1 = permenant effect
 var status_effects = {}
 
-
-#var actor
 
 
 # Actor Name

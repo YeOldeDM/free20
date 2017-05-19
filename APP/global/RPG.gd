@@ -115,10 +115,6 @@ func roll( mod=0, dice1=[1,6], dice2=null,
 	for v in [dice1, dice2, dice3, dice4, dice5, dice6]:
 		if v != null:
 			rolls.append( ndx( v[0], v[1] ) )
-#	for p in dice:
-#		rolls.append( ndx( p[0], p[1] ) )
-#		_nd += p[0]
-#		_tr += p[0] * p[1]
 	# Add up rolls for roll_total
 	var roll_total = 0
 	for r in rolls:
@@ -145,7 +141,8 @@ func get_check_as_string(data):
 	var die_txt = '1d20'
 	var txt = die_txt+"("+str(data.roll)+")"
 	if data.mod != 0:
-		txt += "+"+str(data.mod)
+		var op = "-" if data.mod <= -1 else "+"
+		txt += op + str( abs( data.mod ) )
 	txt += "="+str(data.result)
 	txt += " vs DC "+str(data.DC)
 	return txt

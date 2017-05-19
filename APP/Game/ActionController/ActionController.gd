@@ -55,9 +55,15 @@ func execute_dodge(who):
 
 # Perform an attack between one actor and another
 func execute_attack( from, to ):
+	# Check for finesse attack
+	var fin = false
+	if from.get_weapon():
+		# Use dex if finesse weapon and dexterity exceeds strength
+		var use_dex = from.get_dex_mod() > from.get_str_mod()
+		fin = from.get_weapon().finesse and use_dex
 	# Attack Roll info
 	var name = from.get_actor_name()
-	var mod = from.get_attack_mod()
+	var mod = from.get_melee_attack_mod( true, fin )
 	var ac = to.get_armor_class()
 	var defname = to.get_actor_name()
 	var boon = from.get_attack_boon( to )
@@ -65,19 +71,20 @@ func execute_attack( from, to ):
 	var msg = "makes an attack roll against " +defname+ "!"
 	var roll = Globals.Game.check( msg, name, ac, mod, boon )
 	
-	# If the attack doesn"t miss..
+	# If the attack doesn't miss..
 	if roll.passed:
 		# Get roll info
-		var dmg_roll = from.weapon.get_damage()
-		if roll.crit == RPG.CRITICAL.hit:
-			dmg_roll[0] *= 2
-		var mod = from.get_str_mod()
-		# Check for Finesse
-		if from.weapon.finesse:
-			mod = max( from.get_str_mod(), from.get_dex_mod() )
-		msg = "Damage roll for "+from.weapon.name
+		var dmg_roll = from.get_melee_attack_damage( fin )
+		var crit = roll.crit == RPG.CRITICAL.hit
+		var dice = dmg_roll.dice
+		var mod = dmg_roll.mod
+		var name = "RAR"
+		if from.get_weapon():
+			name = from.get_weapon().get_name()
+		msg = "Damage roll for %s" % name
 		# Announce the damage roll
-		var dmg = Globals.Game.roll( msg, name, dmg_roll, mod)
+		var dmg = Globals.Game.roll( msg, name, dice, mod)
+		if crit:	dmg.total *= 2	# Double damage on a crit
 		# Give DAMAGE to target
 		to.take_damage( dmg.total )
 	

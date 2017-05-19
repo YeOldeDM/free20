@@ -16,9 +16,11 @@ func draw(from_name, data, announcement=""):
 	# Announcement
 	announce_label.set_text(announcement)
 	# D20 roll
-	var d20txt = "1d20+"+str(data.result - data.roll)	#back-engineer mod from data!
-	d20roll_label.set_text(d20txt)
-	d20roll_label.set_tooltip(RPG.get_check_as_string(data))
+	var mod = data.result - data.roll #back-engineer mod from data!
+	var op = "-" if mod <= -1 else "+"
+	var d20txt = "1d20" +op +str( abs( mod ) )
+	d20roll_label.set_text( d20txt )
+	d20roll_label.set_tooltip( RPG.get_check_as_string( data ) )
 	# DC
 	dc_label.set_text(str(data.DC))
 	# Advantage status
