@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=1]
 
-[ext_resource path="res://Actor/Actor.gd" type="Script" id=1]
+[ext_resource path="res://Actor/Monster.gd" type="Script" id=1]
 [ext_resource path="res://resources/material_outline.tres" type="CanvasItemMaterial" id=2]
 [ext_resource path="res://assets/graphics/creature/draconian_green_m.png" type="Texture" id=3]
 [ext_resource path="res://assets/graphics/tiles/cursor.png" type="Texture" id=4]
@@ -35,7 +35,7 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
-[node name="Actor" type="Node2D"]
+[node name="Monster" type="Node2D"]
 
 script/script = ExtResource( 1 )
 strength = 8
@@ -44,11 +44,13 @@ constitution = 8
 intelligence = 8
 wisdom = 8
 charisma = 8
-name = "Blapp"
+name = ""
 HD = "1d8"
 base_movement = 4
 size = 1
 team = 0
+challenge_rating = 1
+monster_type = 0
 
 [node name="Icon" type="Sprite" parent="."]
 

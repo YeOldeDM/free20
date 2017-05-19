@@ -30,6 +30,7 @@ func check(announcement="rolls a check!",from_name="--",DC=9, mod=0,\
 
 func roll(announcement="rolls some dice!", from_name="--", roll=[1,6], mod=0):
 	var data = RPG.roll(mod, roll )
+	data.total = max( 1, data.total )
 	emit_signal('announce_roll', from_name, data, announcement)
 	return data
 	

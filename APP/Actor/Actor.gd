@@ -1,4 +1,4 @@
-extends "res://Data/Character.gd"
+extends "res://Data/Creature.gd"
 
 # SIGNALS #
 signal team_changed()
@@ -41,9 +41,7 @@ var action_states = {
 	"disengaging":	false,
 	}
 
-# COMPONENTS
-var weapon
-var armor
+
 
 var threatened_by = [] setget _set_threatened_by
 
@@ -96,22 +94,11 @@ func is_target():
 	return !get_node( "Target" ).is_hidden()
 
 
-func get_attack_mod(proficient=true,use_dex=false):
-	var prof = get_proficiency() if proficient else 0
-	var abil = self.get_dex_mod() if use_dex else self.get_str_mod()
-	return prof+abil
-	
-func get_armor_class():
-	var ac = 10
-	var dex = self.get_dex_mod()
-	return ac+dex
+
+
 
 func get_initiative():
 	return self.initiative
-
-func get_initiative_mod():
-	return self.get_dex_mod()
-
 
 # PUBLIC METHODS #
 
@@ -121,17 +108,6 @@ func roll_init():
 	self.initiative = RPG.d20() + get_initiative_mod()
 
 
-func take_damage( amount=0 ):
-	var new_hp = self.get_current_HP() - amount
-	self.set_current_HP( new_hp )
-	if new_hp <= 0:
-		die()
-
-
-# Actor dies (becomes incapacitated)
-func die():
-	self.add_status_effect( "incapacitated" )
-	get_node( "Dead" ).show()
 
 
 	# GETTERS #

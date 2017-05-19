@@ -14,7 +14,8 @@ func draw(from_name, data, announcement=""):
 	
 	var roll = data.dice
 	var die_txt = str(roll[0])+'d'+str(roll[1])
-	var roll_txt = die_txt+"+"+str(data.mod)
+	var op = "-" if data.mod <= -1 else "+"
+	var roll_txt = die_txt+op+str( abs( data.mod ) )
 	roll_label.set_text(roll_txt)
 	roll_label.set_tooltip(RPG.get_roll_as_string(data))
 	result_label.set_text(str(data.total))

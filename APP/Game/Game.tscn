@@ -82,7 +82,7 @@ draw_center = true
 
 [sub_resource type="DynamicFont" id=5]
 
-font/size = 16
+font/size = 14
 font/use_mipmaps = true
 font/use_filter = true
 font/font = ExtResource( 7 )

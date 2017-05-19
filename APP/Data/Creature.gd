@@ -18,10 +18,6 @@ export(String, MULTILINE) var name = ""
 # Hit Die (1dn)
 export(String) var HD = "1d8"
 
-
-
-
-
 export(int) var base_movement = 4
 
 export(int, "Small", "Medium", "Large") var size = 1
@@ -31,16 +27,12 @@ var HP = Range.new()
 # Log of int HitDie rolls
 var HP_log = IntArray()
 
-
-
 # Status Effects
 # key: status name
 # value: effect duration (decrements)
 # -1 = permenant effect
 var status_effects = {}
 
-
-var actor
 
 
 # Actor Name
@@ -117,53 +109,41 @@ func process_status_effects():
 		else:
 			self.status_effects[effect] -= 1
 
+
+func take_damage( amount=0 ):
+	var new_hp = self.get_current_HP() - amount
+	self.set_current_HP( new_hp )
+	if new_hp <= 0:
+		die()
+
+
+# Actor dies (becomes incapacitated)
+func die():
+	self.add_status_effect( "incapacitated" )
+	get_node( "Dead" ).show()
+
+
 # Fill HP
 func fill_HP():
 	self.HP.set_value( self.HP.get_max() )
 
 
 
-# Sum HP log
-func calculate_total_hitpoints():
-	var total = 0
-	for v in self.HP_log:
-		total += v
-	return total
 
 
-# Roll a HD and add CON mod
-# return a minimum of 1
-func roll_HD():
-	var con = self.get_con_mod()
-	var roll = RPG.roll( con, _get_HD_dice() ).total
-	return max( 1, roll )
+
+func get_initiative_mod():
+	return self.get_dex_mod()
 
 
-# Populate the HP log with 
-# HD rolls. Should only be 
-# done with a "fresh" Creature.
-func create_HP_log():
-	for i in range( self.get_total_level() ):
-		HP_log.append( self.roll_HD() )
-
-
+# READY
 func _ready():
 	# Init HP
 	self.HP.set_rounded_values(true)
 	self.HP.set_min(0)
-	create_HP_log()
-	set_max_HP( self.calculate_total_hitpoints() )
 	fill_HP()
-	# Associate with Actor
-#	self.actor = get_parent()
-#	self.actor.creature = self
 
 
 
-func _get_HD_dice():
-	# Converts "1d6" to [1,6]
-	var s = Array(self.HD.split("d"))
-	var r = []
-	for i in s:
-		r.append(int(i))
-	return r
+
+

@@ -2,7 +2,11 @@
 
 extends "res://Data/Item.gd"
 
-onready var owner = get_parent()
+const ONE_HANDED = 0
+const TWO_HANDED = 1
+const VERSITILE = 2
+
+#onready var owner = get_parent()
 # Paperdoll texture
 export(Texture) var doll_texture = null
 
@@ -31,6 +35,9 @@ export(int, "None", "Thrown", "Projectile") var missile_type = 0
 # Missile range
 export(int) var missile_range = 0
 
+func is_versitile():
+	return self.handedness == VERSITILE
+
 
 func get_damage( dmg2h=false ):
 	var D = self.damage2h if dmg2h else self.damage
@@ -40,16 +47,12 @@ func get_damage( dmg2h=false ):
 		r.append(int(i))
 	return r
 
+func get_attack_mod():
+	return self.enchantment
+
 func get_damage_mod():
-	var total = self.enchantment
-	var STR = owner.get_str_mod()
-	var DEX = owner.get_dex_mod()
-	if self.finesse:
-		total += max(STR,DEX)
-	else:
-		total += STR
-	return total
-	
+	return self.enchantment
+
 	
 	
 func roll_damage():
@@ -57,7 +60,5 @@ func roll_damage():
 	return RPG.roll(r[0],r[1])
 
 
-func _ready():
-	owner.weapon = self
 
 
