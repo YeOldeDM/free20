@@ -1,4 +1,4 @@
-extends "res://Actor/Actor.gd"
+extends "res://Data/Actor.gd"
 
 
  ############################
@@ -21,11 +21,7 @@ export(String) var weapon = "dagger"
 export(String) var armor = "leather"
 
 
-func get_weapon():
-	return Database.get_weapon( self.weapon )
 
-func get_armor():
-	return Database.get_armor( self.armor )
 
 
 func get_XP_needed_for_level( what ):
@@ -34,6 +30,14 @@ func get_XP_needed_for_level( what ):
 # Get Creature total level
 func get_total_level():
 	return self.base_level
+
+
+func get_weapon():
+	return Database.get_weapon( self.weapon )
+
+func get_armor():
+	return Database.get_armor( self.armor )
+
 
 # Get proficiency bonus
 func get_proficiency():
