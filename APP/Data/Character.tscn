@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://Data/Character.gd" type="Script" id=1]
 [ext_resource path="res://resources/material_outline.tres" type="CanvasItemMaterial" id=2]
@@ -6,8 +6,6 @@
 [ext_resource path="res://assets/graphics/tiles/cursor.png" type="Texture" id=4]
 [ext_resource path="res://assets/graphics/tiles/cursor_red.png" type="Texture" id=5]
 [ext_resource path="res://assets/graphics/tiles/dead.png" type="Texture" id=6]
-[ext_resource path="res://Actor/Weapon.gd" type="Script" id=7]
-[ext_resource path="res://Data/Armor.tscn" type="PackedScene" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -51,6 +49,8 @@ size = 1
 team = 0
 XP = 0
 base_level = 1
+weapon = "dagger"
+armor = "leather"
 
 [node name="Icon" type="Sprite" parent="."]
 
@@ -81,28 +81,6 @@ centered = false
 visibility/visible = false
 texture = ExtResource( 6 )
 centered = false
-
-[node name="Weapon" type="Node" parent="."]
-
-script/script = ExtResource( 7 )
-name = ""
-description = ""
-weight = 0.0
-value = 0.0
-doll_texture = null
-damage = "1d6"
-damage2h = "1d6"
-enchantment = 0
-finesse = false
-reach = false
-handedness = 0
-prof_class = 0
-weight_class = 0
-damage_type = 0
-missile_type = 0
-missile_range = 0
-
-[node name="Armor" parent="." instance=ExtResource( 8 )]
 
 [node name="HP" type="ProgressBar" parent="."]
 

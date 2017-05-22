@@ -27,7 +27,7 @@ script/script = ExtResource( 2 )
 
 [node name="SahnTa" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 512, 256 )
+transform/pos = Vector2( 544, 288 )
 weapon = "dagger"
 armor = "leather"
 
@@ -37,7 +37,7 @@ texture = ExtResource( 4 )
 
 [node name="Troggy" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 416, 256 )
+transform/pos = Vector2( 480, 288 )
 
 
 [editable path="SahnTa"]

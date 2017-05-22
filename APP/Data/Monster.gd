@@ -6,6 +6,8 @@ extends "res://Data/Actor.gd"
  #	inherits Actor		#
  ############################
 
+export var weapon = "dagger"
+export var armor = "leather"
 
 
 func get_weapon():

@@ -56,6 +56,8 @@ func _ready():
 	randomize()
 	Globals.InitManager.begin_battle()
 	
+	CDT.check_dirs()
+	CDT.load_character()
 
 
 
