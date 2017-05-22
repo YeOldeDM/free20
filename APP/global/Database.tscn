@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://Data/Database.gd" type="Script" id=1]
+[ext_resource path="res://global/Database.gd" type="Script" id=1]
 [ext_resource path="res://Data/Weapon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Data/Armor.tscn" type="PackedScene" id=3]
+
 
 [node name="Database" type="Node"]
 
