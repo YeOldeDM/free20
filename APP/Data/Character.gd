@@ -111,6 +111,30 @@ func create_HP_log():
 		HP_log.append( self.roll_HD() )
 
 
+func get_data():
+	var data = {}
+	var pool = [
+		self.store_abilityscores(),
+		self.store_creature(),
+		self.store_actor(),
+		]
+	for entry in pool:
+		for key in entry:
+			data[key] = entry[key]
+	return data
+
+func set_data( data ):
+	for key in data:
+		if !key in ["icon", "HP_current", "HP_max"]:
+			self.set( key, data[key] )
+	if "icon" in data:
+		self.set_icon( load( data.icon ) )
+	if "HP_max" in data:
+		self.HP.set_max( data.HP_max )
+	if "HP_current" in data:
+		self.HP.set_value( data.HP_current )
+
+
 func _ready():
 	self.create_HP_log()
 	self.set_max_HP( self.calculate_total_hitpoints() )

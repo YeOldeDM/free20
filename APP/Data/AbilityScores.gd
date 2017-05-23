@@ -47,3 +47,12 @@ func get_wis_mod():
 func get_cha_mod():
 	return self.get_mod('charisma')
 
+func store_abilityscores():
+	return {
+		"strength":		self.STR(),
+		"dexterity":	self.DEX(),
+		"constitution":	self.CON(),
+		"intelligence":	self.INT(),
+		"wisdom":		self.WIS(),
+		"charisma":		self.CHA(),
+		}

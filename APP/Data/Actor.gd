@@ -271,7 +271,10 @@ func get_map_pos():
 	return get_parent().world_to_map( self.get_pos() )
 
 
-
+func store_actor():
+	return {
+		"icon":	self.get_icon().get_filename()
+		}
 
 # INIT #
 func _ready():

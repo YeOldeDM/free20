@@ -136,6 +136,19 @@ func get_initiative_mod():
 	return self.get_dex_mod()
 
 
+func store_creature():
+	return {
+		"name":				self.name,
+		"HD":				self.HD,
+		"base_movement":	self.base_movement,
+		"size":				self.size,
+		"HP_current":		self.HP.get_value(),
+		"HP_max":			self.HP.get_max(),
+		"HP_log":			self.HP_log,
+		"status_effects":	self.status_effects,
+	}
+
+
 # READY
 func _ready():
 	# Init HP
