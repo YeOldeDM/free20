@@ -112,7 +112,12 @@ func create_HP_log():
 
 
 func get_data():
-	var data = {}
+	var data = {
+		"XP":			self.XP,
+		"base_level":	self.base_level,
+		"weapon":		self.weapon,
+		"armor":		self.armor,
+		}
 	var pool = [
 		self.store_abilityscores(),
 		self.store_creature(),
